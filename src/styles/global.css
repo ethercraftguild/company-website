@@ -5,12 +5,18 @@
 
 :root {
   /* Colors */
-  --color-bg: #F7F7F7;        /* Off-White/Light Gray */
-  --color-text: #1A1A1A;      /* Near Black */
-  --color-accent: #333333;    /* Charcoal/Dark Gray - Primary CTA & Nav */
-  --color-hover: #000000;     /* Pure Black - Hover/Active */
-  --color-success: #3C83F6;   /* Minimal Blue */
-  --color-border: #1A1A1A;    /* Thin solid lines */
+  --color-bg: #F7F7F7;
+  /* Off-White/Light Gray */
+  --color-text: #1A1A1A;
+  /* Near Black */
+  --color-accent: #333333;
+  /* Charcoal/Dark Gray - Primary CTA & Nav */
+  --color-hover: #000000;
+  /* Pure Black - Hover/Active */
+  --color-success: #3C83F6;
+  /* Minimal Blue */
+  --color-border: #1A1A1A;
+  /* Thin solid lines */
   --color-card-bg: #FFFFFF;
   --color-card-border: #CCCCCC;
 
@@ -27,7 +33,7 @@
   --space-2xl: 8rem;
 
   /* Border Radius */
-  --radius-sm: 4px;
+  --radius-sm: 25px;
   --radius-pill: 9999px;
 
   /* Transitions */
@@ -35,7 +41,9 @@
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -57,15 +65,22 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700; /* Bold */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  /* Bold */
   line-height: 1.2;
   margin-bottom: var(--space-md);
-  letter-spacing: -0.02em; 
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 2.5rem; /* Mobile default */
+  font-size: 2.5rem;
+  /* Mobile default */
 }
 
 h2 {
