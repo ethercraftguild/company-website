@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Section from '../../components/ui/Section.astro';
 import Button from '../../components/ui/Button.astro';
+import CtaSection from '../../components/ui/CtaSection.astro';
+import StatCard from '../../components/ui/StatCard.astro';
 
 // In a real app, this would come from `getStaticPaths` or a CMS
 // For this static example, we'll make a generic template that handles one specific case
@@ -90,18 +92,9 @@ const clientProps = slug === 'fintech-app' ? {
   <Section class="results-section">
     <h2>Measurable Outcomes</h2>
     <div class="metrics-grid">
-        <div class="metric-card">
-            <span class="metric-value">+40%</span>
-            <span class="metric-label">Conversion Rate</span>
-        </div>
-        <div class="metric-card">
-            <span class="metric-value">-25%</span>
-            <span class="metric-label">Support Tickets</span>
-        </div>
-        <div class="metric-card">
-            <span class="metric-value">2x</span>
-            <span class="metric-label">Faster Load Time</span>
-        </div>
+        <StatCard value="+40%" label="Conversion Rate" />
+        <StatCard value="-25%" label="Support Tickets" />
+        <StatCard value="2x" label="Faster Load Time" />
     </div>
 
     <div class="testimonial-box">
@@ -112,11 +105,12 @@ const clientProps = slug === 'fintech-app' ? {
     </div>
   </Section>
 
-  <!-- Closing CTA -->
-  <Section class="closing-section">
-    <h3>Ready for Results Like This?</h3>
-    <Button href="/contact" variant="primary">Tell Us About Your Challenge</Button>
-  </Section>
+  <CtaSection 
+    title="Ready for Results Like This?" 
+    ctaText="Tell Us About Your Challenge"
+    ctaLink="/contact"
+    variant="tertiary" 
+  />
 
 </Layout>
 
@@ -199,30 +193,9 @@ const clientProps = slug === 'fintech-app' ? {
   .metrics-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--space-lg);
+      gap: var(--space-md);
       margin-top: var(--space-lg);
       margin-bottom: var(--space-xl);
-  }
-
-  .metric-card {
-      background-color: var(--color-accent);
-      color: #F7F7F7;
-      padding: var(--space-lg);
-      border-radius: var(--radius-sm);
-      text-align: center;
-  }
-
-  .metric-value {
-      display: block;
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: var(--space-xs);
-  }
-
-  .metric-label {
-      font-size: 1rem;
-      opacity: 0.9;
   }
 
   .testimonial-box {
@@ -237,15 +210,6 @@ const clientProps = slug === 'fintech-app' ? {
       margin-bottom: var(--space-sm);
   }
 
-  .closing-section {
-      text-align: center;
-      padding-bottom: var(--space-2xl);
-  }
-  
-  .closing-section h3 {
-      margin-bottom: var(--space-lg);
-  }
-
   @media (min-width: 768px) {
     .client-details {
       grid-template-columns: repeat(4, 1fr);
@@ -253,6 +217,7 @@ const clientProps = slug === 'fintech-app' ? {
     
     .metrics-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
     }
   }
 </style>

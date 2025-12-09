@@ -1,0 +1,68 @@
+---
+import Section from './Section.astro';
+import Button from './Button.astro';
+
+interface Props {
+  title?: string;
+  text?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  centered?: boolean;
+}
+
+const { 
+  title = "Ready to Partner with the Guild?", 
+  text,
+  ctaText = "Start Your Project", 
+  ctaLink = "/contact",
+  variant = 'tertiary',
+  centered = true
+} = Astro.props;
+---
+
+<Section class="cta-section">
+  <div class:list={['cta-content', { centered }]}>
+    <h3>{title}</h3>
+    {text && <p>{text}</p>}
+    <Button href={ctaLink} variant={variant}>{ctaText}</Button>
+  </div>
+</Section>
+
+<style>
+  .cta-section {
+    padding-bottom: var(--space-2xl);
+  }
+
+  .cta-content {
+    background-color: var(--color-accent);
+    color: #F7F7F7;
+    padding: var(--space-xl);
+    border-radius: var(--radius-sm);
+    width: 100%;
+  }
+
+  .cta-content.centered {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h3 {
+    color: #F7F7F7;
+    font-size: 1.75rem;
+    margin-bottom: var(--space-md);
+  }
+
+  p {
+    margin-bottom: var(--space-lg);
+    opacity: 0.9;
+    font-size: 1.1rem;
+  }
+  
+  @media (min-width: 768px) {
+      h3 {
+          font-size: 2.25rem;
+      }
+  }
+</style>

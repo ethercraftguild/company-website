@@ -29,15 +29,26 @@
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
-  --space-xl: 4rem;
-  --space-2xl: 8rem;
+  --space-xl: 3rem;
+  /* Reduced from 4rem for mobile */
+  --space-2xl: 5rem;
+  /* Reduced from 8rem for mobile */
 
   /* Border Radius */
-  --radius-sm: 25px;
+  --radius-sm: 20px;
+  /* Slightly tighter */
   --radius-pill: 9999px;
 
   /* Transitions */
   --transition-fast: 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --space-xl: 4rem;
+    --space-2xl: 8rem;
+    --radius-sm: 25px;
+  }
 }
 
 /* Reset & Base */
@@ -62,6 +73,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Typography */
@@ -79,7 +92,7 @@ h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   /* Mobile default */
 }
 

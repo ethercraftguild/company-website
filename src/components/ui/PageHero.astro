@@ -1,0 +1,63 @@
+---
+import Section from './Section.astro';
+import Button from './Button.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  variant?: 'primary' | 'secondary' | 'tertiary';
+}
+
+const { 
+  title, 
+  subtitle, 
+  ctaText = "Start a Conversation", 
+  ctaLink = "/contact",
+  variant = "primary"
+} = Astro.props;
+---
+
+<Section class="page-hero">
+  <div class="hero-content">
+    <h1>{title}</h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    <div class="cta-wrapper">
+      <Button href={ctaLink} variant={variant}>{ctaText}</Button>
+    </div>
+  </div>
+</Section>
+
+<style>
+  .page-hero {
+    padding-top: var(--space-xl); /* Adjusted for consistency */
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    margin-bottom: var(--space-md);
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg) auto;
+    opacity: 0.9;
+  }
+
+  @media (min-width: 768px) {
+    .page-hero {
+       padding-top: var(--space-2xl);
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+    }
+  }
+</style>

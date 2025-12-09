@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/ui/Section.astro';
 import Button from '../components/ui/Button.astro';
 import Card from '../components/ui/Card.astro';
+import CtaSection from '../components/ui/CtaSection.astro';
 ---
 
 <Layout title="Ethercraft Guild | Master Digital Craftsmanship">
@@ -76,12 +77,12 @@ import Card from '../components/ui/Card.astro';
   </Section>
 
   <!-- Closing CTA -->
-  <Section class="closing-section">
-    <div class="closing-content">
-      <h3>Ready to Partner with the Guild?</h3>
-      <Button href="/services" variant="tertiary">Explore All Services</Button>
-    </div>
-  </Section>
+  <CtaSection 
+    title="Ready to Partner with the Guild?" 
+    ctaText="Explore All Services" 
+    ctaLink="/services" 
+    variant="tertiary" 
+  />
 
 </Layout>
 
