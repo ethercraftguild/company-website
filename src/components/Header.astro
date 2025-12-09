@@ -1,6 +1,7 @@
 ---
 import MobileDrawer from './MobileDrawer.astro';
 import Button from './ui/Button.astro';
+import { NAV_MENU } from '../config';
 ---
 
 <header class="site-header">
@@ -10,11 +11,26 @@ import Button from './ui/Button.astro';
     </a>
 
     <nav class="desktop-nav">
-      <ul>
-        <li><a href="/services/architecture">Architecture</a></li>
-        <li><a href="/services/growth">Growth</a></li>
-        <li><a href="/services/operations">Operations</a></li>
-        <li><a href="/case-studies">Case Studies</a></li>
+      <ul class="nav-list">
+        {NAV_MENU.map((item) => (
+          <li class="nav-item">
+            <a href={item.href} class="nav-link">
+              {item.label}
+              {item.children && (
+                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" class="chevron-down" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              )}
+            </a>
+            {item.children && (
+              <ul class="dropdown-menu">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.href} class="dropdown-link">{child.label}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
       </ul>
     </nav>
 
@@ -30,10 +46,12 @@ import Button from './ui/Button.astro';
 
 <style>
   .site-header {
-    position: sticky;
+    position: fixed; /* Changed from sticky to fixed as requested */
     top: 0;
-    z-index: 100;
-    background-color: rgba(247, 247, 247, 0.9); /* var(--color-bg) with opacity */
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* High z-index */
+    background-color: rgba(247, 247, 247, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--color-border);
     padding: var(--space-md) 0;
@@ -46,18 +64,19 @@ import Button from './ui/Button.astro';
   }
 
   .brand {
-    font-family: var(--font-mono); /* Technical feel */
+    font-family: var(--font-mono); 
     font-weight: 700;
     font-size: 1.125rem;
     text-transform: uppercase;
     letter-spacing: -0.05em;
-    z-index: 101; /* Above drawer */
+    z-index: 101; 
   }
 
   .desktop-nav {
     display: none;
   }
 
+  /* Hamburger Styles */
   .menu-toggle {
     display: flex;
     flex-direction: column;
@@ -67,7 +86,7 @@ import Button from './ui/Button.astro';
     border: none;
     cursor: pointer;
     padding: var(--space-xs);
-    z-index: 1001; /* Above drawer */
+    z-index: 1001; 
   }
 
   .hamburger, .hamburger::before, .hamburger::after {
@@ -78,53 +97,103 @@ import Button from './ui/Button.astro';
     transition: transform 0.3s;
   }
   
-  .hamburger {
-      position: relative;
-  }
-  
-  .hamburger::before, .hamburger::after {
-      content: '';
-      position: absolute;
-  }
-  
-  .hamburger::before {
-      top: -8px;
-  }
-  
-  .hamburger::after {
-      top: 8px;
-  }
+  .hamburger { position: relative; }
+  .hamburger::before, .hamburger::after { content: ''; position: absolute; }
+  .hamburger::before { top: -8px; }
+  .hamburger::after { top: 8px; }
 
-  .desktop-cta {
-    display: none;
-  }
+  .desktop-cta { display: none; }
 
   @media (min-width: 768px) {
-    .menu-toggle {
-      display: none;
-    }
+    .menu-toggle { display: none; }
+    .desktop-cta { display: inline-flex; }
 
-    .desktop-nav {
-      display: block;
-    }
-
-    .desktop-nav ul {
+    /* Desktop Navigation Logic */
+    .desktop-nav { display: block; }
+    
+    .nav-list {
       display: flex;
       gap: var(--space-lg);
       list-style: none;
+      align-items: center;
     }
 
-    .desktop-nav a {
-      font-weight: 500;
-      font-size: 0.9375rem;
+    .nav-item {
+      position: relative; /* For dropdown positioning */
     }
 
-    .desktop-nav a:hover {
-      text-decoration: underline;
+    .nav-link {
+        font-weight: 500;
+        font-size: 0.9375rem;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: var(--space-xs) 0;
     }
 
-    .desktop-cta {
-      display: inline-flex;
+    .nav-link:hover {
+      text-decoration: none;
+      opacity: 0.7;
+    }
+    
+    .chevron-down {
+        transition: transform 0.2s ease;
+    }
+    
+    .nav-item:hover .chevron-down {
+        transform: rotate(180deg);
+    }
+
+    /* Dropdown Styles */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background-color: white; /* Solid background */
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: var(--space-sm);
+      min-width: 200px;
+      list-style: none;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      
+      /* Hidden state */
+      opacity: 0;
+      visibility: hidden; 
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Show on Hover */
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-link {
+      display: block;
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.875rem;
+      color: var(--color-text);
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .dropdown-link:hover {
+      background-color: var(--color-bg);
+      text-decoration: none;
+      color: var(--color-text);
+    }
+    
+    /* Transparent bridge to prevent closing when moving mouse from link to menu */
+    .nav-item::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 20px;
+        left: 0;
+        bottom: -20px; /* Covers the gap */
     }
   }
 </style>
