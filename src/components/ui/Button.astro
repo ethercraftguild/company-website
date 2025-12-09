@@ -1,7 +1,7 @@
 ---
 interface Props {
   href: string;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'tertiary';
   type?: 'button' | 'submit' | 'reset';
   class?: string;
   [x: string]: any;
@@ -52,5 +52,18 @@ const { href, variant = 'primary', class: className, ...rest } = Astro.props;
   .btn-secondary:hover {
     background-color: var(--color-text);
     color: var(--color-bg);
+  }
+
+  .btn-tertiary {
+    background-color: var(--color-bg);
+    color: var(--color-accent);
+    border-color: var(--color-bg);
+  }
+
+  .btn-tertiary:hover {
+    background-color: #FFFFFF;
+    color: var(--color-hover);
+    border-color: #FFFFFF;
+    transform: translateY(-1px);
   }
 </style>
