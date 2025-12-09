@@ -1,0 +1,258 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/ui/Section.astro';
+import Button from '../../components/ui/Button.astro';
+
+// In a real app, this would come from `getStaticPaths` or a CMS
+// For this static example, we'll make a generic template that handles one specific case
+// or acts as the Catch-All for the demo.
+export function getStaticPaths() {
+  return [
+    {params: {slug: 'fintech-app'}},
+    {params: {slug: 'client-name'}},
+  ];
+}
+
+const { slug } = Astro.params;
+
+// Mock data content based on slug
+const title = slug === 'fintech-app' ? 'FinTech Dashboard Overhaul' : 'Client Success Story';
+const clientProps = slug === 'fintech-app' ? {
+    industry: 'Financial Technology',
+    service: 'Mobile App Development',
+    duration: '4 Months',
+    tech: 'Flutter, Node.js'
+} : {
+    industry: 'SaaS',
+    service: 'Full-Stack Development',
+    duration: '3 Months',
+    tech: 'React, Python'
+};
+---
+
+<Layout title={`Case Study: ${title} | Ethercraft Guild`}>
+  
+  <!-- Header -->
+  <Section class="header-section">
+    <div class="header-content">
+        <h1 class="page-title">Case Study: {title}</h1>
+        <div class="client-details">
+            <div class="detail-item">
+                <span class="label">Industry</span>
+                <span class="value">{clientProps.industry}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Service</span>
+                <span class="value">{clientProps.service}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Duration</span>
+                <span class="value">{clientProps.duration}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Tech Stack</span>
+                <span class="value">{clientProps.tech}</span>
+            </div>
+        </div>
+    </div>
+  </Section>
+
+  <!-- The Challenge -->
+  <Section>
+    <div class="content-block">
+        <h2>The Client's Problem</h2>
+        <p>The client was facing significant technical debt and a fragmented user experience across their legacy platforms. User retention was dropping due to slow load times and inconsistent interface states.</p>
+        <p>They needed a partner who could not only rewrite the code but re-engineer the entire digital strategy to support future scaling.</p>
+    </div>
+  </Section>
+
+  <!-- The Solution -->
+  <Section class="solution-section">
+    <div class="content-block">
+        <h2>Our Strategy & Execution</h2>
+        <p>Ethercraft Guild deployed a two-person senior team to conduct an initial architectural audit. We identified the bottlenecks in the data layer and proposed a unified API approach.</p>
+        <p><strong>Key Steps Taken:</strong></p>
+        <ul class="strategy-list">
+            <li>Refactored legacy backend into microservices.</li>
+            <li>Implemented a new design system for consistent UI.</li>
+            <li>Established automated testing pipelines (CI/CD).</li>
+        </ul>
+    </div>
+    <div class="visual-placeholder">
+        <div class="placeholder-box">
+            Project Visual / Dashboard Screenshot
+        </div>
+        <p class="caption">Figure 1: The revamped dashboard interface.</p>
+    </div>
+  </Section>
+
+  <!-- The Results -->
+  <Section class="results-section">
+    <h2>Measurable Outcomes</h2>
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-value">+40%</span>
+            <span class="metric-label">Conversion Rate</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">-25%</span>
+            <span class="metric-label">Support Tickets</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">2x</span>
+            <span class="metric-label">Faster Load Time</span>
+        </div>
+    </div>
+
+    <div class="testimonial-box">
+        <blockquote>
+            "The transformation was night and day. Ethercraft Guild didn't just fix the bugs; they elevated our entire product standard."
+        </blockquote>
+        <cite>— CTO, Client Company</cite>
+    </div>
+  </Section>
+
+  <!-- Closing CTA -->
+  <Section class="closing-section">
+    <h3>Ready for Results Like This?</h3>
+    <Button href="/contact" variant="primary">Tell Us About Your Challenge</Button>
+  </Section>
+
+</Layout>
+
+<style>
+  .header-section {
+    padding-top: var(--space-2xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+      max-width: 800px;
+  }
+
+  .client-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  .detail-item {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .label {
+      opacity: 0.5;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+  }
+
+  .value {
+      font-weight: 700;
+  }
+
+  .content-block {
+      max-width: 700px;
+      margin-bottom: var(--space-lg);
+  }
+
+  .content-block p {
+      margin-bottom: var(--space-md);
+  }
+
+  .strategy-list {
+      margin-left: var(--space-lg);
+      margin-bottom: var(--space-md);
+  }
+
+  .solution-section {
+      background-color: #FFFFFF;
+  }
+
+  .visual-placeholder {
+      margin-top: var(--space-lg);
+      text-align: center;
+  }
+
+  .placeholder-box {
+      width: 100%;
+      height: 300px;
+      background-color: var(--color-bg);
+      border: 1px dashed var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text);
+      opacity: 0.5;
+  }
+
+  .caption {
+      margin-top: var(--space-sm);
+      font-size: 0.875rem;
+      font-style: italic;
+  }
+
+  .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-xl);
+  }
+
+  .metric-card {
+      background-color: var(--color-accent);
+      color: #F7F7F7;
+      padding: var(--space-lg);
+      border-radius: var(--radius-sm);
+      text-align: center;
+  }
+
+  .metric-value {
+      display: block;
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: var(--space-xs);
+  }
+
+  .metric-label {
+      font-size: 1rem;
+      opacity: 0.9;
+  }
+
+  .testimonial-box {
+      border-left: 4px solid var(--color-accent);
+      padding-left: var(--space-lg);
+      margin-top: var(--space-xl);
+  }
+  
+  .testimonial-box blockquote {
+      font-size: 1.25rem;
+      font-style: italic;
+      margin-bottom: var(--space-sm);
+  }
+
+  .closing-section {
+      text-align: center;
+      padding-bottom: var(--space-2xl);
+  }
+  
+  .closing-section h3 {
+      margin-bottom: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .client-details {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

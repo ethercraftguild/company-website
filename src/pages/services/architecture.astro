@@ -1,0 +1,162 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/ui/Section.astro';
+import Button from '../../components/ui/Button.astro';
+import Accordion from '../../components/ui/Accordion.astro';
+---
+
+<Layout title="Digital Architecture | Ethercraft Guild">
+  
+  <!-- Hero Section -->
+  <Section class="hero-section">
+    <div class="hero-content">
+        <h1>Digital Architecture: Custom Development and Platform Security</h1>
+        <p class="subtitle">From concept to deployment, we engineer stable, scalable, and secure digital foundations for high-growth businesses.</p>
+        <div class="cta-wrapper">
+            <Button href="/contact" variant="primary">Define Your Project Scope</Button>
+        </div>
+    </div>
+  </Section>
+
+  <!-- Service Index (Accordion) -->
+  <Section class="service-index">
+    <h2>Specializations within Digital Architecture</h2>
+    <div class="accordion-wrapper">
+        <Accordion items={[
+            {
+                title: "Bespoke Software & Applications",
+                description: "Full-cycle development for mobile apps (iOS, Android, Flutter), custom web applications, and SaaS platforms. We build robust backends and intuitive frontends tailored to your specific business logic."
+            },
+            {
+                title: "Website & E-commerce Platforms",
+                description: "High-performance marketing sites and e-commerce stores (Shopify, WooCommerce, Custom). Optimized for speed, SEO, and conversion using modern stacks like Astro and Next.js."
+            },
+            {
+                title: "UX/UI Design",
+                description: "User-centric interface design and prototyping. we create design systems that ensure consistency and usability across your entire digital product suite."
+            },
+            {
+                title: "Platform Security & Hardening",
+                description: "Comprehensive security audits, penetration testing, and compliance readiness (GDPR, SOC2) to protect your users and data from evolving threats."
+            }
+        ]} />
+    </div>
+    
+    <!-- Link to sub-service as example -->
+    <div class="sub-service-link">
+        <p>Looking for Mobile App specifics? <a href="/services/architecture/mobile-app-dev">View Mobile App Development &rarr;</a></p>
+    </div>
+  </Section>
+
+  <!-- Why Choose This Category -->
+  <Section class="why-choose">
+    <div class="why-header">
+        <h2>The Guild Difference in Development</h2>
+    </div>
+    <div class="feature-grid">
+        <div class="feature-item">
+            <div class="feature-icon">🌍</div>
+            <h3>Vetted Global Talent</h3>
+            <p>Access to high-skill developers at competitive international rates, without the management headache.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔍</div>
+            <h3>Solopreneur QA Layer</h3>
+            <p>Every deliverable passes through our principal's final quality review to guarantee craftsmanship.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🛡️</div>
+            <h3>Security-First Approach</h3>
+            <p>We build with robust security protocols from day one, not as an afterthought.</p>
+        </div>
+    </div>
+  </Section>
+
+  <!-- Closing CTA -->
+  <Section class="closing-cta">
+    <div class="closing-content">
+        <h3>See Our Code in Action</h3>
+        <Button href="/case-studies" variant="secondary">View Software Development Case Studies</Button>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .hero-section {
+    background-color: var(--color-bg);
+    padding-top: var(--space-2xl);
+  }
+
+  .hero-content {
+    max-width: 900px;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-lg);
+    max-width: 700px;
+  }
+
+  .accordion-wrapper {
+    max-width: 800px;
+    margin-top: var(--space-lg);
+  }
+  
+  .sub-service-link {
+    margin-top: var(--space-lg);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .sub-service-link a {
+      text-decoration: underline;
+      color: var(--color-accent);
+  }
+
+  .why-choose {
+    background-color: #FFFFFF;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+  }
+
+  .feature-item h3 {
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    font-size: 1.25rem;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .closing-cta {
+      text-align: center;
+      padding-bottom: var(--space-2xl);
+  }
+  
+  .closing-content {
+      border: 1px solid var(--color-border);
+      padding: var(--space-xl);
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      width: 100%;
+      max-width: 600px;
+  }
+  
+  .closing-content h3 {
+      margin-bottom: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .feature-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

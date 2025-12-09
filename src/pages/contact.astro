@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/ui/Section.astro';
+---
+
+<Layout title="Contact Us | Ethercraft Guild">
+  <Section class="intro">
+    <h1>Contact The Guild</h1>
+    <p>Ready to start your project? Reach out to us.</p>
+    
+    <div class="contact-box">
+        <p>This is a demo page. In a real application, a form would be here.</p>
+        <a href="mailto:hello@ethercraft.guild" style="font-weight: bold; text-decoration: underline;">hello@ethercraft.guild</a>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+    .intro {
+        text-align: center;
+        padding-top: var(--space-2xl);
+    }
+    .contact-box {
+        margin-top: var(--space-xl);
+        padding: var(--space-xl);
+        border: 1px dashed var(--color-border);
+        display: inline-block;
+    }
+</style>

@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/ui/Section.astro';
+import Card from '../../components/ui/Card.astro';
+---
+
+<Layout title="Our Services | Ethercraft Guild">
+  <Section class="intro">
+    <h1>Our Services</h1>
+    <p>Comprehensive digital solutions.</p>
+  </Section>
+
+  <Section>
+    <div class="grid">
+        <Card title="Digital Architecture">
+            <p>Build, secure, and modernize your core platform.</p>
+            <div style="margin-top: 1rem;">
+                <a href="/services/architecture" style="text-decoration: underline;">Explore Architecture &rarr;</a>
+            </div>
+        </Card>
+        <Card title="Growth & Brand Mastery">
+            <p>Attract, engage, and convert your audience.</p>
+            <div style="margin-top: 1rem;">
+                <a href="/services/growth" style="text-decoration: underline;">Explore Growth &rarr;</a>
+            </div>
+        </Card>
+        <Card title="Talent & Operations">
+            <p>Scale your operations and fill resource gaps.</p>
+            <div style="margin-top: 1rem;">
+                <a href="/services/operations" style="text-decoration: underline;">Explore Operations &rarr;</a>
+            </div>
+        </Card>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+    .intro {
+        text-align: center;
+        padding-top: var(--space-2xl);
+    }
+    .grid {
+        display: grid;
+        gap: var(--space-lg);
+        grid-template-columns: 1fr;
+    }
+    @media(min-width: 768px) {
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+</style>

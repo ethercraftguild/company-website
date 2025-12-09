@@ -1,0 +1,233 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Section from '../../../components/ui/Section.astro';
+import Button from '../../../components/ui/Button.astro';
+import Card from '../../../components/ui/Card.astro';
+---
+
+<Layout title="Mobile App Development | Ethercraft Guild">
+  
+  <!-- Header & Immediate Impact -->
+  <Section class="service-hero">
+    <div class="hero-content">
+      <h1>Dedicated Flutter App Development</h1>
+      <p class="value-prop">Launch high-performance, cross-platform applications that feel native on every device, without the double cost.</p>
+      <div class="cta-wrapper">
+        <Button href="/contact" variant="primary">Get a Custom Quote</Button>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Pain Point & Solution -->
+  <Section class="pain-points">
+    <div class="grid-layout">
+        <div class="challenge">
+            <h2>The Challenge: Why App Projects Fail</h2>
+            <ul class="pain-list">
+                <li>❌ <strong>Bloated Codebases:</strong> Resulting in slow performance and high maintenance costs.</li>
+                <li>❌ <strong>Fragmented UI:</strong> Inconsistent experiences across iOS and Android.</li>
+                <li>❌ <strong>Ghosting Developers:</strong> Agencies that vanish after launch.</li>
+            </ul>
+        </div>
+        <div class="solution">
+            <h2>The Guild Solution</h2>
+            <p>Our craftsmanship approach uses <strong>Flutter</strong> to build a single, robust codebase that compiles to native performance. You get the speed of a startup with the stability of an enterprise solution.</p>
+        </div>
+    </div>
+  </Section>
+
+  <!-- The Process -->
+  <Section class="process-section">
+    <h2>Our Proven Process</h2>
+    <div class="steps-grid">
+        <div class="step">
+            <span class="step-number">01</span>
+            <h3>Discovery & Architecture</h3>
+            <p>We map your user flow and data structure before writing a line of code.</p>
+        </div>
+        <div class="step">
+            <span class="step-number">02</span>
+            <h3>Sprint Execution</h3>
+            <p>Bi-weekly builds delivered to your phone for real-time feedback.</p>
+        </div>
+        <div class="step">
+            <span class="step-number">03</span>
+            <h3>Solopreneur QA</h3>
+            <p><strong>Crucial:</strong> Every pixel is personally verified by our principal against the design specs.</p>
+        </div>
+        <div class="step">
+            <span class="step-number">04</span>
+            <h3>Store Submission</h3>
+            <p>We handle the complex Apple & Google review process for you.</p>
+        </div>
+    </div>
+  </Section>
+
+  <!-- Proof & Social Validation -->
+  <Section class="proof-section">
+    <h2>Results Speak Louder</h2>
+    <div class="proof-grid">
+        <Card title="FinTech Dashboard App">
+            <p>Reduced user onboarding time by 40% with a streamlined Flutter interface.</p>
+            <div style="margin-top: 1rem;">
+                <a href="/case-studies/fintech-app" style="text-decoration: underline; font-weight: 600;">Read Case Study &rarr;</a>
+            </div>
+        </Card>
+        <div class="testimonial-block">
+            <blockquote>
+                "The most reliable dev partner we've worked with. The app has 99.9% crash-free sessions."
+            </blockquote>
+            <cite>— Product Lead, TechFlow</cite>
+        </div>
+    </div>
+  </Section>
+
+  <!-- Investment & Next Steps -->
+  <Section class="investment-section">
+    <div class="investment-content">
+        <h2>Ready to Craft Your Mobile Experience?</h2>
+        <p class="pricing-note"> Engagement Models: <strong>Project-Based</strong> or <strong>Monthly Retainer</strong></p>
+        
+        <div class="final-cta">
+            <Button href="/contact" variant="primary">Schedule 15-Min Discovery Call</Button>
+            <p class="small-text">No pressure, just technical strategy.</p>
+        </div>
+
+        <div class="cross-sell">
+            <p>Need a marketing site to go with your app? <a href="/services/architecture">Explore Web Development &rarr;</a></p>
+        </div>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .service-hero {
+    padding-top: var(--space-2xl);
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .value-prop {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+    opacity: 0.9;
+  }
+
+  /* Pain Points */
+  .grid-layout {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .pain-list {
+    list-style: none;
+    margin-top: var(--space-md);
+  }
+
+  .pain-list li {
+    margin-bottom: var(--space-md);
+    font-size: 1.125rem;
+  }
+
+  .solution p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  /* Process */
+  .process-section {
+    background-color: #FFFFFF;
+  }
+
+  .steps-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  .step {
+    border-left: 2px solid var(--color-border);
+    padding-left: var(--space-md);
+  }
+
+  .step-number {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* Proof */
+  .proof-grid {
+    display: grid;
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+  }
+
+  .testimonial-block blockquote {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: var(--space-md);
+  }
+
+  /* Investment */
+  .investment-section {
+    text-align: center;
+    padding-bottom: var(--space-2xl);
+  }
+
+  .investment-content {
+     max-width: 700px;
+     margin: 0 auto;
+     border: 1px solid var(--color-border);
+     padding: var(--space-xl);
+     border-radius: var(--radius-sm);
+  }
+
+  .pricing-note {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-lg);
+  }
+  
+  .final-cta {
+      margin-bottom: var(--space-lg);
+  }
+
+  .small-text {
+      font-size: 0.875rem;
+      opacity: 0.6;
+      margin-top: var(--space-sm);
+  }
+
+  .cross-sell {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-md);
+      font-size: 0.9rem;
+  }
+  
+  .cross-sell a {
+      font-weight: 600;
+      text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    .grid-layout {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .proof-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+  }
+</style>

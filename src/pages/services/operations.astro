@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/ui/Section.astro';
+import Button from '../../components/ui/Button.astro';
+---
+
+<Layout title="Talent & Operational Support | Ethercraft Guild">
+  <Section class="hero">
+    <h1>Talent & Operational Support</h1>
+    <p>Scale your operations and fill resource gaps with specialized, vetted talent.</p>
+    <Button href="/contact" variant="primary">Find Talent</Button>
+  </Section>
+</Layout>
+
+<style>
+    .hero {
+        text-align: center;
+        padding-top: var(--space-2xl);
+    }
+    h1 { margin-bottom: var(--space-md); }
+    p { margin-bottom: var(--space-lg); font-size: 1.25rem; }
+</style>
