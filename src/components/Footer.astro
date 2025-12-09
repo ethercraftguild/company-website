@@ -1,4 +1,4 @@
----
+import SocialIcons from './ui/SocialIcons.astro';
 ---
 <footer class="site-footer">
   <div class="container">
@@ -6,6 +6,9 @@
       <div class="footer-brand">
         <h3>Ethercraft Guild</h3>
         <p>Mastering Digital Craftsmanship.</p>
+        <div class="footer-socials">
+            <SocialIcons />
+        </div>
       </div>
       <div class="footer-links">
         <div class="link-group">
@@ -20,6 +23,8 @@
           <h4>Company</h4>
           <ul>
             <li><a href="/about">About</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms & Conditions</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
@@ -53,6 +58,10 @@
   .footer-brand p {
     color: var(--color-text);
     opacity: 0.8;
+  }
+
+  .footer-socials {
+    margin-top: var(--space-md);
   }
 
   .footer-links {

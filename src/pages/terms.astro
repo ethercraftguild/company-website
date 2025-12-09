@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactSection from '../components/ContactSection.astro';
+
+const companyName = "Ethercraft Guild";
+const effectiveDate = "June 12, 2025";
+const contactEmail = "privacy@ethercraftguild.com";
+---
+
+<Layout title="Terms and Conditions | Ethercraft Guild">
+  <div class="legal-page">
+    <section class="section header-section">
+      <div class="container-sm">
+        <h1>Terms and Conditions</h1>
+        <p class="subtitle">Effective Date: {effectiveDate}</p>
+        <p class="intro">
+            Welcome to {companyName}. These Terms and Conditions govern your use of our website and services. By accessing or using the Site, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not access the Site.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container-sm">
+        <h2>1. Intellectual Property Rights</h2>
+        <p>Unless otherwise indicated, the Site and its entire contents, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by {companyName}, its licensors, or other providers of such material and are protected by copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
+        
+        <h2>2. User Representations</h2>
+        <p>By using the Site, you represent and warrant that:</p>
+        <ul>
+            <li>All registration information you submit will be true, accurate, current, and complete.</li>
+            <li>You will maintain the accuracy of such information and promptly update such registration information as necessary.</li>
+            <li>You have the legal capacity and you agree to comply with these Terms and Conditions.</li>
+            <li>You are not a minor in the jurisdiction in which you reside.</li>
+        </ul>
+
+        <h2>3. Prohibited Activities</h2>
+        <p>You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.</p>
+
+        <h2>4. Limitation of Liability</h2>
+        <p>In no event will we or our directors, employees, or agents be liable to you or any third party for any direct, indirect, consequential, exemplary, incidental, special, or punitive damages, including lost profit, lost revenue, loss of data, or other damages arising from your use of the site, even if we have been advised of the possibility of such damages.</p>
+
+        <h2>5. Governing Law</h2>
+        <p>These Terms shall be governed by and defined following the laws of Bangladesh. {companyName} and yourself irrevocably consent that the courts of Bangladesh shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms.</p>
+      </div>
+    </section>
+
+    <ContactSection />
+  </div>
+</Layout>
+
+<style>
+    .legal-page {
+        /* Styling to match the "inverse" request */
+        background-color: var(--color-accent); /* Dark charcoal */
+        color: #F7F7F7; /* Light text */
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .section {
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    .header-section {
+        background-color: var(--color-hover); /* Darker black for header */
+        text-align: center;
+        padding-top: var(--space-2xl);
+    }
+
+    .container-sm {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: var(--space-md);
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
+        opacity: 0.8;
+        margin-bottom: var(--space-lg);
+    }
+
+    .intro {
+        font-size: 1.125rem;
+        line-height: 1.8;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: var(--space-lg);
+        border-bottom: 1px solid rgba(255,255,255, 0.2); /* Subtle divider */
+        padding-bottom: var(--space-sm);
+    }
+
+    p {
+        line-height: 1.8;
+        margin-bottom: var(--space-md);
+        opacity: 0.9;
+    }
+
+    ul {
+        list-style-type: disc;
+        padding-left: var(--space-lg);
+        margin-bottom: var(--space-lg);
+    }
+
+    li {
+        margin-bottom: var(--space-sm);
+        line-height: 1.6;
+    }
+
+    a {
+        text-decoration: underline;
+        color: inherit;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+    
+    .company-name {
+        font-weight: 700;
+        font-size: 1.25rem;
+        margin-bottom: var(--space-xs);
+    }
+</style>
