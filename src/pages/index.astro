@@ -1,23 +1,29 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Section from '../components/ui/Section.astro';
-import Button from '../components/ui/Button.astro';
-import Card from '../components/ui/Card.astro';
-import CtaSection from '../components/ui/CtaSection.astro';
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/ui/Section.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import CtaSection from "../components/ui/CtaSection.astro";
 ---
 
 <Layout title="Ethercraft Guild | Master Digital Craftsmanship">
-  
   <!-- Hero Section -->
   <Section class="hero-section">
     <div class="hero-content">
-      <h1 class="fade-in-up">Mastering Digital Craftsmanship: Custom Solutions from Ethercraft Guild</h1>
-      <p class="value-prop fade-in-up delay-1">Your dedicated guild of globally-vetted specialists in Software Development, Digital Growth, and Strategic Operations.</p>
-      
+      <h1 class="fade-in-up">
+        Mastering Digital Craftsmanship: Custom Solutions from Ethercraft Guild
+      </h1>
+      <p class="value-prop fade-in-up delay-1">
+        Your dedicated guild of globally-vetted specialists in Software
+        Development, Digital Growth, and Strategic Operations.
+      </p>
+
       <div class="cta-group fade-in-up delay-2">
-        <Button href="/contact" variant="primary">Start Your Project Consultation</Button>
+        <Button href="/contact" variant="primary"
+          >Start Your Project Consultation</Button
+        >
       </div>
-      
+
       <div class="trust-signals fade-in-up delay-3">
         <p>Trusted by industry leaders and startups alike.</p>
         <div class="logos">
@@ -37,34 +43,99 @@ import CtaSection from '../components/ui/CtaSection.astro';
     <div class="card-grid">
       <Card>
         <div slot="icon" class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" x2="6" y1="6" y2="6"/><line x1="6" x2="6" y1="18" y2="18"/></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect
+              x="2"
+              y="14"
+              width="20"
+              height="8"
+              rx="2"
+              ry="2"></rect><line x1="6" x2="6" y1="6" y2="6"></line><line
+              x1="6"
+              x2="6"
+              y1="18"
+              y2="18"></line></svg
+          >
         </div>
         <h3 slot="title">Digital Architecture</h3>
-        <p>Build, secure, and modernize your core platform with expert developers.</p>
+        <p>
+          Build, secure, and modernize your core platform with expert
+          developers.
+        </p>
         <div class="card-footer">
-            <a href="/services/architecture" class="text-link">Explore Architecture &rarr;</a>
+          <a href="/services/architecture" class="text-link"
+            >Explore Architecture &rarr;</a
+          >
         </div>
       </Card>
-      
+
       <Card>
         <div slot="icon" class="card-icon">
-             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 10-5 10 5v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7Z"/><path d="M12 22V12"/><path d="M17 22v-5"/><path d="M7 22v-5"/></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="m2 7 10-5 10 5v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7Z"
+            ></path><path d="M12 22V12"></path><path d="M17 22v-5"></path><path
+              d="M7 22v-5"></path></svg
+          >
         </div>
         <h3 slot="title">Growth & Brand Mastery</h3>
-        <p>Attract, engage, and convert your audience with data-driven content and marketing.</p>
+        <p>
+          Attract, engage, and convert your audience with data-driven content
+          and marketing.
+        </p>
         <div class="card-footer">
-            <a href="/services/growth" class="text-link">Explore Growth &rarr;</a>
+          <a href="/services/growth" class="text-link">Explore Growth &rarr;</a>
         </div>
       </Card>
-      
+
       <Card>
         <div slot="icon" class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" x2="20" y1="8" y2="14"/><line x1="23" x2="17" y1="11" y2="11"/></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
+              cx="8.5"
+              cy="7"
+              r="4"></circle><line x1="20" x2="20" y1="8" y2="14"></line><line
+              x1="23"
+              x2="17"
+              y1="11"
+              y2="11"></line></svg
+          >
         </div>
         <h3 slot="title">Talent & Operational Support</h3>
-        <p>Scale your operations and fill resource gaps with specialized, vetted talent.</p>
+        <p>
+          Scale your operations and fill resource gaps with specialized, vetted
+          talent.
+        </p>
         <div class="card-footer">
-            <a href="/services/operations" class="text-link">Explore Operations &rarr;</a>
+          <a href="/services/operations" class="text-link"
+            >Explore Operations &rarr;</a
+          >
         </div>
       </Card>
     </div>
@@ -76,12 +147,18 @@ import CtaSection from '../components/ui/CtaSection.astro';
     <div class="case-study-container">
       <div class="case-snippet">
         <h3 class="highlight-stat">+40% Conversion Rate</h3>
-        <p>Achieved for [Client Name] through a complete UX overhaul and performance optimization.</p>
-        <Button href="/case-studies/client-name" variant="secondary">View Case Study</Button>
+        <p>
+          Achieved for [Client Name] through a complete UX overhaul and
+          performance optimization.
+        </p>
+        <Button href="/case-studies/client-name" variant="secondary"
+          >View Case Study</Button
+        >
       </div>
       <div class="testimonial">
         <blockquote>
-            "Ethercraft Guild didn't just build a website; they engineered a growth engine. The attention to detail is unmatched."
+          "Ethercraft Guild didn't just build a website; they engineered a
+          growth engine. The attention to detail is unmatched."
         </blockquote>
         <cite>— CTO, Major FinTech Startup</cite>
       </div>
@@ -89,13 +166,12 @@ import CtaSection from '../components/ui/CtaSection.astro';
   </Section>
 
   <!-- Closing CTA -->
-  <CtaSection 
-    title="Ready to Partner with the Guild?" 
-    ctaText="Explore All Services" 
-    ctaLink="/services" 
-    variant="tertiary" 
+  <CtaSection
+    title="Ready to Partner with the Guild?"
+    ctaText="Explore All Services"
+    ctaLink="/services"
+    variant="tertiary"
   />
-
 </Layout>
 
 <style>
@@ -152,13 +228,13 @@ import CtaSection from '../components/ui/CtaSection.astro';
   }
 
   .card-icon {
-      margin-bottom: var(--space-sm);
-      color: var(--color-text);
-      opacity: 0.8;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+    opacity: 0.8;
   }
-  
+
   h3[slot="title"] {
-      margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-xs);
   }
 
   .text-link {
@@ -178,7 +254,7 @@ import CtaSection from '../components/ui/CtaSection.astro';
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-xl);
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border: 1px solid var(--color-border);
     padding: var(--space-xl);
     border-radius: var(--radius-sm);
@@ -207,27 +283,33 @@ import CtaSection from '../components/ui/CtaSection.astro';
   .closing-content {
     text-align: center;
     background-color: var(--color-accent);
-    color: #F7F7F7;
+    color: #f7f7f7;
     padding: var(--space-2xl) var(--space-md);
     border-radius: var(--radius-sm);
   }
 
   .closing-content h3 {
     margin-bottom: var(--space-lg);
-    color: #F7F7F7;
+    color: #f7f7f7;
   }
-  
+
   /* Animations */
   .fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;
     transform: translateY(20px);
   }
-  
-  .delay-1 { animation-delay: 0.2s; }
-  .delay-2 { animation-delay: 0.4s; }
-  .delay-3 { animation-delay: 0.6s; }
-  
+
+  .delay-1 {
+    animation-delay: 0.2s;
+  }
+  .delay-2 {
+    animation-delay: 0.4s;
+  }
+  .delay-3 {
+    animation-delay: 0.6s;
+  }
+
   @keyframes fadeInUp {
     to {
       opacity: 1;
@@ -245,9 +327,9 @@ import CtaSection from '../components/ui/CtaSection.astro';
       grid-template-columns: 1fr 1fr;
       align-items: center;
     }
-    
+
     .hero-section {
-        padding-top: var(--space-2xl);
+      padding-top: var(--space-2xl);
     }
   }
 </style>

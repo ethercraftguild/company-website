@@ -1,26 +1,29 @@
 ---
-import { Image } from 'astro:assets';
-import Logo from '../svgs/logo.svg';
-import MobileDrawer from './MobileDrawer.astro';
-import ContactModal from './ContactModal.astro';
-import Button from './ui/Button.astro';
-import { NAV_MENU, SITE_CONFIG } from '../config';
+import { Image } from "astro:assets";
+import Logo from "../svgs/logo.svg";
+import MobileDrawer from "./MobileDrawer.astro";
+import ContactModal from "./ContactModal.astro";
+import Button from "./ui/Button.astro";
+import { NAV_MENU, SITE_CONFIG } from "../config";
 
 const currentPath = Astro.url.pathname;
 
 // Helper to check active state
 const isActive = (item: any) => {
-    // Exact match
-    if (item.href === currentPath) return true;
-    // Child match
-    if (item.children && item.children.some((child: any) => child.href === currentPath)) {
-        return true;
-    }
-    // Parent section match (e.g. /services/architecture/xyz matches /services/architecture)
-    if (item.href !== '/' && currentPath.startsWith(item.href)) {
-         return true;
-    }
-    return false;
+  // Exact match
+  if (item.href === currentPath) return true;
+  // Child match
+  if (
+    item.children &&
+    item.children.some((child: any) => child.href === currentPath)
+  ) {
+    return true;
+  }
+  // Parent section match (e.g. /services/architecture/xyz matches /services/architecture)
+  if (item.href !== "/" && currentPath.startsWith(item.href)) {
+    return true;
+  }
+  return false;
 };
 ---
 
@@ -33,40 +36,87 @@ const isActive = (item: any) => {
 
     <nav class="desktop-nav">
       <ul class="nav-list">
-        {NAV_MENU.map((item) => {
-          const active = isActive(item);
-          return (
-          <li class="nav-item">
-            <a href={item.href} class={`nav-link ${active ? 'active' : ''}`}>
-              {item.label}
-              {item.children && (
-                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" class="chevron-down" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-              )}
-            </a>
-            {item.children && (
-              <ul class="dropdown-menu">
-                {item.children.map((child) => (
-                  <li>
-                    <a href={child.href} class={`dropdown-link ${currentPath === child.href ? 'child-active' : ''}`}>{child.label}</a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        )})}
+        {
+          NAV_MENU.map((item) => {
+            const active = isActive(item);
+            return (
+              <li class="nav-item">
+                <a
+                  href={item.href}
+                  class={`nav-link ${active ? "active" : ""}`}
+                >
+                  {item.label}
+                  {item.children && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      class="chevron-down"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  )}
+                </a>
+                {item.children && (
+                  <ul class="dropdown-menu">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class={`dropdown-link ${currentPath === child.href ? "child-active" : ""}`}
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })
+        }
       </ul>
     </nav>
 
     <div class="header-actions">
       <!-- Desktop Schedule Button -->
-      <a href={SITE_CONFIG.calendly} target="_blank" class="schedule-btn-desktop">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+      <a
+        href={SITE_CONFIG.calendly}
+        target="_blank"
+        class="schedule-btn-desktop"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line
+            x1="16"
+            x2="16"
+            y1="2"
+            y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line
+            x1="3"
+            x2="21"
+            y1="10"
+            y2="10"></line></svg
+        >
         <span>Schedule meeting</span>
       </a>
-      
 
-
-      <Button id="consultation-btn" variant="primary" class="desktop-cta">Start Consultation</Button>
+      <Button id="consultation-btn" variant="primary" class="desktop-cta"
+        >Start Consultation</Button
+      >
       <button id="menu-toggle" class="menu-toggle" aria-label="Open menu">
         <span class="hamburger"></span>
       </button>
@@ -99,19 +149,19 @@ const isActive = (item: any) => {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--font-mono); 
+    font-family: var(--font-mono);
     font-weight: 700;
     font-size: 1.125rem;
     text-transform: uppercase;
     letter-spacing: -0.05em;
-    z-index: 101; 
-    flex-shrink: 0; 
+    z-index: 101;
+    flex-shrink: 0;
   }
-  
+
   .brand-logo {
-      width: 24px;
-      height: 24px;
-      display: block;
+    width: 24px;
+    height: 24px;
+    display: block;
   }
 
   .desktop-nav {
@@ -128,71 +178,95 @@ const isActive = (item: any) => {
     border: none;
     cursor: pointer;
     padding: var(--space-xs);
-    z-index: 1001; 
+    z-index: 1001;
     flex-shrink: 0;
     margin-left: 4px; /* Space from icon */
   }
 
-  .hamburger, .hamburger::before, .hamburger::after {
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
     display: block;
     width: 24px;
     height: 2px;
     background-color: var(--color-text);
     transition: transform 0.3s;
   }
-  
-  .hamburger { position: relative; }
-  .hamburger::before, .hamburger::after { content: ''; position: absolute; }
-  .hamburger::before { top: -8px; }
-  .hamburger::after { top: 8px; }
 
-  .desktop-cta { display: none; }
-  .schedule-btn-desktop { display: none; }
-  
+  .hamburger {
+    position: relative;
+  }
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
+    position: absolute;
+  }
+  .hamburger::before {
+    top: -8px;
+  }
+  .hamburger::after {
+    top: 8px;
+  }
+
+  .desktop-cta {
+    display: none;
+  }
+  .schedule-btn-desktop {
+    display: none;
+  }
+
   /* Calendly Icon Mobile */
   .calendly-mobile-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text);
-      opacity: 0.8;
-      padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    opacity: 0.8;
+    padding: 8px;
   }
 
   @media (min-width: 768px) {
-    .menu-toggle { display: none; }
-    .calendly-mobile-icon { display: none; }
-    .desktop-cta { display: inline-flex; }
-    
-    .schedule-btn-desktop { 
-        display: inline-flex; 
-        align-items: center;
-        gap: 6px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--color-text);
-        text-decoration: none;
-        margin-right: var(--space-sm);
-        padding: 6px 12px;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-pill);
-        transition: all 0.2s;
+    .menu-toggle {
+      display: none;
     }
-    
+    .calendly-mobile-icon {
+      display: none;
+    }
+    .desktop-cta {
+      display: inline-flex;
+    }
+
+    .schedule-btn-desktop {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text);
+      text-decoration: none;
+      margin-right: var(--space-sm);
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      transition: all 0.2s;
+    }
+
     .schedule-btn-desktop:hover {
-        background-color: white;
-        border-color: var(--color-text);
+      background-color: white;
+      border-color: var(--color-text);
     }
-    
+
     .header-actions {
-        display: flex;
-        align-items: center;
-        gap: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
     }
 
     /* Desktop Navigation Logic */
-    .desktop-nav { display: block; }
-    
+    .desktop-nav {
+      display: block;
+    }
+
     .nav-list {
       display: flex;
       gap: var(--space-lg);
@@ -201,36 +275,37 @@ const isActive = (item: any) => {
     }
 
     .nav-item {
-      position: relative; 
+      position: relative;
     }
 
     .nav-link {
-        font-weight: 500;
-        font-size: 0.9375rem;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding: var(--space-xs) 0;
-        opacity: 0.7; /* Default dimmed */
-        transition: opacity 0.2s;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: var(--space-xs) 0;
+      opacity: 0.7; /* Default dimmed */
+      transition: opacity 0.2s;
     }
 
-    .nav-link:hover, .nav-link.active {
+    .nav-link:hover,
+    .nav-link.active {
       text-decoration: none;
       opacity: 1; /* Active/Hover full opacity */
     }
-    
+
     .nav-link.active {
-        text-decoration: underline; 
-        text-underline-offset: 4px;
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
-    
+
     .chevron-down {
-        transition: transform 0.2s ease;
+      transition: transform 0.2s ease;
     }
-    
+
     .nav-item:hover .chevron-down {
-        transform: rotate(180deg);
+      transform: rotate(180deg);
     }
 
     /* Dropdown Styles */
@@ -245,11 +320,13 @@ const isActive = (item: any) => {
       padding: var(--space-sm);
       min-width: 200px;
       list-style: none;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      
+      box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
       /* Hidden state */
       opacity: 0;
-      visibility: hidden; 
+      visibility: hidden;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -276,44 +353,44 @@ const isActive = (item: any) => {
       color: var(--color-text);
       opacity: 1;
     }
-    
+
     .dropdown-link.child-active {
-        font-weight: 600;
-        opacity: 1;
-        background-color: rgba(0,0,0,0.03);
+      font-weight: 600;
+      opacity: 1;
+      background-color: rgba(0, 0, 0, 0.03);
     }
-    
+
     .nav-item::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 20px;
-        left: 0;
-        bottom: -20px; 
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      left: 0;
+      bottom: -20px;
     }
   }
 </style>
 
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const consultationBtn = document.getElementById('consultation-btn');
-  
+  const menuToggle = document.getElementById("menu-toggle");
+  const consultationBtn = document.getElementById("consultation-btn");
+
   if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      if (typeof window.openDrawer === 'function') {
+    menuToggle.addEventListener("click", () => {
+      if (typeof window.openDrawer === "function") {
         window.openDrawer();
       }
     });
   }
-  
+
   if (consultationBtn) {
-      consultationBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (typeof window.openContactModal === 'function') {
-              window.openContactModal();
-          } else {
-              window.location.href = '/contact'; // Fallback
-          }
-      });
+    consultationBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (typeof window.openContactModal === "function") {
+        window.openContactModal();
+      } else {
+        window.location.href = "/contact"; // Fallback
+      }
+    });
   }
 </script>

@@ -1,16 +1,16 @@
 ---
 interface Props {
-  href: string;
-  variant?: 'primary' | 'secondary' | 'tertiary';
-  type?: 'button' | 'submit' | 'reset';
+  href?: string;
+  variant?: "primary" | "secondary" | "tertiary";
+  type?: "button" | "submit" | "reset";
   class?: string;
   [x: string]: any;
 }
 
-const { href, variant = 'primary', class: className, ...rest } = Astro.props;
+const { href, variant = "primary", class: className, ...rest } = Astro.props;
 ---
 
-<a href={href} class:list={['btn', `btn-${variant}`, className]} {...rest}>
+<a href={href} class:list={["btn", `btn-${variant}`, className]} {...rest}>
   <slot />
 </a>
 
@@ -33,13 +33,13 @@ const { href, variant = 'primary', class: className, ...rest } = Astro.props;
 
   .btn-primary {
     background-color: var(--color-accent); /* Charcoal */
-    color: #F7F7F7; /* Off-white text */
+    color: #f7f7f7; /* Off-white text */
     border-color: var(--color-accent);
   }
 
   .btn-primary:hover {
     background-color: var(--color-hover); /* Pure Black */
-    color: #FFFFFF;
+    color: #ffffff;
     border-color: var(--color-hover);
     transform: translateY(-1px);
   }
@@ -62,9 +62,9 @@ const { href, variant = 'primary', class: className, ...rest } = Astro.props;
   }
 
   .btn-tertiary:hover {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     color: var(--color-hover);
-    border-color: #FFFFFF;
+    border-color: #ffffff;
     transform: translateY(-1px);
   }
 </style>
