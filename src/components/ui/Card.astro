@@ -8,7 +8,8 @@ const { title, class: className } = Astro.props;
 ---
 
 <div class:list={['card', className]}>
-  {title && <h3 class="card-title">{title}</h3>}
+  <slot name="icon" />
+  {title ? <h3 class="card-title">{title}</h3> : <slot name="title" />}
   <div class="card-content">
     <slot />
   </div>

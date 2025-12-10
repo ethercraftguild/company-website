@@ -1,15 +1,17 @@
 ---
 import SocialIcons from './ui/SocialIcons.astro';
+import { SITE_CONFIG } from '../config';
 ---
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-content">
+    <div class="footer-top">
       <div class="footer-brand">
-        <h3>Ethercraft Guild</h3>
-        <p>Mastering Digital Craftsmanship.</p>
-        <div class="footer-socials">
-            <SocialIcons />
-        </div>
+        <a href="/" class="brand-link">
+            <img src="/favicon.svg" alt="Logo" width="24" height="24" />
+            <span class="brand-text">{SITE_CONFIG.companyName}</span>
+        </a>
+        <p class="tagline">Mastering Digital Craftsmanship.</p>
+        <SocialIcons />
       </div>
       <div class="footer-links">
         <div class="link-group">
@@ -69,6 +71,23 @@ import SocialIcons from './ui/SocialIcons.astro';
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
+  }
+
+  .brand-text {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+  }
+  
+  .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--color-bg);
+      text-decoration: none;
+      margin-bottom: var(--space-sm);
   }
 
   .link-group h4 {

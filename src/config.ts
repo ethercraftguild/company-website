@@ -3,6 +3,8 @@ export const SITE_CONFIG = {
     email: "hello@ethercraft.guild",
     privacyEmail: "privacy@ethercraftguild.com",
     location: "Dhaka, Bangladesh",
+    contactEmail: "https://formspree.io/f/mjknarak", // Dummy email for Formspree
+    calendly: "https://calendly.com/ethercraftguild/30min",
     links: {
         linkedin: "https://linkedin.com/company/ethercraft-guild",
         github: "https://github.com/ethercraft-guild",
