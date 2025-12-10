@@ -1,16 +1,19 @@
 ---
-import SocialIcons from './ui/SocialIcons.astro';
-import { SITE_CONFIG } from '../config';
+import { Image } from "astro:assets";
+import Logo from "../svgs/logo.svg";
+import SocialIcons from "./ui/SocialIcons.astro";
+import { SITE_CONFIG } from "../config";
 ---
+
 <footer class="site-footer">
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
         <a href="/" class="brand-link">
-            <img src="/favicon.svg" alt="Logo" width="40" height="40" />
-            <span class="brand-text">{SITE_CONFIG.companyName}</span>
+          <Image src={Logo} alt="Ethercraft Guild" width="98" height="98" />
+          <span class="brand-text">{SITE_CONFIG.companyName}</span>
         </a>
-        <p class="tagline">Mastering Digital Craftsmanship.</p>
+        <!-- <p class="tagline">Mastering Digital Craftsmanship.</p> -->
         <SocialIcons class="footer-socials" />
       </div>
       <div class="footer-links">
@@ -34,7 +37,9 @@ import { SITE_CONFIG } from '../config';
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; {new Date().getFullYear()} Ethercraft Guild. All rights reserved.</p>
+      <p>
+        &copy; {new Date().getFullYear()} Ethercraft Guild. All rights reserved.
+      </p>
     </div>
   </div>
 </footer>
@@ -79,20 +84,27 @@ import { SITE_CONFIG } from '../config';
   }
 
   .brand-text {
+    color: var(--color-text);
     font-family: var(--font-mono);
     font-weight: 700;
     font-size: 1.25rem;
     text-transform: uppercase;
     letter-spacing: -0.05em;
   }
-  
+
+  .tagline {
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.6;
+  }
+
   .brand-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--color-bg);
-      text-decoration: none;
-      margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-bg);
+    text-decoration: none;
+    margin-bottom: var(--space-sm);
   }
 
   .link-group h4 {
