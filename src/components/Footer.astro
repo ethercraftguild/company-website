@@ -7,11 +7,11 @@ import { SITE_CONFIG } from '../config';
     <div class="footer-top">
       <div class="footer-brand">
         <a href="/" class="brand-link">
-            <img src="/favicon.svg" alt="Logo" width="24" height="24" />
+            <img src="/favicon.svg" alt="Logo" width="40" height="40" />
             <span class="brand-text">{SITE_CONFIG.companyName}</span>
         </a>
         <p class="tagline">Mastering Digital Craftsmanship.</p>
-        <SocialIcons />
+        <SocialIcons class="footer-socials" />
       </div>
       <div class="footer-links">
         <div class="link-group">
@@ -71,6 +71,11 @@ import { SITE_CONFIG } from '../config';
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
+  }
+
+  .footer-socials {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
   }
 
   .brand-text {
