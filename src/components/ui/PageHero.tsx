@@ -1,6 +1,5 @@
 import Section from './Section';
 import Button from './Button';
-import styles from './PageHero.module.css';
 
 interface PageHeroProps {
     title: string;
@@ -18,11 +17,11 @@ export default function PageHero({
     variant = 'primary'
 }: PageHeroProps) {
     return (
-        <Section className={styles.pageHero}>
-            <div className={styles.heroContent}>
-                <h1>{title}</h1>
-                {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-                <div className={styles.ctaWrapper}>
+        <Section className="pt-xl md:pt-2xl text-center">
+            <div className="max-w-[900px] mx-auto">
+                <h1 className="mb-md">{title}</h1>
+                {subtitle && <p className="text-lg md:text-xl max-w-[700px] opacity-90 mx-auto">{subtitle}</p>}
+                <div>
                     <Button href={ctaLink} variant={variant}>{ctaText}</Button>
                 </div>
             </div>

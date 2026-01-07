@@ -1,150 +1,81 @@
-/*
-  Ethercraft Guild - Global Styles
-  Theme: Monochromatic, High Contrast, Technical
-*/
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
 
-:root {
-  /* Colors */
-  --color-bg: #F7F7F7;
-  /* Off-White/Light Gray */
-  --color-text: #1A1A1A;
-  /* Near Black */
-  --color-accent: #333333;
-  /* Charcoal/Dark Gray - Primary CTA & Nav */
-  --color-hover: #000000;
-  /* Pure Black - Hover/Active */
-  --color-success: #3C83F6;
-  /* Minimal Blue */
-  --color-border: #1A1A1A;
-  /* Thin solid lines */
-  --color-card-bg: #FFFFFF;
-  --color-card-border: #CCCCCC;
+@layer base {
+  :root {
+    --color-bg: #F7F7F7;
+    --color-text: #1A1A1A;
+    --color-accent: #333333;
+    --color-hover: #000000;
+    --color-success: #3C83F6;
+    --color-border: #1A1A1A;
+    --color-card-bg: #FFFFFF;
+    --color-card-border: #CCCCCC;
+
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 5rem;
+
+    --radius-sm: 20px;
+    --radius-pill: 9999px;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --space-xl: 4rem;
+      --space-2xl: 8rem;
+      --radius-sm: 25px;
+    }
+  }
+
+  /* Reset & Base */
+  html {
+    @apply scroll-smooth antialiased;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: 16px;
+  }
+
+  body {
+    @apply min-h-screen flex flex-col overflow-x-hidden w-full pt-[80px];
+  }
 
   /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --font-mono: 'Space Mono', 'Fira Code', monospace;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold leading-tight mb-md tracking-tight;
+  }
 
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  /* Reduced from 4rem for mobile */
-  --space-2xl: 5rem;
-  /* Reduced from 8rem for mobile */
+  h1 {
+    @apply text-[2rem] md:text-[4rem];
+  }
 
-  /* Border Radius */
-  --radius-sm: 20px;
-  /* Slightly tighter */
-  --radius-pill: 9999px;
+  h2 {
+    @apply text-[2rem];
+  }
 
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-}
+  h3 {
+    @apply text-[1.5rem];
+  }
 
-@media (min-width: 768px) {
-  :root {
-    --space-xl: 4rem;
-    --space-2xl: 8rem;
-    --radius-sm: 25px;
+  p {
+    @apply mb-md max-w-[65ch];
   }
 }
 
-/* Reset & Base */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer utilities {
+  .container-custom {
+    @apply w-full max-w-[1200px] mx-auto px-md box-content;
+  }
 
-html {
-  font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  width: 100%;
-  padding-top: 80px;
-  /* Compensate for fixed header */
-}
-
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-  /* Bold */
-  line-height: 1.2;
-  margin-bottom: var(--space-md);
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  font-size: 2rem;
-  /* Mobile default */
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-p {
-  margin-bottom: var(--space-md);
-  max-width: 65ch;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Utilities */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-  box-sizing: content-box;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* Desktop Overrides */
-@media (min-width: 768px) {
-  h1 {
-    font-size: 4rem;
+  .visually-hidden {
+    @apply sr-only;
   }
 }

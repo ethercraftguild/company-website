@@ -1,10 +1,9 @@
 import Section from './Section';
 import Button from './Button';
-import styles from './CtaSection.module.css';
 
 interface CtaSectionProps {
     title?: string;
-    text?: string; // Optional text
+    text?: string;
     ctaText?: string;
     ctaLink?: string;
     variant?: 'primary' | 'secondary' | 'tertiary';
@@ -20,10 +19,10 @@ export default function CtaSection({
     centered = true
 }: CtaSectionProps) {
     return (
-        <Section className={styles.ctaSection}>
-            <div className={`${styles.ctaContent} ${centered ? styles.centered : ''}`}>
-                <h3>{title}</h3>
-                {text && <p>{text}</p>}
+        <Section className="pb-2xl">
+            <div className={`bg-accent text-[#F7F7F7] p-xl rounded-sm w-full ${centered ? 'text-center max-w-[800px] mx-auto' : ''}`}>
+                <h3 className="text-[#F7F7F7] text-[1.75rem] md:text-[2.25rem] mb-md">{title}</h3>
+                {text && <p className="mb-lg opacity-90 text-[1.1rem]">{text}</p>}
                 <Button href={ctaLink} variant={variant}>{ctaText}</Button>
             </div>
         </Section>

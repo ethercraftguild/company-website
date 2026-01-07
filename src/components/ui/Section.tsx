@@ -1,15 +1,14 @@
 import { HTMLAttributes } from 'react';
-import styles from './Section.module.css';
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
     id?: string;
-    className?: string; // Allow overriding/merging classes
+    className?: string;
 }
 
 export default function Section({ id, className = '', children, ...props }: SectionProps) {
     return (
-        <section id={id} className={`${styles.section} ${className}`} {...props}>
-            <div className={styles.container}>
+        <section id={id} className={`py-2xl w-full relative ${className}`} {...props}>
+            <div className="container-custom">
                 {children}
             </div>
         </section>

@@ -3,7 +3,6 @@ import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
 import CtaSection from '@/components/ui/CtaSection';
-import servicesStyles from '../services.module.css';
 
 export const metadata: Metadata = {
     title: "Growth & Brand Mastery | Ethercraft Guild",
@@ -22,7 +21,7 @@ export default function GrowthPage() {
 
             <Section className="service-index">
                 <h2>Specializations</h2>
-                <div className={servicesStyles.accordionWrapper}>
+                <div className="max-w-[800px] mt-lg">
                     <Accordion
                         items={[
                             {
@@ -54,30 +53,30 @@ export default function GrowthPage() {
                 </div>
             </Section>
 
-            <Section className={servicesStyles.whyChoose}>
-                <div className={servicesStyles.whyHeader}>
+            <Section className="bg-white">
+                <div className="mb-xl">
                     <h2>The Guild Difference</h2>
                 </div>
-                <div className={servicesStyles.featureGrid}>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>📊</div>
-                        <h3>Data, Not Gut Feeling</h3>
+                <div className="grid grid-cols-1 gap-lg mt-xl md:grid-cols-3 md:gap-xl">
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">📊</div>
+                        <h3 className="mt-sm mb-xs text-xl">Data, Not Gut Feeling</h3>
                         <p>
                             Every campaign is backed by analytics. We iterate based on what the
                             numbers say.
                         </p>
                     </div>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>🎨</div>
-                        <h3>Cohesive Storytelling</h3>
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">🎨</div>
+                        <h3 className="mt-sm mb-xs text-xl">Cohesive Storytelling</h3>
                         <p>
                             Design and copy work in unison. No disjointed messages across your
                             channels.
                         </p>
                     </div>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>🚀</div>
-                        <h3>Full-Funnel Ownership</h3>
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">🚀</div>
+                        <h3 className="mt-sm mb-xs text-xl">Full-Funnel Ownership</h3>
                         <p>From awareness to retention, we optimize the entire user journey.</p>
                     </div>
                 </div>

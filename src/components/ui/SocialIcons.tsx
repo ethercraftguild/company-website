@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { SITE_CONFIG } from '@/config'; // Alias configured in tsconfig
-import styles from './SocialIcons.module.css';
+import { SITE_CONFIG } from '@/config';
 
 // Icon Paths (copying logic, assuming public/social-icons exists)
 // I need to ensure public assets are moved. I moved _legacy/public to src/public? No, root public.
@@ -29,11 +28,12 @@ export default function SocialIcons({ className = '' }: SocialIconsProps) {
     const { links: socials } = SITE_CONFIG;
 
     return (
-        <div className={`${styles.socialIcons} ${className}`}>
+        <div className={`flex gap-md items-center mb-5 ${className}`}>
             {Object.entries(socials).map(([key, url]) => {
                 if (!url) return null;
 
                 const iconPath = IconPaths[key];
+                const linkClasses = "flex items-center justify-center w-10 h-10 rounded-full border border-current text-current opacity-80 transition-all duration-200 hover:opacity-100 hover:bg-foreground hover:text-bg hover:-translate-y-0.5 group";
 
                 if (iconPath) {
                     return (
@@ -43,14 +43,14 @@ export default function SocialIcons({ className = '' }: SocialIconsProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={key}
-                            className={styles.iconLink}
+                            className={linkClasses}
                         >
                             <img
-                                src={iconPath} // Using standard img for svg in public
+                                src={iconPath}
                                 alt={key}
                                 width={20}
                                 height={20}
-                                className={styles.socialImg}
+                                className="brightness-0 transition-[filter] duration-200 group-hover:invert"
                             />
                         </a>
                     );
@@ -64,7 +64,7 @@ export default function SocialIcons({ className = '' }: SocialIconsProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={key}
-                            className={styles.iconLink}
+                            className={linkClasses}
                         >
                             <GithubIcon />
                         </a>

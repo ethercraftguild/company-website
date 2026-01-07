@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
-import servicesStyles from '../services.module.css';
+
 
 export const metadata: Metadata = {
     title: "Digital Architecture | Ethercraft Guild",
@@ -23,7 +23,7 @@ export default function ArchitecturePage() {
             {/* Service Index (Accordion) */}
             <Section className="service-index">
                 <h2>Specializations</h2>
-                <div className={servicesStyles.accordionWrapper}>
+                <div className="max-w-[800px] mt-lg">
                     <Accordion
                         items={[
                             {
@@ -53,38 +53,38 @@ export default function ArchitecturePage() {
                     />
                 </div>
 
-                <div className={servicesStyles.subServiceLink}>
+                <div className="mt-lg text-base font-medium">
                     <p>
-                        Looking for Mobile App specifics? <Link href="/services/architecture/mobile-app-dev">View Mobile App Development &rarr;</Link>
+                        Looking for Mobile App specifics? <Link href="/services/architecture/mobile-app-dev" className="underline text-accent">View Mobile App Development &rarr;</Link>
                     </p>
                 </div>
             </Section>
 
             {/* Why Choose This Category */}
-            <Section className={servicesStyles.whyChoose}>
-                <div className={servicesStyles.whyHeader}>
+            <Section className="bg-white">
+                <div className="mb-xl">
                     <h2>The Guild Difference</h2>
                 </div>
-                <div className={servicesStyles.featureGrid}>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>🌍</div>
-                        <h3>Vetted Global Talent</h3>
+                <div className="grid grid-cols-1 gap-lg mt-xl md:grid-cols-3 md:gap-xl">
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">🌍</div>
+                        <h3 className="mt-sm mb-xs text-xl">Vetted Global Talent</h3>
                         <p>
                             Access to high-skill developers at competitive international rates,
                             without the management headache.
                         </p>
                     </div>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>🔍</div>
-                        <h3>Solopreneur QA Layer</h3>
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">🔍</div>
+                        <h3 className="mt-sm mb-xs text-xl">Solopreneur QA Layer</h3>
                         <p>
                             Every deliverable passes through our principal final quality review
                             to guarantee craftsmanship.
                         </p>
                     </div>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>🛡️</div>
-                        <h3>Security-First Approach</h3>
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">🛡️</div>
+                        <h3 className="mt-sm mb-xs text-xl">Security-First Approach</h3>
                         <p>
                             We build with robust security protocols from day one, not as an
                             afterthought.

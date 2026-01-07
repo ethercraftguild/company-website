@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import ContactSection from '@/components/ContactSection';
-import styles from '../legal.module.css';
+
 
 export const metadata: Metadata = {
     title: "Terms and Conditions | Ethercraft Guild",
@@ -11,19 +11,19 @@ const effectiveDate = "June 12, 2025";
 
 export default function TermsPage() {
     return (
-        <div className={styles.legalPage}>
-            <section className={`${styles.section} ${styles.headerSection}`}>
-                <div className={styles.containerSm}>
-                    <h1>Terms and Conditions</h1>
-                    <p className={styles.subtitle}>Effective Date: {effectiveDate}</p>
-                    <p className={styles.intro}>
+        <div className="bg-accent text-[#f7f7f7] w-full min-h-screen [&_h2]:text-[2rem] [&_h2]:mb-lg [&_h2]:border-b [&_h2]:border-white/20 [&_h2]:pb-sm [&_h3]:text-[1.5rem] [&_h3]:mt-lg [&_h3]:mb-sm [&_h3]:text-white [&_p]:leading-[1.8] [&_p]:mb-md [&_p]:opacity-90 [&_ul]:list-disc [&_ul]:pl-lg [&_ul]:mb-lg [&_u]:leading-[1.6] [&_li]:mb-sm">
+            <section className="bg-hover pt-2xl text-center pb-xl px-md">
+                <div className="max-w-[800px] mx-auto">
+                    <h1 className="text-[3rem] mb-md font-bold">Terms and Conditions</h1>
+                    <p className="text-[1.25rem] opacity-80 mb-lg">Effective Date: {effectiveDate}</p>
+                    <p className="text-[1.125rem] leading-[1.8]">
                         Welcome to {companyName}. These Terms and Conditions govern your use of our website and services. By accessing or using the Site, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not access the Site.
                     </p>
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>1. Intellectual Property Rights</h2>
                     <p>Unless otherwise indicated, the Site and its entire contents, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by {companyName}, its licensors, or other providers of such material and are protected by copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
 

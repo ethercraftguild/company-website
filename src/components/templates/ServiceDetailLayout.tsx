@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import CtaSection from '@/components/ui/CtaSection';
-import styles from './ServiceDetailLayout.module.css';
 
 interface ServiceDetailLayoutProps {
     hero: {
@@ -31,13 +30,14 @@ export default function ServiceDetailLayout({ hero, sidebar, cta, children }: Se
                 ctaLink={hero.ctaLink}
             />
 
-            <Section className={styles.serviceDetails}>
-                <div className={styles.contentGrid}>
-                    <div className={styles.mainContent}>
+            <Section className="block">
+                <div className="grid grid-cols-1 gap-xl md:grid-cols-[2fr_1fr]">
+                    <div className="[&>h2]:mb-md [&>h2]:text-2xl [&>h3]:mt-lg [&>h3]:mb-sm [&>h3]:text-2xl [&>p]:mb-md [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:ml-lg [&>ul]:mb-md [&>ol]:list-decimal [&>ol]:ml-lg [&>ol]:mb-md [&>li]:mb-xs">
                         {children}
                     </div>
 
-                    <aside className={styles.sidebar}>
+                    <aside>
+                        {/* Sidebar content often uses InfoCard styles which we'll need to support or migrate */}
                         {sidebar}
                     </aside>
                 </div>

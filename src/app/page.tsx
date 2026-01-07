@@ -3,31 +3,30 @@ import Section from '@/components/ui/Section';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import CtaSection from '@/components/ui/CtaSection';
-import styles from './page.module.css';
 
 export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <Section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.fadeInUp}>
+      <Section className="pt-xl pb-2xl text-center">
+        <div className="max-w-[800px] mx-auto">
+          <h1 className="animate-slideUp opacity-0 [animation-fill-mode:forwards]">
             Mastering Digital Craftsmanship: Custom Solutions from Ethercraft Guild
           </h1>
-          <p className={`${styles.valueProp} ${styles.fadeInUp} ${styles.delay1}`}>
+          <p className="text-xl md:text-[1.25rem] text-foreground opacity-90 mb-lg animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[200ms]">
             Your dedicated guild of globally-vetted specialists in Software
             Development, Digital Growth, and Strategic Operations.
           </p>
 
-          <div className={`${styles.ctaGroup} ${styles.fadeInUp} ${styles.delay2}`}>
+          <div className="mb-2xl animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[400ms]">
             <Button href="/contact" variant="primary">
               Start Your Project Consultation
             </Button>
           </div>
 
-          <div className={`${styles.trustSignals} ${styles.fadeInUp} ${styles.delay3}`}>
-            <p>Trusted by industry leaders and startups alike.</p>
-            <div className={styles.logos}>
+          <div className="animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[600ms]">
+            <p className="text-sm opacity-60 mb-sm uppercase tracking-wider">Trusted by industry leaders and startups alike.</p>
+            <div className="flex justify-center gap-lg opacity-50 font-bold font-mono">
               {/* Placeholder simple text logos for now */}
               <span>TechCorp</span>
               <span>GrowthInc</span>
@@ -41,7 +40,7 @@ export default function Home() {
       {/* Service Overview */}
       <Section>
         <h2>Our Three Pillars of Craftsmanship</h2>
-        <div className={styles.cardGrid}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-md md:gap-lg mt-lg">
           <Card icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -69,8 +68,8 @@ export default function Home() {
               Build, secure, and modernize your core platform with expert
               developers.
             </p>
-            <div className={styles.cardFooter}>
-              <Link href="/services/architecture" className={styles.textLink}>
+            <div className="mt-md">
+              <Link href="/services/architecture" className="font-semibold text-[0.9375rem] inline-block transition-transform duration-200 ease-out text-inherit no-underline hover:underline hover:translate-x-1">
                 Explore Architecture &rarr;
               </Link>
             </div>
@@ -95,8 +94,8 @@ export default function Home() {
               Attract, engage, and convert your audience with data-driven content
               and marketing.
             </p>
-            <div className={styles.cardFooter}>
-              <Link href="/services/growth" className={styles.textLink}>
+            <div className="mt-md">
+              <Link href="/services/growth" className="font-semibold text-[0.9375rem] inline-block transition-transform duration-200 ease-out text-inherit no-underline hover:underline hover:translate-x-1">
                 Explore Growth &rarr;
               </Link>
             </div>
@@ -126,8 +125,8 @@ export default function Home() {
               Scale your operations and fill resource gaps with specialized, vetted
               talent.
             </p>
-            <div className={styles.cardFooter}>
-              <Link href="/services/operations" className={styles.textLink}>
+            <div className="mt-md">
+              <Link href="/services/operations" className="font-semibold text-[0.9375rem] inline-block transition-transform duration-200 ease-out text-inherit no-underline hover:underline hover:translate-x-1">
                 Explore Operations &rarr;
               </Link>
             </div>

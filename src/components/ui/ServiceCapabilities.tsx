@@ -1,5 +1,3 @@
-import styles from './ServiceCapabilities.module.css';
-
 interface CapabilityCardProps {
     title: string;
     children: React.ReactNode;
@@ -7,9 +5,9 @@ interface CapabilityCardProps {
 
 export function CapabilityCard({ title, children }: CapabilityCardProps) {
     return (
-        <div className={styles.capCard}>
-            <h4>{title}</h4>
-            <div className={styles.capContent}>
+        <div className="bg-bg border border-border p-md rounded-sm">
+            <h4 className="mb-xs">{title}</h4>
+            <div className="[&>p]:mb-0 [&>p]:text-[0.9rem] [&>p]:opacity-80">
                 {children}
             </div>
         </div>
@@ -18,7 +16,7 @@ export function CapabilityCard({ title, children }: CapabilityCardProps) {
 
 export function CapabilitiesGrid({ children }: { children: React.ReactNode }) {
     return (
-        <div className={styles.capabilitiesGrid}>
+        <div className="grid gap-md mt-md md:grid-cols-2">
             {children}
         </div>
     );

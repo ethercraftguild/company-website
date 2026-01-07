@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV_MENU } from '@/config';
-import styles from './MobileDrawer.module.css';
 
 interface MobileDrawerProps {
     isOpen: boolean;
@@ -51,50 +50,52 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     };
 
     return (
-        <div className={`${styles.mobileDrawer} ${isOpen ? styles.isOpen : ''}`}>
-            <div className={styles.drawerOverlay} onClick={onClose}></div>
-            <div className={styles.drawerContent}>
-                <div className={styles.drawerHeader}>
-                    <Link href="/" className={styles.drawerBrand} onClick={onClose}>
-                        {/* Assuming /favicon.svg exists in public */}
-                        <img src="/favicon.svg" alt="Logo" width="24" height="24" className={styles.drawerLogo} />
+        <div className={`fixed inset-0 z-[2000] md:hidden ${isOpen ? 'visible pointer-events-auto' : 'invisible pointer-events-none delay-200'}`}>
+            <div
+                className={`absolute inset-0 bg-black/50 transition-opacity duration-200 ease-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+                onClick={onClose}
+            ></div>
+            <div className={`absolute bottom-0 left-0 w-full max-h-[85vh] overflow-y-auto bg-bg border-t border-border p-5 pb-xl rounded-t-sm flex flex-col transition-transform duration-200 ease-out ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+                <div className="flex justify-between items-center mb-lg border-b border-border pb-md shrink-0">
+                    <Link href="/" className="font-mono font-bold text-lg uppercase flex items-center gap-2 text-foreground no-underline" onClick={onClose}>
+                        <img src="/favicon.svg" alt="Logo" width="24" height="24" className="block" />
                         Ethercraft Guild
                     </Link>
-                    <button className={styles.closeBtn} onClick={onClose} aria-label="Close menu">&times;</button>
+                    <button className="bg-none border-none text-3xl cursor-pointer leading-none px-sm" onClick={onClose} aria-label="Close menu">&times;</button>
                 </div>
 
-                <nav className={styles.drawerNav}>
-                    <ul className={styles.navList}>
+                <nav className="flex-grow mb-xl">
+                    <ul className="list-none flex flex-col gap-sm">
                         {NAV_MENU.map((item) => {
                             const parentActive = isParentActive(item);
                             const hasChildren = item.children && item.children.length > 0;
                             const isExpanded = expandedItems.includes(item.label);
 
                             return (
-                                <li key={item.label} className={styles.navItem}>
-                                    <div className={styles.navRow}>
-                                        <Link href={item.href} className={styles.navLink} onClick={onClose}>
-                                            {parentActive && <span className={styles.activeDot}></span>}
+                                <li key={item.label} className="border-b border-black/5">
+                                    <div className="flex justify-between items-center">
+                                        <Link href={item.href} className="text-xl font-semibold flex items-center gap-2 py-sm text-foreground" onClick={onClose}>
+                                            {parentActive && <span className="w-2 h-2 bg-foreground rounded-full inline-block"></span>}
                                             {item.label}
                                         </Link>
                                         {hasChildren && (
                                             <button
-                                                className={styles.accordionToggle}
+                                                className="flex items-center justify-center cursor-pointer relative bg-transparent border-none p-sm text-foreground"
                                                 aria-label={`Toggle ${item.label} menu`}
                                                 onClick={() => toggleAccordion(item.label)}
                                             >
-                                                <span className={`${styles.iconPlus} ${isExpanded ? styles.hidden : ''}`}>+</span>
-                                                <span className={`${styles.iconClose} ${isExpanded ? styles.visible : ''}`}>&times;</span>
+                                                <span className={`absolute text-xl leading-none transition-all duration-200 ${isExpanded ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'}`}>+</span>
+                                                <span className={`absolute text-xl leading-none transition-all duration-200 ${isExpanded ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'}`}>&times;</span>
                                             </button>
                                         )}
                                     </div>
                                     {hasChildren && (
-                                        <ul className={`${styles.subMenu} ${isExpanded ? styles.expanded : ''}`}>
+                                        <ul className={`list-none pl-5 overflow-hidden transition-[max-height,margin] duration-300 ease-out ${isExpanded ? 'max-h-[300px] mb-sm' : 'max-h-0'}`}>
                                             {item.children?.map((child: any) => {
                                                 const childActive = isActive(child.href);
                                                 return (
                                                     <li key={child.href}>
-                                                        <Link href={child.href} className={`${styles.subLink} ${childActive ? styles.childActive : ''}`} onClick={onClose}>
+                                                        <Link href={child.href} className={`block py-2 text-base text-foreground ${childActive ? 'opacity-100 font-semibold underline' : 'opacity-70'}`} onClick={onClose}>
                                                             {child.label}
                                                         </Link>
                                                     </li>
@@ -108,11 +109,11 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                     </ul>
                 </nav>
 
-                <div className={styles.drawerFooter}>
-                    <ul className={styles.secondaryLinks}>
-                        <li><Link href="/privacy" target="_blank" onClick={onClose}>Privacy Policy</Link></li>
-                        <li><Link href="/about" target="_blank" onClick={onClose}>About Us</Link></li>
-                        <li><Link href="/terms" target="_blank" onClick={onClose}>Terms & Conditions</Link></li>
+                <div className="border-t border-border pt-md shrink-0">
+                    <ul className="list-none flex flex-wrap justify-between gap-md">
+                        <li><Link href="/privacy" target="_blank" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>Privacy Policy</Link></li>
+                        <li><Link href="/about" target="_blank" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>About Us</Link></li>
+                        <li><Link href="/terms" target="_blank" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>Terms & Conditions</Link></li>
                     </ul>
                 </div>
             </div>

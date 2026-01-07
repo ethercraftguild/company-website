@@ -3,7 +3,6 @@ import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
 import CtaSection from '@/components/ui/CtaSection';
-import servicesStyles from '../services.module.css';
 
 export const metadata: Metadata = {
     title: "Talent & Operational Support | Ethercraft Guild",
@@ -22,7 +21,7 @@ export default function OperationsPage() {
 
             <Section className="service-index">
                 <h2>Specializations</h2>
-                <div className={servicesStyles.accordionWrapper}>
+                <div className="max-w-[800px] mt-lg">
                     <Accordion
                         items={[
                             {
@@ -48,29 +47,29 @@ export default function OperationsPage() {
                 </div>
             </Section>
 
-            <Section className={servicesStyles.whyChoose}>
-                <div className={servicesStyles.whyHeader}>
+            <Section className="bg-white">
+                <div className="mb-xl">
                     <h2>The Guild Difference</h2>
                 </div>
-                <div className={servicesStyles.featureGrid}>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>🤝</div>
-                        <h3>Seamless Integration</h3>
+                <div className="grid grid-cols-1 gap-lg mt-xl md:grid-cols-3 md:gap-xl">
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">🤝</div>
+                        <h3 className="mt-sm mb-xs text-xl">Seamless Integration</h3>
                         <p>
                             Our talent adapts to your culture and tools. Day one productivity.
                         </p>
                     </div>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>⏱️</div>
-                        <h3>Flexible Engagement</h3>
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">⏱️</div>
+                        <h3 className="mt-sm mb-xs text-xl">Flexible Engagement</h3>
                         <p>
                             Scale up or down based on project needs. No long-term lock-ins if you
                             don't need them.
                         </p>
                     </div>
-                    <div className={servicesStyles.featureItem}>
-                        <div className={servicesStyles.featureIcon}>🧠</div>
-                        <h3>Knowledge Transfer</h3>
+                    <div className="p-md border border-border rounded-sm md:border-none md:p-0">
+                        <div className="text-[2rem] mb-sm">🧠</div>
+                        <h3 className="mt-sm mb-xs text-xl">Knowledge Transfer</h3>
                         <p>
                             We don't just build; we teach. Leaving your team stronger than we
                             found it.

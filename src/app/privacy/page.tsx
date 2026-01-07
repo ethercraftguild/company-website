@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import ContactSection from '@/components/ContactSection';
-import styles from '../legal.module.css';
+
 
 export const metadata: Metadata = {
     title: "Privacy Policy | Ethercraft Guild",
@@ -11,19 +11,19 @@ const effectiveDate = "June 12, 2025";
 
 export default function PrivacyPage() {
     return (
-        <div className={styles.legalPage}>
-            <section className={`${styles.section} ${styles.headerSection}`}>
-                <div className={styles.containerSm}>
-                    <h1>Privacy Policy</h1>
-                    <p className={styles.subtitle}>Effective Date: {effectiveDate}</p>
-                    <p className={styles.intro}>
+        <div className="bg-accent text-[#f7f7f7] w-full min-h-screen [&_h2]:text-[2rem] [&_h2]:mb-lg [&_h2]:border-b [&_h2]:border-white/20 [&_h2]:pb-sm [&_h3]:text-[1.5rem] [&_h3]:mt-lg [&_h3]:mb-sm [&_h3]:text-white [&_p]:leading-[1.8] [&_p]:mb-md [&_p]:opacity-90 [&_ul]:list-disc [&_ul]:pl-lg [&_ul]:mb-lg [&_u]:leading-[1.6] [&_li]:mb-sm">
+            <section className="bg-hover pt-2xl text-center pb-xl px-md">
+                <div className="max-w-[800px] mx-auto">
+                    <h1 className="text-[3rem] mb-md font-bold">Privacy Policy</h1>
+                    <p className="text-[1.25rem] opacity-80 mb-lg">Effective Date: {effectiveDate}</p>
+                    <p className="text-[1.125rem] leading-[1.8]">
                         Welcome to {companyName}. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the “Site”). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the Site.
                     </p>
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>1. Information We Collect</h2>
                     <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
 
@@ -38,8 +38,8 @@ export default function PrivacyPage() {
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>2. How We Use Your Information</h2>
                     <p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Site to:</p>
                     <ul>
@@ -55,8 +55,8 @@ export default function PrivacyPage() {
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>3. Disclosure of Your Information</h2>
                     <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
 
@@ -68,15 +68,15 @@ export default function PrivacyPage() {
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>4. Data Security</h2>
                     <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>5. Your Rights</h2>
                     <p>You have certain rights regarding your personal information, subject to local law. These may include the right to:</p>
                     <ul>
@@ -92,15 +92,15 @@ export default function PrivacyPage() {
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>6. Third-Party Websites</h2>
                     <p>The Site may contain links to third-party websites and applications of interest, including advertisements and external services, that are not affiliated with us. Once you have used these links to leave the Site, any information you provide to these third parties is not covered by this Privacy Policy, and we cannot guarantee the safety and privacy of your information.</p>
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.containerSm}>
+            <section className="py-xl px-md">
+                <div className="max-w-[800px] mx-auto">
                     <h2>7. Changes to This Privacy Policy</h2>
                     <p>We may update this Privacy Policy from time to time. The updated version will be indicated by an updated “Effective Date” and the updated version will be effective as soon as it is accessible. We encourage you to review this privacy policy frequently to be informed of how we are protecting your information.</p>
                 </div>
