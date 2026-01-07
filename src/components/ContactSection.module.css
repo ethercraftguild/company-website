@@ -1,0 +1,60 @@
+.contactSection {
+    padding: var(--space-xl) var(--space-md);
+}
+
+.containerSm {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contactCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Subtle overlay for dark theme */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-xl);
+    border-radius: var(--radius-sm);
+}
+
+.contactCard h2 {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: var(--space-sm);
+}
+
+.introText {
+    margin-bottom: var(--space-lg);
+    font-size: 1.125rem;
+}
+
+.contactDetails {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.detailRow {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+}
+
+.label {
+    font-weight: 700;
+    min-width: 100px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.value {
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.link {
+    text-decoration: underline;
+    transition: opacity 0.2s;
+}
+
+.link:hover {
+    opacity: 0.8;
+}

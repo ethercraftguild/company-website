@@ -1,0 +1,64 @@
+.accordionGroup {
+    border-top: 1px solid var(--color-border);
+}
+
+.accordionItem {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.accordionTrigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) 0;
+    cursor: pointer;
+    list-style: none;
+    /* Remove default marker */
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: color var(--transition-fast, 0.2s ease);
+}
+
+.accordionTrigger:hover {
+    color: var(--color-accent);
+}
+
+/* Hide default marker */
+.accordionTrigger::-webkit-details-marker {
+    display: none;
+}
+
+.accordionTrigger {
+    list-style: none;
+}
+
+.icon {
+    font-family: var(--font-mono, monospace);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* We need global selector support or use :global since 'open' attribute is on details element which is part of this component but controlled by browser */
+.accordionItem[open] .icon {
+    transform: rotate(45deg);
+}
+
+.accordionContent {
+    padding-bottom: var(--space-md);
+    padding-top: var(--space-sm);
+    color: var(--color-text);
+    opacity: 0.9;
+}
+
+.accordionLink {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+
+.accordionLink:hover {
+    opacity: 0.8;
+}

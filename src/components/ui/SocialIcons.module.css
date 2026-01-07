@@ -1,0 +1,41 @@
+.socialIcons {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.iconLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    color: inherit;
+    transition: all var(--transition-fast, 0.2s ease);
+    opacity: 0.8;
+}
+
+.iconLink:hover {
+    opacity: 1;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    /* Invert on hover */
+    transform: translateY(-2px);
+}
+
+.socialImg {
+    filter: brightness(0);
+    /* Make black initially to match text */
+    transition: filter var(--transition-fast, 0.2s ease);
+}
+
+/* Because CSS modules hash classes, we target the child img via class too */
+.iconLink:hover .socialImg {
+    filter: invert(1);
+    /* Make white on hover */
+}
+
+/* If SVG is inline (github), we depend on color: var(--color-bg) set on parent */
