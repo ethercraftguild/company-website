@@ -29,6 +29,7 @@ export const NAV_MENU = [
         href: "/services/growth",
         children: [
             { label: "SEO & Content", href: "/services/growth/seo-content" },
+            { label: "Audio & Video Content", href: "/services/growth/audio-video-production" },
             { label: "Brand Identity", href: "/services/growth/brand-identity" },
             { label: "Performance Marketing", href: "/services/growth/performance-marketing" }
         ]
@@ -38,7 +39,8 @@ export const NAV_MENU = [
         href: "/services/operations",
         children: [
             { label: "Team Augmentation", href: "/services/operations/team-augmentation" },
-            { label: "Process Optimization", href: "/services/operations/process-optimization" }
+            { label: "Process Optimization", href: "/services/operations/process-optimization" },
+            { label: "AI Automation", href: "/services/operations/ai-automation" }
         ]
     },
     // {
