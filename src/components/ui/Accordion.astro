@@ -3,6 +3,7 @@ interface Props {
   items: {
     title: string;
     description: string;
+    link?: string;
   }[];
 }
 
@@ -10,17 +11,26 @@ const { items } = Astro.props;
 ---
 
 <div class="accordion-group">
-  {items.map((item, index) => (
-    <details class="accordion-item" name="service-accordion">
-      <summary class="accordion-trigger">
-        <span class="accordion-title">{item.title}</span>
-        <span class="icon" aria-hidden="true">+</span>
-      </summary>
-      <div class="accordion-content">
-        <p>{item.description}</p>
-      </div>
-    </details>
-  ))}
+  {
+    items.map((item, index) => (
+      <details class="accordion-item" name="service-accordion">
+        <summary class="accordion-trigger">
+          <span class="accordion-title">{item.title}</span>
+          <span class="icon" aria-hidden="true">
+            +
+          </span>
+        </summary>
+        <div class="accordion-content">
+          <p>{item.description}</p>
+          {item.link && (
+            <a href={item.link} class="accordion-link">
+              Learn more &rarr;
+            </a>
+          )}
+        </div>
+      </details>
+    ))
+  }
 </div>
 
 <style>
@@ -67,5 +77,18 @@ const { items } = Astro.props;
     padding-top: var(--space-sm);
     color: var(--color-text);
     opacity: 0.9;
+  }
+
+  .accordion-link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+  }
+
+  .accordion-link:hover {
+    opacity: 0.8;
   }
 </style>

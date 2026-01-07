@@ -1,15 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Section from '../../components/ui/Section.astro';
-import Accordion from '../../components/ui/Accordion.astro';
-import PageHero from '../../components/ui/PageHero.astro';
-import CtaSection from '../../components/ui/CtaSection.astro';
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/ui/Section.astro";
+import Accordion from "../../components/ui/Accordion.astro";
+import PageHero from "../../components/ui/PageHero.astro";
+import CtaSection from "../../components/ui/CtaSection.astro";
 ---
 
 <Layout title="Talent & Operational Support | Ethercraft Guild">
-  
-  <PageHero 
-    title="Talent & Operational Support" 
+  <PageHero
+    title="Talent & Operational Support"
     subtitle="Scale your capabilities without the overhead. We provide specific, vetted talent and optimize your internal workflows."
     ctaText="Request Talent"
     ctaLink="/contact"
@@ -18,49 +17,68 @@ import CtaSection from '../../components/ui/CtaSection.astro';
   <Section class="service-index">
     <h2>Specializations</h2>
     <div class="accordion-wrapper">
-        <Accordion items={[
-            {
-                title: "Team Augmentation",
-                description: "Integrate senior engineers, designers, or product managers into your existing squads. Flexible contracts, immediate impact."
-            },
-            {
-                title: "Process Optimization",
-                description: "Streamline your delivery pipeline. We implement Agile/DevOps best practices to reduce bottlenecks and increase deployment frequency."
-            }
-        ]} />
+      <Accordion
+        items={[
+          {
+            title: "Team Augmentation",
+            description:
+              "Integrate senior engineers, designers, or product managers into your existing squads. Flexible contracts, immediate impact.",
+            link: "/services/operations/team-augmentation",
+          },
+          {
+            title: "Process Optimization",
+            description:
+              "Streamline your delivery pipeline. We implement Agile/DevOps best practices to reduce bottlenecks and increase deployment frequency.",
+            link: "/services/operations/process-optimization",
+          },
+          {
+            title: "AI Automation Pipeline & Services",
+            description:
+              "Operationalize intelligence. We build custom AI pipelines that automate complex workflows, reduce manual overhead, and unlock new data insights.",
+            link: "/services/operations/ai-automation",
+          },
+        ]}
+      />
     </div>
   </Section>
 
   <Section class="why-choose">
     <div class="why-header">
-        <h2>The Guild Difference</h2>
+      <h2>The Guild Difference</h2>
     </div>
     <div class="feature-grid">
-        <div class="feature-item">
-            <div class="feature-icon">🤝</div>
-            <h3>Seamless Integration</h3>
-            <p>Our talent adapts to your culture and tools. Day one productivity.</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">⏱️</div>
-            <h3>Flexible Engagement</h3>
-            <p>Scale up or down based on project needs. No long-term lock-ins if you don't need them.</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">🧠</div>
-            <h3>Knowledge Transfer</h3>
-            <p>We don't just build; we teach. Leaving your team stronger than we found it.</p>
-        </div>
+      <div class="feature-item">
+        <div class="feature-icon">🤝</div>
+        <h3>Seamless Integration</h3>
+        <p>
+          Our talent adapts to your culture and tools. Day one productivity.
+        </p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">⏱️</div>
+        <h3>Flexible Engagement</h3>
+        <p>
+          Scale up or down based on project needs. No long-term lock-ins if you
+          don't need them.
+        </p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🧠</div>
+        <h3>Knowledge Transfer</h3>
+        <p>
+          We don't just build; we teach. Leaving your team stronger than we
+          found it.
+        </p>
+      </div>
     </div>
   </Section>
 
-  <CtaSection 
-    title="Optimize Your Operations" 
-    ctaText="Get Started" 
-    ctaLink="/contact" 
-    variant="tertiary" 
+  <CtaSection
+    title="Optimize Your Operations"
+    ctaText="Get Started"
+    ctaLink="/contact"
+    variant="tertiary"
   />
-
 </Layout>
 
 <style>
@@ -70,7 +88,7 @@ import CtaSection from '../../components/ui/CtaSection.astro';
   }
 
   .why-choose {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .feature-grid {
@@ -81,9 +99,9 @@ import CtaSection from '../../components/ui/CtaSection.astro';
   }
 
   .feature-item {
-      padding: var(--space-md);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
   }
 
   .feature-item h3 {
@@ -102,10 +120,10 @@ import CtaSection from '../../components/ui/CtaSection.astro';
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-xl);
     }
-    
+
     .feature-item {
-        border: none;
-        padding: 0;
+      border: none;
+      padding: 0;
     }
   }
 </style>
