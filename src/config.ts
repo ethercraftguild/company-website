@@ -41,8 +41,8 @@ export const NAV_MENU = [
             { label: "Process Optimization", href: "/services/operations/process-optimization" }
         ]
     },
-    {
-        label: "Case Studies",
-        href: "/case-studies"
-    }
+    // {
+    //     label: "Case Studies",
+    //     href: "/case-studies"
+    // }
 ];
