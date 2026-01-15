@@ -26,7 +26,7 @@ export default function Home() {
 
           <div className="animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[600ms]">
             <p className="text-sm opacity-60 mb-sm uppercase tracking-wider">Trusted by industry leaders and startups alike.</p>
-            <div className="flex justify-center gap-lg opacity-50 font-bold font-mono">
+            <div className="flex justify-center gap-lg opacity-50 font-bold font-mono flex-wrap">
               {/* Placeholder simple text logos for now */}
               <span>TechCorp</span>
               <span>GrowthInc</span>

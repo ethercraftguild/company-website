@@ -61,13 +61,14 @@ export default function Header() {
                     </nav>
 
                     <div className="flex items-center gap-xs">
-                        <Button
-                            variant="primary"
-                            className="hidden md:inline-flex"
-                            onClick={() => setIsModalOpen(true)}
-                        >
-                            Start Consultation
-                        </Button>
+                        <div className="hidden md:inline-flex">
+                            <Button
+                                variant="primary"
+                                onClick={() => setIsModalOpen(true)}
+                            >
+                                Start Consultation
+                            </Button>
+                        </div>
 
                         <button
                             className="flex md:hidden flex-col justify-center gap-[6px] bg-none border-none cursor-pointer p-xs z-[1001] shrink-0 ml-1"
