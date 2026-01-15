@@ -32,7 +32,7 @@ export default function Header() {
                         <span className="hidden sm:inline">Ethercraft Guild</span>
                     </Link>
 
-                    <nav className="hidden md:block">
+                    <nav className="hidden lg:block">
                         <ul className="flex gap-lg list-none items-center">
                             {NAV_MENU.map((item) => (
                                 <li key={item.label} className="relative group">
@@ -61,7 +61,7 @@ export default function Header() {
                     </nav>
 
                     <div className="flex items-center gap-xs">
-                        <div className="hidden md:inline-flex">
+                        <div className="hidden lg:inline-flex">
                             <Button
                                 variant="primary"
                                 onClick={() => setIsModalOpen(true)}
@@ -71,7 +71,7 @@ export default function Header() {
                         </div>
 
                         <button
-                            className="flex md:hidden flex-col justify-center gap-[6px] bg-none border-none cursor-pointer p-xs z-[1001] shrink-0 ml-1"
+                            className="flex lg:hidden flex-col justify-center gap-[6px] bg-none border-none cursor-pointer p-xs z-[1001] shrink-0 ml-1"
                             aria-label="Open menu"
                             onClick={() => setIsDrawerOpen(true)}
                         >
