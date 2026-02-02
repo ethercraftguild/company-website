@@ -50,7 +50,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     };
 
     return (
-        <div className={`fixed inset-0 z-[2000] md:hidden ${isOpen ? 'visible pointer-events-auto' : 'invisible pointer-events-none delay-200'}`}>
+        <div className={`fixed inset-0 z-[2000] lg:hidden ${isOpen ? 'visible pointer-events-auto' : 'invisible pointer-events-none delay-200'}`}>
             <div
                 className={`absolute inset-0 bg-black/50 transition-opacity duration-200 ease-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
                 onClick={onClose}
