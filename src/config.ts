@@ -6,9 +6,9 @@ export const SITE_CONFIG = {
     contactEmail: "https://formspree.io/f/mjknarak", // Dummy email for Formspree
     calendly: "https://calendly.com/ethercraftguild/30min",
     links: {
-        linkedin: "https://linkedin.com/company/ethercraft-guild",
-        github: "https://github.com/ethercraft-guild",
-        facebook: "https://facebook.com/ethercraft-guild",
+        linkedin: "https://linkedin.com/company/ethercraftguild",
+        github: "https://github.com/ethercraftguild",
+        facebook: "https://facebook.com/ethercraftguild",
         // twitter: "https://twitter.com/ethercraftguild",
         // youtube: "https://youtube.com/c/ethercraftguild"
     }
