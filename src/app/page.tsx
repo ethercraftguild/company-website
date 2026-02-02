@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <Section className="pt-xl pb-2xl text-center">
+      <Section className="pt-2xl md:pt-3xl pb-2xl text-center">
         <div className="max-w-[800px] mx-auto">
           <h1 className="animate-slideUp opacity-0 [animation-fill-mode:forwards]">
             Mastering Digital Craftsmanship: Custom Solutions from Ethercraft Guild
@@ -24,10 +24,9 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[600ms]">
+          <div className="mt-2xl animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[600ms]">
             <p className="text-sm opacity-60 mb-sm uppercase tracking-wider">Trusted by industry leaders and startups alike.</p>
-            <div className="flex justify-center gap-lg opacity-50 font-bold font-mono flex-wrap">
-              {/* Placeholder simple text logos for now */}
+            <div className="flex justify-center gap-md md:gap-lg opacity-50 font-bold font-mono flex-wrap px-md">
               <span>TechCorp</span>
               <span>GrowthInc</span>
               <span>ScaleOps</span>

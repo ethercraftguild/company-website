@@ -54,7 +54,7 @@
   }
 
   h1 {
-    @apply text-[2rem] md:text-[4rem];
+    @apply text-[2.5rem] md:text-[4rem];
   }
 
   h2 {
