@@ -43,8 +43,8 @@ export const NAV_MENU = [
             { label: "AI Automation", href: "/services/operations/ai-automation" }
         ]
     },
-    // {
-    //     label: "Case Studies",
-    //     href: "/case-studies"
-    // }
+    {
+        label: "Work",
+        href: "/work"
+    }
 ];
