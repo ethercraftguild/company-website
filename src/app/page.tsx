@@ -4,6 +4,7 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import CtaSection from '@/components/ui/CtaSection';
 import Testimonials from '@/components/Testimonials';
+import ServiceSlider from '@/components/ServiceSlider';
 
 export default function Home() {
   return (
@@ -133,60 +134,45 @@ export default function Home() {
           </Card>
         </div>
       </Section>
-      {/* Detailed Services */}
-      <Section className="bg-bg-alt">
-        <div className="text-center max-w-[800px] mx-auto mb-xl">
-          <h2>Comprehensive Solutions for Modern Guilds</h2>
-          <p className="opacity-80 text-lg mt-sm">From concept to deployment, we engineer stable, scalable, and secure digital foundations tailored to your exact needs.</p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
-          <div className="flex flex-col gap-sm">
-            <h3 className="text-2xl font-bold flex items-center gap-xs">
-              <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">01</span>
-              Digital Architecture
-            </h3>
-            <ul className="list-disc list-inside space-y-xs opacity-80 ml-md">
-              <li><strong>Mobile App Development (Flutter):</strong> High-performance, cross-platform apps.</li>
-              <li><strong>Web Platforms:</strong> React, Vue, Svelte, and Node.js enterprise applications.</li>
-              <li><strong>Security & Audits:</strong> In-depth code reviews and pentesting (SOC 2, GDPR).</li>
-              <li><strong>UX/UI Design:</strong> Comprehensive design systems and rapid prototyping.</li>
-            </ul>
-          </div>
-          <div className="flex flex-col gap-sm">
-            <h3 className="text-2xl font-bold flex items-center gap-xs">
-              <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">02</span>
-              Growth & Brand Mastery
-            </h3>
-            <ul className="list-disc list-inside space-y-xs opacity-80 ml-md">
-              <li><strong>SEO & Content:</strong> Technical SEO and high-fidelity topic clusters.</li>
-              <li><strong>Brand Identity:</strong> Visual systems, messaging pillars, and collateral.</li>
-              <li><strong>Performance Marketing:</strong> Precision ROAS targeting on Ads, LinkedIn, Meta.</li>
-              <li><strong>Audio & Video:</strong> Cinematic storytelling, 4K editing, and podcast production.</li>
-            </ul>
-          </div>
-          <div className="flex flex-col gap-sm md:col-span-2 mt-md">
-            <h3 className="text-2xl font-bold flex items-center gap-xs">
-              <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">03</span>
-              Talent & Operational Support
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-md mt-xs opacity-80">
-              <Card className="bg-card">
-                <h4 className="font-bold mb-xs">Team Augmentation</h4>
-                <p className="text-sm">Embed senior engineering and design talent directly into your existing squads.</p>
-              </Card>
-              <Card className="bg-card">
-                <h4 className="font-bold mb-xs">Process Optimization</h4>
-                <p className="text-sm">Automate CI/CD, improve sprint planning, and accelerate time-to-market.</p>
-              </Card>
-              <Card className="bg-card">
-                <h4 className="font-bold mb-xs">AI Automation Pipeline</h4>
-                <p className="text-sm">Custom RAG pipelines and integrations with OpenAI, Anthropic, or local LLMs.</p>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </Section>
+      {/* Service Sliders */}
+      <ServiceSlider
+        category="Digital Architecture"
+        description="From concept to deployment, engineering stable, scalable, and secure digital foundations."
+        linkHref="/services/architecture"
+        linkText="Explore Architecture"
+        items={[
+          { title: "Mobile App Development", description: "High-performance, cross-platform apps using Flutter to avoid double costs while maintaining native feel." },
+          { title: "Web Platform Development", description: "Enterprise-grade web applications utilizing React, Node.js, and scalable cloud infrastructure." },
+          { title: "Security & Code Audits", description: "Rigorous assessments including penetration testing and automated scanning for SOC2 compliance." },
+          { title: "UX/UI Design", description: "User-centric interface design and comprehensive design systems for product consistency." }
+        ]}
+      />
+
+      <ServiceSlider
+        category="Growth & Brand Mastery"
+        description="Building resonant brands and executing data-driven strategies that convert."
+        linkHref="/services/growth"
+        linkText="Explore Growth"
+        items={[
+          { title: "SEO & Content Strategy", description: "Sustainable organic growth via technical SEO foundations and high-fidelity topic clusters." },
+          { title: "Performance Marketing", description: "Scientific campaign management maximizing ROAS across Google Ads, LinkedIn, and Meta." },
+          { title: "Brand Identity", description: "Visual and verbal identity systems, from custom typography to messaging pillars." },
+          { title: "Audio & Video Production", description: "Cinematic storytelling, 4K editing, and immersive sound design for high-impact campaigns." }
+        ]}
+      />
+
+      <ServiceSlider
+        category="Talent & Operational Support"
+        description="Scaling capabilities and optimizing internal workflows without the overhead."
+        linkHref="/services/operations"
+        linkText="Explore Operations"
+        items={[
+          { title: "Team Augmentation", description: "Embed senior engineering and product talent directly into your existing squads." },
+          { title: "AI Automation Pipeline", description: "Custom RAG pipelines and integrations with LLMs to automate complex workflows." },
+          { title: "Process Optimization", description: "Improve CI/CD, streamline agile maturity, and consolidate SaaS tools to reduce friction." }
+        ]}
+      />
 
       {/* Featured Work Teaser */}
       <Section className="text-center">
