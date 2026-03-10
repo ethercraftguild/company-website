@@ -1,7 +1,7 @@
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import CtaSection from '@/components/ui/CtaSection';
-import Card from '@/components/ui/Card';
+import ProjectIframe from '@/components/ProjectIframe';
 import projectData from '@/data/projects.json';
 
 export const metadata = {
@@ -24,15 +24,17 @@ export default function WorkPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-xl mb-3xl">
                     {projectData.filter(p => p.type === 'client').map((project) => (
-                        <div key={project.id} className="flex flex-col group">
-                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="block relative aspect-video overflow-hidden rounded-sm mb-md flex-shrink-0">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300 pointer-events-none" />
-                            </a>
+                        <div key={project.id} className="flex flex-col group gap-md">
+                            {/* <ProjectIframe
+                                url={project.link}
+                                title={project.title}
+                                fallbackImage={project.image}
+                            /> */}
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
                             <h3 className="text-2xl font-bold mb-xs">
                                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors duration-200">
                                     {project.title}
@@ -66,15 +68,17 @@ export default function WorkPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
                     {projectData.filter(p => p.type === 'partner').map((project) => (
-                        <div key={project.id} className="flex flex-col group">
-                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="block relative aspect-[21/9] md:aspect-video overflow-hidden rounded-sm mb-md flex-shrink-0">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
-                                />
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300 pointer-events-none" />
-                            </a>
+                        <div key={project.id} className="flex flex-col group gap-md">
+                            {/* <ProjectIframe
+                                url={project.link}
+                                title={project.title}
+                                fallbackImage={project.image}
+                            /> */}
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
                             <h3 className="text-2xl font-bold mb-xs">
                                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors duration-200">
                                     {project.title}
