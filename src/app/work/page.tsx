@@ -22,9 +22,12 @@ export default function WorkPage() {
                     <h2 className="text-3xl font-bold mb-sm">Direct Clients</h2>
                     <p className="opacity-70 max-w-[600px] mx-auto">End-to-end digital architecture and brand growth for our core portfolio.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-xl mb-3xl">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-xl mb-3xl">
                     {projectData.filter(p => p.type === 'client').map((project) => (
-                        <div key={project.id}>
+                        <div
+                            key={project.id}
+                            className="md:col-span-2 md:last:col-start-2"
+                        >
                             <ProjectCard
                                 title={project.title}
                                 description={project.description}
@@ -35,13 +38,16 @@ export default function WorkPage() {
                     ))}
                 </div>
 
-                <div className="mb-xl text-center border-t border-border pt-xl">
+                <div className="mb-xl text-center border-t border-border mt-xl pt-xl">
                     <h2 className="text-3xl font-bold mb-sm">Partner Collaborations</h2>
                     <p className="opacity-70 max-w-[600px] mx-auto">Specialized execution and augmentation alongside other agencies or internal teams.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-xl">
                     {projectData.filter(p => p.type === 'partner').map((project) => (
-                        <div key={project.id}>
+                        <div
+                            key={project.id}
+                            className="md:col-span-2 md:last:col-start-2"
+                        >
                             <ProjectCard
                                 title={project.title}
                                 description={project.description}
