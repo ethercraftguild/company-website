@@ -39,7 +39,7 @@ export default function ServiceGrid({
                     {items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="group relative bg-card border border-card-border p-xl rounded-md transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl hover:border-primary/30 flex flex-col h-full overflow-hidden"
+                            className="group relative bg-card border border-card-border p-xl rounded-2xl transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl hover:border-primary/30 flex flex-col h-full overflow-hidden"
                         >
                             {/* Subtle accent glow on hover */}
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

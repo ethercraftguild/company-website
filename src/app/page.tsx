@@ -4,10 +4,13 @@ import Testimonials from '@/components/Testimonials';
 import ServiceGrid from '@/components/ServiceGrid';
 import HomeHero from '@/components/HomeHero';
 import FeaturedWorkTeaser from '@/components/FeaturedWorkTeaser';
+import AboutTeaser from '@/components/AboutTeaser';
 
 export default function Home() {
   return (
     <main>
+      <HomeHero />
+      <AboutTeaser />
 
       {/* Service Categories (Grid Refactor) */}
       <ServiceGrid
