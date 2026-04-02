@@ -1,4 +1,15 @@
+Host: ethercraftguild.vercel.app
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 User-agent: *
 Allow: /
 
-Sitemap: https://ethercraft.guild/sitemap.xml
+Sitemap: https://ethercraftguild.vercel.app/sitemap.xml

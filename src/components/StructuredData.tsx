@@ -1,11 +1,23 @@
 export default function StructuredData() {
+  const siteUrlRaw = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ethercraftguild.vercel.app";
+  const siteUrl = siteUrlRaw.endsWith("/") ? siteUrlRaw.slice(0, -1) : siteUrlRaw;
+  const siteHost =
+    process.env.NEXT_PUBLIC_SITE_HOST ??
+    (() => {
+      try {
+        return new URL(siteUrl).host;
+      } catch {
+        return "ethercraftguild.vercel.app";
+      }
+    })();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Ethercraft Guild",
-    "image": "https://ethercraft.guild/logo.png",
-    "@id": "https://ethercraft.guild",
-    "url": "https://ethercraft.guild",
+    "image": `${siteUrl}/logo.png`,
+    "@id": siteUrl,
+    "url": siteUrl,
     "telephone": "",
     "address": {
       "@type": "PostalAddress",
@@ -20,7 +32,9 @@ export default function StructuredData() {
       "Mobile Development",
       "AI Integration",
       "System Design"
-    ]
+    ],
+    // Helps crawlers identify the canonical hostname.
+    "identifier": siteHost
   };
 
   return (
