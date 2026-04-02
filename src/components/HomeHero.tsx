@@ -25,7 +25,7 @@ export default function HomeHero() {
                 </h1>
 
                 <p className="text-xl md:text-2xl text-foreground/80 mb-2xl max-w-[700px] mx-auto animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[300ms] font-light leading-relaxed">
-                    Your tailored guild of specialized engineers for high-growth technical execution, scaling products flawlessly from genesis to enterprise.
+                    An elite collective of specialized engineers providing Full-stack Engineering, Technical Debt Resolution, and CI/CD Optimization to scale your products flawlessly.
                 </p>
 
                 <div className="mb-2xl animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[450ms] flex flex-col sm:flex-row justify-center gap-md">

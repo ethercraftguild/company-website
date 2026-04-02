@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google"; // Using fonts defined in globals.css variables
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,7 +18,8 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Ethercraft Guild | Master Digital Craftsmanship",
-  description: "Your dedicated guild of globally-vetted specialists in Software Development, Digital Growth, and Strategic Operations.",
+  description: "Ethercraft Guild is an elite engineering collective providing high-performance Flutter mobile apps, scalable Node.js backends, and AI-driven operational automation for high-growth startups.",
+  keywords: ["Software Engineering", "Technical Architecture", "Flutter Development", "SaaS Scaleup", "AI Automation", "Node.js Architects"],
 };
 
 export default function RootLayout({
@@ -27,6 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body className={`${inter.variable} ${spaceMono.variable}`}>
         <Header />
         {children}

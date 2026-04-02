@@ -1,18 +1,19 @@
-
-import CtaSection from '@/components/ui/CtaSection';
-import Testimonials from '@/components/Testimonials';
 import ServiceGrid from '@/components/ServiceGrid';
-import HomeHero from '@/components/HomeHero';
-import FeaturedWorkTeaser from '@/components/FeaturedWorkTeaser';
-import AboutTeaser from '@/components/AboutTeaser';
+import CtaSection from '@/components/ui/CtaSection';
 
-export default function Home() {
+export const metadata = {
+  title: "Professional Engineering Services | Ethercraft Guild",
+  description: "Explore our full-stack engineering, technical architecture, and CI/CD optimization services.",
+};
+
+export default function ServicesPage() {
   return (
-    <main>
-      <HomeHero />
-      <AboutTeaser />
+    <main className="pt-3xl pb-xl">
+      <div className="container-custom mb-2xl">
+        <h1 className="text-4xl md:text-6xl font-bold mb-md">Our Services</h1>
+        <p className="text-xl text-foreground/80 max-w-3xl">We provide elite engineering solutions, from scalable architecture to precision growth and team augmentation, ensuring your technical products are built flawlessly.</p>
+      </div>
 
-      {/* Service Categories (Grid Refactor) */}
       <ServiceGrid
         category="Digital Architecture"
         description="From concept to deployment, engineering stable, scalable, and secure digital foundations."
@@ -51,17 +52,11 @@ export default function Home() {
         ]}
       />
 
-      <FeaturedWorkTeaser />
-
-      {/* Testimonials */}
-      <Testimonials />
-
-      {/* Closing CTA */}
       <CtaSection
-        title="Ready to scale your engineering team?"
-        ctaText="Explore All Services"
-        ctaLink="/services"
-        variant="tertiary"
+        title="Ready to optimize your technical debt?"
+        ctaText="Contact our Architects"
+        ctaLink="/contact"
+        variant="secondary"
       />
     </main>
   );
