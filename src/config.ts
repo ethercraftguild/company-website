@@ -46,5 +46,17 @@ export const NAV_MENU = [
     {
         label: "Work",
         href: "/work"
+    },
+    {
+        label: "Blog",
+        href: "/blog"
+    },
+    {
+        label: "About",
+        href: "/about",
+        children: [
+            { label: "About Overview", href: "/about" },
+            { label: "Engineering Manifesto", href: "/about/manifesto" }
+        ]
     }
 ];

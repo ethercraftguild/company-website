@@ -21,10 +21,12 @@ export default function Footer() {
                         <div className="flex flex-col gap-sm">
                             <h4 className="text-base mb-md uppercase tracking-wider font-bold">Company</h4>
                             <ul className="list-none flex flex-col gap-sm">
-                                <li><Link href="/about" target="_blank" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">About</Link></li>
-                                <li><Link href="/privacy" target="_blank" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Privacy Policy</Link></li>
-                                <li><Link href="/terms" target="_blank" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Terms & Conditions</Link></li>
-                                <li><Link href="/contact" target="_blank" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Contact</Link></li>
+                                <li><Link href="/about" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">About</Link></li>
+                                <li><Link href="/blog" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Blog</Link></li>
+                                <li><Link href="/privacy" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Privacy Policy</Link></li>
+                                <li><Link href="/terms" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Terms & Conditions</Link></li>
+                                <li><Link href="/contact" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Contact</Link></li>
+                                <li><Link href="/sitemap.xml" className="no-underline transition-opacity duration-200 text-inherit hover:underline hover:opacity-70">Sitemap</Link></li>
                             </ul>
                         </div>
                     </div>
