@@ -18,8 +18,16 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Ethercraft Guild | Master Digital Craftsmanship",
-  description: "Ethercraft Guild is an elite engineering collective providing high-performance Flutter mobile apps, scalable Node.js backends, and AI-driven operational automation for high-growth startups.",
-  keywords: ["Software Engineering", "Technical Architecture", "Flutter Development", "SaaS Scaleup", "AI Automation", "Node.js Architects"],
+  description:
+    "Ethercraft Guild is an elite engineering collective providing high-performance Flutter mobile apps, scalable Node.js backends, and AI-driven operational automation for high-growth startups.",
+  keywords: [
+    "Software Engineering",
+    "Technical Architecture",
+    "Flutter Development",
+    "SaaS Scaleup",
+    "AI Automation",
+    "Node.js Architects",
+  ],
 };
 
 export default function RootLayout({
@@ -34,7 +42,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${spaceMono.variable}`}>
         <Header />
-        {children}
+        <div className="pt-16">{children}</div>
         <Footer />
       </body>
     </html>
