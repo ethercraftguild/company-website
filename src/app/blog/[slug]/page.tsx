@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { serialize } from "next-mdx-remote/serialize";
 
 import BlogLayout from "@/components/BlogLayout";
 import { getAllPosts, getPostBySlug } from "@/lib/blog/posts";
@@ -67,13 +66,8 @@ export default async function BlogPostPage({
 
   const { content, ...post } = postData;
 
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      // Keep rendering deterministic for static exports.
-      development: false,
-      format: "mdx",
-    },
-  });
+  // In RSC mode, `MDXRemote` expects the raw MDX string and compiles it server-side.
+  const mdxSource = content;
 
   const siteUrl = getSiteUrl();
   const { blogPosting, service } = buildBlogJsonLd({ siteUrl, post });
