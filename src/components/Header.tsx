@@ -28,7 +28,7 @@ export default function Header() {
             <header className="fixed top-0 left-0 w-full z-[1000] bg-[#f7f7f7]/95 backdrop-blur-[10px] border-b border-border py-md">
                 <div className="container-custom flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2 font-mono font-bold text-lg uppercase tracking-tight z-[101] shrink-0 text-foreground no-underline">
-                        <img src="/favicon.svg" alt="Ethercraft Guild" width="64" height="64" />
+                        <img src="/logo.png" alt="Ethercraft Guild" width="64" height="64" />
                         <span className="hidden sm:inline">Ethercraft Guild</span>
                     </Link>
 

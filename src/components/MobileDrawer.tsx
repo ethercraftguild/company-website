@@ -58,7 +58,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             <div className={`absolute bottom-0 left-0 w-full max-h-[85vh] overflow-y-auto bg-bg border-t border-border p-5 pb-[100px] rounded-t-sm flex flex-col transition-transform duration-200 ease-out ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                 <div className="flex justify-between items-center mb-lg border-b border-border pb-md shrink-0">
                     <Link href="/" className="font-mono font-bold text-lg uppercase flex items-center gap-2 text-foreground no-underline leading-none" onClick={onClose}>
-                        <img src="/favicon.svg" alt="Logo" width="24" height="24" className="block shrink-0" />
+                        <img src="/logo.png" alt="Ethercraft Guild" width="24" height="24" className="block shrink-0" />
                         <span className="mt-[2px]">Ethercraft Guild</span>
                     </Link>
                     <button className="bg-none border-none text-3xl cursor-pointer leading-none px-sm" onClick={onClose} aria-label="Close menu">&times;</button>

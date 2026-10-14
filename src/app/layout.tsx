@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Mono } from "next/font/google"; // Using fonts defined in globals.css variables
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -31,6 +31,11 @@ export const metadata: Metadata = pageMetadata({
     "Node.js Architects",
   ],
 });
+
+// Next 15+ reads themeColor from `viewport`, not `metadata`.
+export const viewport: Viewport = {
+  themeColor: "#F7F7F7",
+};
 
 export default function RootLayout({
   children,
