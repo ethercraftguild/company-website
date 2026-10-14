@@ -36,6 +36,8 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
     const tsRef = useRef(0);
     const skewRef = useRef(0);
     const formRef = useRef<HTMLFormElement>(null);
+    // The submit path awaits JSONP; the header modal can unmount mid-flight.
+    const mountedRef = useRef(true);
 
     const fieldId = (name: string) => `${idPrefix}${name}`;
     const busy = status === "submitting";
@@ -43,6 +45,21 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
 
     /** Re-stamp using the skew measured at mount, so a fast client clock still passes. */
     const stamp = () => Math.floor(Date.now() / 1000) + skewRef.current;
+
+    /**
+     * Refresh ts from an edit. A form left open past maxAge (30min) would
+     * otherwise submit a timestamp the server rejects as too_old.
+     */
+    const restamp = () => {
+        if (readiness === "ready") tsRef.current = stamp();
+    };
+
+    useEffect(() => {
+        mountedRef.current = true;
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
 
     useEffect(() => {
         if (!configured) {
@@ -53,11 +70,16 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
         let cancelled = false;
 
         jsonp(SITE_CONFIG.formEndpoint, { action: "ping" })
-            .then((result) => {
+            .then(async (result) => {
                 if (cancelled) return;
+                // Await a microtask so the state writes below are not synchronous
+                // inside the effect body (react-hooks/set-state-in-effect).
+                await Promise.resolve();
                 // Branch on ok first so an unexpected code cannot strand the form.
-                if (result.ok === true && typeof result.time === "number") {
-                    skewRef.current = result.time - Math.floor(Date.now() / 1000);
+                // v2 returns serverEpoch; time is the legacy field, kept as a fallback.
+                const serverEpoch = result.serverEpoch ?? result.time;
+                if (result.ok === true && typeof serverEpoch === "number") {
+                    skewRef.current = serverEpoch - Math.floor(Date.now() / 1000);
                     tsRef.current = Math.floor(Date.now() / 1000) + skewRef.current;
                     setReadiness("ready");
                 } else {
@@ -79,6 +101,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
 
         try {
             const result = await jsonp(SITE_CONFIG.formEndpoint, payload);
+            if (!mountedRef.current) return;
 
             // ok:true covers both a real accept and the honeypot's fake success.
             // No code branch here, so an unknown server code still reads as sent.
@@ -97,6 +120,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     if (!isRetry) {
                         setErrorDetail("One moment - re-checking the timestamp.");
                         await new Promise((resolve) => setTimeout(resolve, RETRY_FLOOR_MS));
+                        if (!mountedRef.current) return;
                         await submit({ ...payload, ts: String(stamp()) }, true);
                         return;
                     }
@@ -116,6 +140,9 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
             }
             setStatus("error");
         } catch (error) {
+            // The modal may have closed while the request was in flight; the global
+            // and <script> are already cleaned up by jsonp(), so just stop here.
+            if (!mountedRef.current) return;
             if (error instanceof Error && error.message === TIMEOUT_ERROR) {
                 // The mail may already be in flight. Never resend on a timeout.
                 setStatus("unconfirmed");
@@ -184,6 +211,8 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     type="text"
                     id={fieldId("name")}
                     name="name"
+                    autoComplete="name"
+                    onChange={ restamp }
                     required
                     maxLength={120}
                     placeholder="Jane Doe"
@@ -202,6 +231,9 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     type="email"
                     id={fieldId("email")}
                     name="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    onChange={ restamp }
                     required
                     maxLength={200}
                     placeholder="jane@company.com"
@@ -220,6 +252,8 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     type="text"
                     id={fieldId("company")}
                     name="company"
+                    autoComplete="organization"
+                    onChange={ restamp }
                     maxLength={120}
                     placeholder="Optional"
                     className="p-3 border border-border rounded-sm font-inherit text-base bg-bg text-foreground"
@@ -245,7 +279,10 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     placeholder="I need help with..."
                     aria-invalid={Boolean(fieldErrors.message)}
                     aria-describedby={fieldErrors.message ? fieldId("message-error") : undefined}
-                    onChange={(event) => setMessageLength(event.target.value.length)}
+                    onChange={(event) => {
+                        setMessageLength(event.target.value.length);
+                        restamp();
+                    }}
                     className="p-3 border border-border rounded-sm font-inherit text-base bg-bg text-foreground"
                 />
                 {fieldErrors.message ? (

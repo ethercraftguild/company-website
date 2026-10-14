@@ -12,10 +12,19 @@
     `.github/workflows/deploy.yml` runs next-sitemap AFTER export then `cp`s
     sitemaps into `out/` (next-sitemap needs the `.next` manifest).
 
-## Contact form — Google Apps Script (LIVE, verified 2026-10-14)
+## Contact form — Google Apps Script (LIVE, browser-verified 2026-10-15)
 Submission path is **JSONP**, not fetch: Apps Script's ContentService cannot be read
 cross-origin. Files: `src/components/ContactForm.tsx` (UI), `src/lib/jsonp.ts`
-(transport), `src/lib/contactPayload.ts` (pure payload + validation, unit-tested).
+(transport), `src/lib/contactPayload.ts` (pure payload + validation, unit-tested),
+`src/lib/jsonp.test.ts` (DOM-shim regression suite).
+
+**Honest history, do not rewrite it.** Until 2026-10-15 this section claimed the
+form was "verified against the live /exec" — that was curl-true and browser-false.
+`jsonp.ts` registered the global as `{}` instead of a function, so the server's
+`cb({...})` threw, `onload` resolved `{}`, and EVERY submission showed the generic
+error. Proved with a DOM shim, fixed by resolving inside the injected callback,
+regression-tested, then confirmed with a real browser submit that landed in the
+owner's inbox. curl is never acceptance for this form.
 
 **Env vars — never commit the values.** `NEXT_PUBLIC_FORM_ENDPOINT` (the `/exec` URL)
 and `NEXT_PUBLIC_FORM_KEY`. They are public by design; the key is spam friction, not a
@@ -37,19 +46,35 @@ After go-live, confirm both hosts point at the same `/exec`.
   are the primary validation path — keep `validate()`.
 - `hp` is checked **before** `ts` and before the rate limiter, and returns
   `accepted` with zero emails and zero rate cost. Use `hp=x` for UI test passes.
-- Rate limit 5/hour per submitter email. Sixth returns `rate`.
+- Rate limit **10/hour** per submitter email (AGENTS.md said 5 until 2026-10-15;
+  live `diag` reports `limits.perHour: 10`). Eleventh returns `rate`.
+- Ping returns `serverEpoch` (use it; `time` is the legacy fallback), plus
+  `minAge: 4` and `maxAge: 1800` explicitly. `diag` also reports `autoreply`,
+  `throttle_keys`, `timeZone`. `diag` omits `executeAs`/`userAccess`
+  (ScriptApp.getService().getConfig() throws inside its try/catch — known server
+  quirk, do not chase; confirm ME/Anyone in the Apps Script console instead).
 - Auto-reply fires to every address used — test with mail you read.
 
 ### Behaviours that are deliberate, do not "simplify" them
 - **Branch on `ok` first, code second.** `ok:true` covers a real accept *and* the
   honeypot's fake success. An unrecognised code must never strand the UI.
-- **Clock skew is corrected.** Mount pings `?action=ping` -> `time`; `skew =
-  time - now`; `ts` is stamped with that skew. A client clock running *ahead*
-  yields a negative age and a permanent `too_soon`.
+- **Clock skew is corrected.** Mount pings `?action=ping` -> `serverEpoch`
+  (fallback `time`); `skew = serverEpoch - now`; `ts` is stamped with that skew.
+  A client clock running *ahead* yields a negative age and a permanent `too_soon`.
+  `ts` is re-stamped on every field edit — a form left open past `maxAge`
+  (30 min) would otherwise submit stale and eat a `too_old`.
+- **No state writes after unmount.** The header modal can close mid-request;
+  `mountedRef` guards every post-await write. `jsonp()` cleanup is independent
+  of React and always runs.
 - **Ping failure renders the mailto/Calendly fallback**, never a submit button
   that cannot work.
 - **Retry once on `too_soon`/`too_old`, waiting 4.5s.** Re-stamping `ts` to "now"
   gives age 0, which is still under the 4s floor, so the wait is required.
+- **Resolve inside the callback, never in `onload`.** `onload`/`onerror` are
+  guards that settle failure (HTML error page, ORB/MIME block). One `settled`
+  flag across callback/onload/onerror/timeout; callback name matches the server
+  sanitizer `^[A-Za-z_$][A-Za-z0-9_$]{0,63}$`; global + `<script>` removed in
+  cleanup. `jsonp.test.ts` covers all four exits plus single-fire.
 - **20s timeout, no resend.** Cold start plus Gmail send is slow. On timeout show
   "we may have received it, check for the confirmation email" and restore the button.
   Re-sending risks a duplicate mail.
@@ -61,35 +86,59 @@ After go-live, confirm both hosts point at the same `/exec`.
 - Never publish metrics, prices, client names, testimonials, or guarantees
   without owner approval. Past asks to "generate real data" were refused —
   anonymous role-based testimonials + "reference call under NDA" is the design.
-- `TODO(result)` marker in `src/components/ProjectCard.tsx` = where approved
-  outcome metrics go. `projects.json` has `problem`/`built`/`stack` only.
+- Metrics plumbing LIVE 2026-10-15, zero numbers published. `projects.json`
+  entries carry `metrics: []`; type is `CaseMetric {label, value, source}` in
+  `src/data/clients.ts` (`source` = approval trail, never rendered).
+  `ProjectCard` renders `Result` callouts (max 3) only when values exist — empty
+  array renders no frame. Process metrics ("Delivered in N weeks") are
+  spec-sanctioned once MoJin confirms N (Part 3 Q2); outcome callouts replace them
+  later with zero layout change.
 - Testimonial quote provenance (pre-existing copy) still needs owner confirmation.
 - `stack` values in `projects.json` were detected from live client sites
   (generator meta + script signatures), Oct 2026 — re-verify if a client rebuilds.
 
 ## Blocked on owner (do not invent)
-1. ~~GA4~~ — `G-5LXJ3CHHEP` supplied; set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in Vercel
-   (Production + Preview) and as a repo variable, then redeploy. No hits until a
-   visitor clicks Accept on the consent banner.
-2. Week-1 Audit price / any pricing anchor (task item 7 skipped).
+1. ~~GA4~~ — DONE 2026-10-15. `G-5LXJ3CHHEP` verified inlined in live JS chunks.
+   No hits until a visitor clicks Accept on the consent banner.
+2. Week-1 Audit price (task item 7) — IN PROGRESS 2026-10-15. `AuditOffer`
+   section built and placed after the hero + on /contact; price renders only
+   when `NEXT_PUBLIC_AUDIT_PRICE` / `config.auditPrice` holds confirmed text.
+   Draft on the table: $1,900 international / ৳120,000 BD. Until confirmed, the
+   section shows scope + deliverables with NO price. No strikethrough anchors.
 3. Remote-work claims in `RemoteClientGuide.tsx` (tool stack, report cadence, NDA terms) — owner-confirmed before treating as fact.
 4. Clutch profile `clutch.co/profile/ethercraft-guild` returns 403 (bot-block, existence unverified) — removed from `sameAs`; re-add if confirmed. LinkedIn URL also disagrees between `config.ts` (`ethercraftguild`) and `StructuredData.tsx` (`ethercraft-guild`) — confirm canonical.
 5. Toronto is an owner-confirmed past-customer city; it is NOT in `projects.json` (no listed project). Keep in `CLIENT_CITIES`, don't attach to a case study.
+6. ~~Fallback email~~ — RESOLVED 2026-10-15. `hello@ethercraft.guild` cannot
+   receive mail (.guild TLD not delegated, no MX possible). `config.ts` email is
+   now `ethercraftguild@gmail.com`, matching Apps Script OWNER_EMAIL. Single
+   source: every mailto in footer/contact/modal/noscript interpolates it.
+   Client email regex mirrors the server rule `/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/`
+   exactly — not stricter, not looser. Inputs carry `inputMode`/`autoComplete`.
 
 ## SEO / assets
 - `src/lib/seo.ts` `pageMetadata()` gives every route OG/Twitter/canonical
   plus `icons` (ico/SVG/96px), `apple` (180px), `manifest`. `themeColor` lives in
   `export const viewport` in `layout.tsx` — Next 15+ ignores `metadata.themeColor`.
+  `metadataBase` set in `pageMetadata()` so canonical/og:url are absolute on every
+  host. Blog `[slug]` keeps its own metadata (article type): fixed 2026-10-15 to
+  `og.png` 1200×630 (was `logo.png` with false 1200×630 dims) + Twitter card.
 - Favicons (RealFaviconGenerator, Oct 2026): `favicon.ico`, `favicon.svg`,
   `favicon-96x96.png`, `apple-touch-icon.png`, `web-app-manifest-{192,512}.png`,
   `site.webmanifest` in `public/`. Manifest theme/background = `#F7F7F7` (site bg).
 - **`src/app/favicon.ico` must not exist.** An App Router icon file silently wins
   over `public/favicon.ico` (verified by md5 in `out/`); the old one was deleted.
-- **`public/favicon.svg` is not a vector logo** — it is a 1024×1024 JPEG
-  base64-embedded in an SVG shell (250 KB). Fine for the favicon slot, never for
-  in-page use. Header + drawer use `public/logo.png` instead (128×128, 7 KB,
-  regenerated from the same RFG mark via sharp when the mark changes).
-  `StructuredData` + about page also reference `logo.png`.
+- **`public/favicon.svg` is not a vector logo** — 1000×1000, ~502 KB, JPEG(s)
+  base64-embedded in an SVG shell with light/dark `prefers-color-scheme` variants
+  (re-uploaded 2026-10-15; was 1024×1024/250 KB single). Fine for the favicon slot,
+  never for in-page use. Header + drawer use `public/logo.png` instead (128×128,
+  7 KB; rendered from the pre-theme mark — re-render from MoJin's canonical light
+  or dark variant when he picks, Part 3 Q10). `StructuredData` + about page also
+  reference `logo.png`.
+- `site.webmanifest` carries `start_url: "/"`, `scope: "/"`, theme/background
+  `#F7F7F7`. The 2026-10-15 re-upload reset theme to `#ffffff`; convention is the
+  site bg unless MoJin overrides. Manifest icon filenames are
+  `web-app-manifest-192x192.png` / `-512x512.png` — canonical as-is, do not
+  "fix" to RFG defaults.
 - Dead placeholder SVGs deleted Oct 2026: `next`, `vercel`, `globe`, `file`, `window`.
 - Sitemap = next-sitemap manifest auto-discovery; `additionalPaths` intentionally `[]`
   (re-adding walked routes duplicates every URL; root `page.tsx` edge case emits bogus `/page.tsx`).
@@ -99,14 +148,26 @@ After go-live, confirm both hosts point at the same `/exec`.
   hotlinking was rejected (availability + NDA optics). `src/data/clients.ts`
   is the single source for logo bar + cities.
 
+## Spec wording — items 6 & 7 (verbatim, quote this, not memory)
+> **6.** /work: turn each project into a mini case study layout:
+> Client | Problem | What we built (stack) | Measurable result | Live link.
+> Add metric callouts per project (e.g. "-60% checkout latency", "0 critical CVEs",
+> "+220% organic traffic") — collect real numbers from the clients first; use
+> process metrics ("delivered in 6 weeks") until outcome numbers are approved.
+>
+> **7.** Add at least one pricing anchor or "starting from" figure, or a fixed-price
+> entry offer (e.g. "Week-1 Product Audit — fixed fee") near the hero and on /contact.
+> Right now the only CTA is a high-commitment "Start Consultation."
+
 ## Verification
 - `npm test` — 9 tests over `contactPayload.ts` (required field names, optional-field
   forwarding, trimming, validation). Uses `node --test` with native type stripping;
   `allowImportingTsExtensions` is enabled in tsconfig for the `.ts` specifiers.
 - `npx tsc --noEmit` then `npx next build` (29 routes).
-- Contact form was verified against the live `/exec` with `hp=x` and IANA-reserved
-  example.com addresses. **No real end-to-end submission to a live inbox has been
-  performed** — owner must submit once by hand to confirm delivery and auto-reply.
+- Contact form: real browser submit against live `/exec` 2026-10-15 landed in
+  the owner's inbox (success UI + counter reset + form cleared; owner confirmed
+  receipt). `hp=x` remains the free UI-test path (no mail, no rate cost).
+  Remaining: owner does one final end-to-end submit post-deploy as closing proof.
 
 ## Hygiene
 - Lint baseline has ~31 pre-existing errors (`any` types, unescaped entities in old files). Don't chase them; keep new/edited files clean.

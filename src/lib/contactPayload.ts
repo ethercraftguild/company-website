@@ -29,8 +29,10 @@ export interface ContactFormValues {
 
 export type ContactPayload = Record<string, string>;
 
-/** Matches the server's own check: non-empty local part, an @, and a dot TLD. */
-export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/** Mirrors the server rule exactly: /\^[^\s@]+@[^\s@]+\.[^\s@]{2,}\$/.
+ *  Must not be stricter (rejects valid mail the server would accept) or looser.
+ *  Every server rejection is one generic message, so this is the primary UX path. */
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function buildPayload(values: ContactFormValues): ContactPayload {
     const payload: ContactPayload = {

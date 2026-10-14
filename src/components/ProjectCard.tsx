@@ -62,11 +62,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                         </dd>
                     </div>
 
-                    {/*
-                      TODO(result): add a labelled "Result" callout here once the owner
-                      supplies real per-project outcome metrics. No outcome figures are
-                      published until then — do not add placeholder numbers.
-                    */}
+                    {/* Metrics render only when MoJin-approved values exist in
+                        projects.json. Empty array = no frame at all. `source` is the
+                        approval trail and is never rendered. */}
+                    {project.metrics && project.metrics.length > 0 && (
+                        <div>
+                            <dt className={labelStyles}>Result</dt>
+                            <dd className="flex flex-wrap gap-xs">
+                                {project.metrics.slice(0, 3).map((metric) => (
+                                    <span
+                                        key={metric.label}
+                                        className="inline-flex flex-col rounded-sm border border-border bg-bg px-md py-sm"
+                                    >
+                                        <span className="font-mono font-bold text-base">{metric.value}</span>
+                                        <span className="text-xs opacity-70">{metric.label}</span>
+                                    </span>
+                                ))}
+                            </dd>
+                        </div>
+                    )}
                 </dl>
             </div>
 

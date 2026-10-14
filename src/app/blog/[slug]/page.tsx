@@ -32,6 +32,7 @@ export async function generateMetadata({
   const pageUrl = `${siteUrl}/blog/${postData.slug}`;
 
   return {
+    metadataBase: new URL(siteUrl),
     title: `${postData.title} | Ethercraft Guild`,
     description: postData.excerpt,
     keywords: postData.focus_keywords,
@@ -43,14 +44,21 @@ export async function generateMetadata({
       description: postData.excerpt,
       url: pageUrl,
       type: "article",
+      siteName: "Ethercraft Guild",
       images: [
         {
-          url: `${siteUrl}/logo.png`,
+          url: `${siteUrl}/og.png`,
           width: 1200,
           height: 630,
-          alt: "Ethercraft Guild",
+          alt: "Ethercraft Guild — Mastering Digital Craftsmanship",
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: postData.title,
+      description: postData.excerpt,
+      images: [`${siteUrl}/og.png`],
     },
   };
 }

@@ -1,6 +1,9 @@
 export const SITE_CONFIG = {
     companyName: "Ethercraft Guild",
-    email: "hello@ethercraft.guild",
+    // hello@ethercraft.guild cannot receive mail: the .guild TLD is not delegated,
+    // so no MX is possible. This is the verified owner inbox, matching Apps
+    // Script OWNER_EMAIL, and it is the only contact path the UI falls back to.
+    email: "ethercraftguild@gmail.com",
     privacyEmail: "privacy@ethercraftguild.com",
     location: "Dhaka, Bangladesh",
     // Google Apps Script /exec URL and its FORWARD_LABELS key. Both are public by
@@ -9,6 +12,11 @@ export const SITE_CONFIG = {
     // fallback rather than posting somewhere unknown.
     formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
     formKey: process.env.NEXT_PUBLIC_FORM_KEY ?? "",
+    // Week-1 Product Audit price anchor (task item 7). Empty until MoJin confirms
+    // the figure; AuditOffer renders the section price-less while this is empty.
+    // Set via env so a price change needs no code edit — but it still needs a
+    // rebuild, like all NEXT_PUBLIC_* vars.
+    auditPrice: process.env.NEXT_PUBLIC_AUDIT_PRICE ?? "",
     gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
     calendly: "https://calendly.com/ethercraftguild/30min",
     links: {

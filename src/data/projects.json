@@ -14,7 +14,8 @@
         "logo": "halco-racing.jpg",
         "problem": "A performance-focused automotive brand needed a storefront that kept its catalogue fast and consistent across every device, without a redesign cycle stalling the next parts drop.",
         "built": "Rebuilt the public-facing site on a managed platform with a compressed image pipeline, and wired direct WhatsApp enquiry from product pages.",
-        "stack": ["WordPress 7.1", "WooCommerce", "WhatsApp Business API"]
+        "stack": ["WordPress 7.1", "WooCommerce", "WhatsApp Business API"],
+        "metrics": []
     },
     {
         "id": "2",
@@ -31,7 +32,8 @@
         "logo": "zero-hour-event.png",
         "problem": "A Dhaka event and logistics provider was taking enquiries by hand across calls and messages, with no single place for a client to see packages or reserve a date.",
         "built": "Built the public site with package browsing, enquiry capture, and campaign tracking running end to end from one platform.",
-        "stack": ["WordPress 7.1", "Meta Pixel", "WhatsApp"]
+        "stack": ["WordPress 7.1", "Meta Pixel", "WhatsApp"],
+        "metrics": []
     },
     {
         "id": "3",
@@ -48,7 +50,8 @@
         "logo": "servedco.png",
         "problem": "Years of accumulated technical debt had left the service delivery path slow to change and hard to reason about during peak booking periods.",
         "built": "Resolved the accumulated technical debt across the service delivery path, and consolidated enquiry capture onto a single verified contact channel.",
-        "stack": ["GoDaddy Website Builder", "Google Analytics 4", "reCAPTCHA", "WhatsApp"]
+        "stack": ["GoDaddy Website Builder", "Google Analytics 4", "reCAPTCHA", "WhatsApp"],
+        "metrics": []
     },
     {
         "id": "4",
@@ -65,7 +68,8 @@
         "logo": "health-steward.jpg",
         "problem": "A health provider needed digital pathways that route patient-facing information correctly, with compliance treated as a build requirement rather than a review stage.",
         "built": "Delivered compliant digital pathways for health providers, with form handling and analytics vetted for regulated data.",
-        "stack": ["WordPress", "WPML multilingual", "Google Analytics 4", "Bootstrap"]
+        "stack": ["WordPress", "WPML multilingual", "Google Analytics 4", "Bootstrap"],
+        "metrics": []
     },
     {
         "id": "5",
@@ -82,7 +86,8 @@
         "logo": "woztell.webp",
         "problem": "A conversational marketing platform needed its WhatsApp flows to hold up as campaign volume grew, without manual handling becoming the bottleneck.",
         "built": "Implemented the conversational AI logic behind the WhatsApp marketing flows, with payment and analytics integrations left instrumented.",
-        "stack": ["WordPress 7.1", "WooCommerce", "Stripe", "WhatsApp Business API", "Google Analytics 4"]
+        "stack": ["WordPress 7.1", "WooCommerce", "Stripe", "WhatsApp Business API", "Google Analytics 4"],
+        "metrics": []
     },
     {
         "id": "6",
@@ -99,6 +104,7 @@
         "logo": "sanuker.png",
         "problem": "An APAC messaging provider needed its chatbot architecture to stay reliable across several messaging platforms at once, each with its own delivery rules.",
         "built": "Built the chatbot architecture spanning multiple messaging platforms, keeping commerce and analytics integrations intact.",
-        "stack": ["WordPress", "WPML multilingual", "WooCommerce", "WhatsApp Business API", "Google Analytics 4"]
+        "stack": ["WordPress", "WPML multilingual", "WooCommerce", "WhatsApp Business API", "Google Analytics 4"],
+        "metrics": []
     }
 ]

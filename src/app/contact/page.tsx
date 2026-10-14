@@ -3,6 +3,7 @@ import Section from '@/components/ui/Section';
 import ContactForm from '@/components/ContactForm';
 import { pageMetadata } from "@/lib/seo";
 import { SITE_CONFIG } from '@/config';
+import AuditOffer from '@/components/AuditOffer';
 
 
 export const metadata: Metadata = pageMetadata({
@@ -13,6 +14,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ContactPage() {
     return (
+        <>
         <Section className="min-h-[80vh] flex justify-center items-center pt-xl">
             <div className="w-full max-w-[600px] mx-auto">
                 <h1 className="mb-xs text-center">Start Your Project</h1>
@@ -56,5 +58,8 @@ export default function ContactPage() {
                 </div>
             </div>
         </Section>
+
+        <AuditOffer />
+    </>
     );
 }

@@ -25,6 +25,7 @@ export function pageMetadata({ title, description, path = "/", keywords }: PageM
     const fullTitle = title === "Home" ? "Ethercraft Guild | Master Digital Craftsmanship" : title;
 
     return {
+        metadataBase: new URL(siteUrl()),
         title: fullTitle,
         description,
         ...(keywords ? { keywords } : {}),

@@ -7,11 +7,13 @@ import FeaturedWorkTeaser from '@/components/FeaturedWorkTeaser';
 import AboutTeaser from '@/components/AboutTeaser';
 import ProcessTimeline from '@/components/ui/ProcessTimeline';
 import RemoteClientGuide from '@/components/RemoteClientGuide';
+import AuditOffer from '@/components/AuditOffer';
 
 export default function Home() {
   return (
     <main>
       <HomeHero />
+      <AuditOffer />
       <AboutTeaser />
 
       {/* Service Categories (Grid Refactor) */}
