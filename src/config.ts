@@ -17,6 +17,23 @@ export const SITE_CONFIG = {
     // Set via env so a price change needs no code edit — but it still needs a
     // rebuild, like all NEXT_PUBLIC_* vars.
     auditPrice: process.env.NEXT_PUBLIC_AUDIT_PRICE ?? "",
+
+    // --- Schema identity (single source for JSON-LD; nothing hardcoded in components) ---
+    // Postal parts kept separate from `location` because schema.org needs them split.
+    addressCity: "Dhaka",
+    addressCountry: "Bangladesh",
+    // Canonical org logo. Verified 200 image/png. Never /icon.png - that 404s and
+    // serves HTML, which makes some consumers reject the whole graph.
+    logoPath: "/logo.png",
+    // Published already as serviceType, so the agent/LLM term is grounded rather
+    // than a Gemini invention.
+    serviceTypes: ["Mobile Development", "AI Integration", "System Design"],
+    // Owner-supplied name. NOT committed until the legal-name question is answered
+    // (T6 step 6); published with no jobTitle, foundingDate or person-level sameAs.
+    founderName: "Mohammad Mustakim Hassan",
+    // Empty while the Clutch profile 403s and the LinkedIn slug is unconfirmed.
+    // Keys with empty values are omitted from the graph (see schema.ts).
+    sameAsProfiles: [] as string[],
     gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
     calendly: "https://calendly.com/ethercraftguild/30min",
     links: {

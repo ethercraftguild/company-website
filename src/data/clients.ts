@@ -30,14 +30,39 @@ export const CLIENT_LOGOS = projects.map((project) => ({
 }));
 
 /**
- * Client cities we can evidence from the portfolio. Toronto is included because
- * past engagements have been delivered there, but it is not a listed project.
+ * Delivery cities with their country, single source for both CLIENT_CITIES and
+ * schema.org areaServed. Toronto is owner-confirmed past-customer geography with
+ * NO listed project — it may appear in areaServed, never on a case study.
  */
-export const CLIENT_CITIES = [
-    "Dhaka",
-    "Zhengzhou",
-    "Toronto",
-    "Mississauga",
-    "Valencia",
-    "Hong Kong",
-];
+export const CLIENT_REGIONS = [
+    { city: "Dhaka", country: "Bangladesh", listedProject: true },
+    { city: "Zhengzhou", country: "China", listedProject: true },
+    { city: "Toronto", country: "Canada", listedProject: false },
+    { city: "Mississauga", country: "Canada", listedProject: true },
+    { city: "Valencia", country: "Spain", listedProject: true },
+    { city: "Hong Kong", country: "China", listedProject: true },
+] as const;
+
+export const CLIENT_CITIES = CLIENT_REGIONS.map((region) => region.city);
+
+/** Distinct countries served, in first-seen order, for AdministrativeArea nodes. */
+export const CLIENT_COUNTRIES = CLIENT_REGIONS.map((region) => region.country).filter(
+    (country, index, all) => all.indexOf(country) === index,
+);
+
+/**
+ * knowsAbout terms derived from the stacks actually recorded in projects.json,
+ * version-stripped and de-duplicated. Deliberately not hand-written: a term that
+ * is not in the portfolio data does not ship. Note this yields WordPress/WooCommerce
+ * and NOT Flutter/Node.js, because that is what the portfolio records — see the
+ * positioning gap flagged in the T6 report.
+ */
+export function deriveKnowsAboutTerms(): string[] {
+    const terms = new Set<string>();
+    for (const project of projects) {
+        for (const tool of project.stack) {
+            terms.add(tool.replace(/\s\d+(\.\d+)*$/, "").trim());
+        }
+    }
+    return [...terms];
+}

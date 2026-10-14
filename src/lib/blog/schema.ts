@@ -1,4 +1,5 @@
 import type { BlogPost } from "./posts";
+import { organizationId } from "@/lib/schema";
 
 function normalizeSiteUrl(siteUrl: string) {
   return siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
@@ -18,12 +19,8 @@ export function buildBlogJsonLd({
   const normalizedSiteUrl = normalizeSiteUrl(siteUrl);
   const pageUrl = `${normalizedSiteUrl}/blog/${post.slug}`;
 
-  const organization = {
-    "@type": "Organization",
-    name: "Ethercraft Guild",
-    url: normalizedSiteUrl,
-    image: `${normalizedSiteUrl}/logo.png`,
-  };
+  // Reference, not a copy: the org node itself lives in the layout @graph.
+  const organization = { "@id": organizationId() };
 
   const blogPosting = {
     "@context": "https://schema.org",

@@ -27,49 +27,9 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   const siteUrl = getSiteUrl();
 
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Ethercraft Guild",
-    url: siteUrl,
-    image: `${siteUrl}/logo.png`,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Dhaka",
-      addressCountry: "Bangladesh",
-    },
-  };
-
-  const aboutPageJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    name: "About Ethercraft Guild",
-    url: `${siteUrl}/about`,
-    about: [
-      "Software Engineering Cooperative",
-      "Dhaka-based Tech Agency",
-      "Flutter Specialists",
-      "Employer of Record Compliance",
-      "Node.js Architects",
-      "Remote Hiring Deadlock",
-    ],
-  };
-
   return (
     <main className="pt-xl md:pt-2xl pb-xl">
       <div className="container-custom max-w-4xl">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(aboutPageJsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
         <header className="mb-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold tracking-wider uppercase opacity-70 mb-md">
             About Ethercraft Guild

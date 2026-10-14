@@ -1,45 +1,23 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { buildSchemaGraph, serializeGraph } from "@/lib/schema";
+
+/**
+ * Emits exactly one @graph per route: one ProfessionalService node plus one page
+ * node whose @id is that route's canonical URL. Identity facts come from
+ * src/config.ts and src/data/clients.ts only.
+ *
+ * Client component purely to read the pathname: a root layout has no route
+ * context, and each route's page node must differ.
+ */
 export default function StructuredData() {
-  const siteUrlRaw = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ethercraftguild.vercel.app";
-  const siteUrl = siteUrlRaw.endsWith("/") ? siteUrlRaw.slice(0, -1) : siteUrlRaw;
-  const siteHost =
-    process.env.NEXT_PUBLIC_SITE_HOST ??
-    (() => {
-      try {
-        return new URL(siteUrl).host;
-      } catch {
-        return "ethercraftguild.vercel.app";
-      }
-    })();
+    const pathname = usePathname() ?? "/";
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Ethercraft Guild",
-    "image": `${siteUrl}/logo.png`,
-    "@id": siteUrl,
-    "url": siteUrl,
-    "telephone": "",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Dhaka",
-      "addressCountry": "Bangladesh"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/ethercraft-guild"
-    ],
-    "serviceType": [
-      "Mobile Development",
-      "AI Integration",
-      "System Design"
-    ],
-    // Helps crawlers identify the canonical hostname.
-    "identifier": siteHost
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  );
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeGraph(buildSchemaGraph(pathname)) }}
+        />
+    );
 }

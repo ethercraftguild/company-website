@@ -27,7 +27,9 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: `${siteUrl}/sitemap.xml`,
     rules: [
       {
-        userAgent: ["Googlebot", "GPTBot", "PerplexityBot"],
+        // Explicit Allow for AI crawlers is an intent signal; the wildcard rule
+        // below already permits them, this just states it plainly.
+        userAgent: ["Googlebot", "GPTBot", "PerplexityBot", "OAI-SearchBot", "ClaudeBot"],
         allow: "/",
       },
       {
