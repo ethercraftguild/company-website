@@ -25,8 +25,7 @@ export default function StructuredData() {
       "addressCountry": "Bangladesh"
     },
     "sameAs": [
-      "https://www.linkedin.com/company/ethercraft-guild",
-      "https://clutch.co/profile/ethercraft-guild"
+      "https://www.linkedin.com/company/ethercraft-guild"
     ],
     "serviceType": [
       "Mobile Development",

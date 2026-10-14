@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from "@/lib/seo";
 import ContactSection from '@/components/ContactSection';
 
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Terms and Conditions | Ethercraft Guild",
-};
+    description: "The terms governing your use of the Ethercraft Guild website and services.",
+    path: "/terms",
+});
 
 const companyName = "Ethercraft Guild";
 const effectiveDate = "June 12, 2025";

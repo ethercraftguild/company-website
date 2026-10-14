@@ -1,5 +1,7 @@
 import ServiceGrid from '@/components/ServiceGrid';
 import CtaSection from '@/components/ui/CtaSection';
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
     title: "Professional Engineering Services | Ethercraft Guild",

@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from "@/lib/seo";
 import ContactSection from '@/components/ContactSection';
 
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Privacy Policy | Ethercraft Guild",
-};
+    description: "How Ethercraft Guild collects, uses, and safeguards your information when you visit our site or contact us.",
+    path: "/privacy",
+});
 
 const companyName = "Ethercraft Guild";
 const effectiveDate = "June 12, 2025";

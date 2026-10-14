@@ -1,4 +1,6 @@
 import CtaSection from '@/components/ui/CtaSection';
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
     title: "Engineering Manifesto | Ethercraft Guild",

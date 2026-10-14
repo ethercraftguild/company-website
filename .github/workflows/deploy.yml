@@ -16,11 +16,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate sitemap.xml
-        run: npx next-sitemap
-
       - name: Build Static (GitHub Pages)
         run: npm run export
+
+      # next-sitemap reads the .next manifest, so it must run after the build.
+      # The export already copied public/ into out/, so sync the fresh sitemap over.
+      - name: Generate sitemap.xml
+        run: |
+          npx next-sitemap
+          cp public/sitemap*.xml out/
 
       - name: Deploy to External Repository
         uses: cpina/github-action-push-to-another-repository@main

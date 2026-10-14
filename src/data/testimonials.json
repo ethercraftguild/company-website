@@ -1,20 +1,26 @@
 [
     {
         "id": "1",
-        "author": "CEO",
+        "role": "Chief Executive",
         "company": "Halco Racing",
+        "companyUrl": "https://halcoracing.com",
+        "logo": "/clients/halco-racing.jpg",
         "content": "Ethercraft Guild was instrumental in completely modernizing our digital infrastructure. Their speed and precision are unmatched."
     },
     {
         "id": "2",
-        "author": "Founder",
+        "role": "Founder",
         "company": "Zero Hour Event",
+        "companyUrl": "https://zerohourevent.com",
+        "logo": "/clients/zero-hour-event.png",
         "content": "A perfect partnership from start to finish. They built us an incredibly resilient platform right here from Dhaka."
     },
     {
         "id": "3",
-        "author": "Director of Operations",
+        "role": "Director of Operations",
         "company": "ServedCo",
+        "companyUrl": "https://servedco.com",
+        "logo": "/clients/servedco.png",
         "content": "Their architectural planning resolved years of technical debt in just a few rigorous sprints."
     }
 ]

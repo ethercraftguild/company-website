@@ -5,13 +5,15 @@ import PageHero from '@/components/ui/PageHero';
 import CtaSection from '@/components/ui/CtaSection';
 import ProjectCard from '@/components/ProjectCard';
 import projectData from '@/data/projects.json';
+import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
-    return {
+    return pageMetadata({
         title: 'Our Work | Ethercraft Guild',
         description:
             'Mini case studies from the Guild: the problem each client faced, what we built, the stack we used, and a link to the live platform.',
-    };
+        path: "/work",
+    });
 }
 
 export default function WorkPage() {

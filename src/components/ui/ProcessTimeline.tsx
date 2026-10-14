@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import Section from "./Section";
 
 export interface ProcessStage {

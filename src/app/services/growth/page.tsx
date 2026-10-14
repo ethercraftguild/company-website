@@ -3,6 +3,7 @@ import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
 import CtaSection from '@/components/ui/CtaSection';
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
     title: "Growth & Brand Mastery | Ethercraft Guild",

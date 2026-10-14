@@ -4,6 +4,8 @@ import Section from "@/components/ui/Section";
 import PageHero from "@/components/ui/PageHero";
 import CtaSection from "@/components/ui/CtaSection";
 import Card from "@/components/ui/Card";
+import Accordion from "@/components/ui/Accordion";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
     title: "Mobile App Development | Ethercraft Guild",
@@ -12,8 +14,50 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function MobileAppDevPage() {
+  const faqs = [
+    {
+      title: "How does the development process work?",
+      description: "We start with discovery and architecture mapping, then deliver bi-weekly builds to your device for feedback, followed by QA and store submission.",
+    },
+    {
+      title: "How do you communicate during the project?",
+      description: "You receive working builds every two weeks with a shared channel for feedback, and each release notes what changed and what is next.",
+    },
+    {
+      title: "Who owns the code and app store accounts?",
+      description: "You do. The codebase, store listings, and credentials are yours, and we hand over full repository access at launch.",
+    },
+    {
+      title: "Will you sign an NDA?",
+      description: "Yes. We sign NDAs before discovery and treat your idea and materials as confidential throughout.",
+    },
+    {
+      title: "What do you need from us to start?",
+      description: "Your goals, key user flows, and any designs or references. If you have no designs yet, we scope that as a first step.",
+    },
+  ];
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.title,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.description,
+      },
+    })),
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <PageHero
         title="Dedicated Flutter App Development"
         subtitle="Launch high-performance, cross-platform applications that feel native on every device, without the double cost."
@@ -119,10 +163,15 @@ export default function MobileAppDevPage() {
         </div>
       </Section>
 
+      <Section>
+        <h2>Frequently asked questions</h2>
+        <Accordion items={faqs} />
+      </Section>
+
       <CtaSection
         title="Ready to Craft Your Mobile Experience?"
         text="Engagement Models: Project-Based or Monthly Retainer"
-        ctaText="Schedule 15-Min Discovery Call"
+        ctaText="Request a scoped quote"
         ctaLink="/contact"
         variant="tertiary"
       />

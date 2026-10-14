@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
+import { pageMetadata } from "@/lib/seo";
 
 
 export const metadata: Metadata = pageMetadata({

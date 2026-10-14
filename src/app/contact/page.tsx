@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
 import Section from '@/components/ui/Section';
 import ContactForm from '@/components/ContactForm';
+import { pageMetadata } from "@/lib/seo";
 import { SITE_CONFIG } from '@/config';
 
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Contact Us | Ethercraft Guild",
-};
+    description: "Tell us about your project goals — we reply within 24 hours — or schedule a 30-minute discovery call directly.",
+    path: "/contact",
+});
 
 export default function ContactPage() {
     return (

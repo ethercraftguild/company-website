@@ -59,52 +59,11 @@ module.exports = {
   generateRobotsTxt: false,
   changefreq: "weekly",
   priority: 0.7,
-  additionalPaths: async () => {
-    const now = new Date().toISOString().slice(0, 10);
-    const locSet = new Set();
-    const paths = [];
-
-    // Collect static pages from app router
-    if (fs.existsSync(APP_DIR)) {
-      const pageFiles = walkDirForPages(APP_DIR);
-      for (const pageFile of pageFiles) {
-        const routePath = toRouteFromPageFile(pageFile);
-        if (!isRouteSafe(routePath)) continue;
-
-        const lastmod = safeStat(pageFile)?.mtime?.toISOString().slice(0, 10) ?? now;
-        const loc = `${siteUrl}${routePath === "/" ? "" : routePath}`;
-        if (locSet.has(loc)) continue;
-        locSet.add(loc);
-
-        paths.push({
-          loc,
-          lastmod,
-          changefreq: routePath === "/" ? "weekly" : "monthly",
-          priority: routePath === "/" ? 1.0 : 0.7,
-        });
-      }
-    }
-
-    // Collect blog post slugs from content/blog/*.mdx
-    if (fs.existsSync(BLOG_DIR)) {
-      const mdxFiles = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
-      for (const file of mdxFiles) {
-        const slug = file.replace(/\.mdx$/, "");
-        const loc = `${siteUrl}/blog/${slug}`;
-        if (locSet.has(loc)) continue;
-        locSet.add(loc);
-
-        const lastmod = safeStat(path.join(BLOG_DIR, file))?.mtime?.toISOString().slice(0, 10) ?? now;
-        paths.push({
-          loc,
-          lastmod,
-          changefreq: "monthly",
-          priority: 0.6,
-        });
-      }
-    }
-
-    return paths;
-  },
+  // next-sitemap auto-discovers every static route from the Next.js build
+  // manifest — including blog slugs emitted via generateStaticParams — so
+  // additionalPaths stays empty. Re-adding walked routes here duplicates every
+  // URL, and the root page.tsx edge case once emitted a bogus "/page.tsx".
+  // Only append routes the manifest cannot see (fully dynamic, no static params).
+  additionalPaths: async () => [],
 };
 
