@@ -77,10 +77,20 @@ After go-live, confirm both hosts point at the same `/exec`.
 5. Toronto is an owner-confirmed past-customer city; it is NOT in `projects.json` (no listed project). Keep in `CLIENT_CITIES`, don't attach to a case study.
 
 ## SEO / assets
-- `src/lib/seo.ts` `pageMetadata()` gives every route OG/Twitter/canonical.
-  Shared image `public/og.png` (1200×630, generated with sharp from brand
-  tokens — script deleted after; regenerate similarly if identity changes).
-- `public/logo.png` rendered from `favicon.svg` — `StructuredData` + about page reference it.
+- `src/lib/seo.ts` `pageMetadata()` gives every route OG/Twitter/canonical
+  plus `icons` (ico/SVG/96px), `apple` (180px), `manifest`. `themeColor` lives in
+  `export const viewport` in `layout.tsx` — Next 15+ ignores `metadata.themeColor`.
+- Favicons (RealFaviconGenerator, Oct 2026): `favicon.ico`, `favicon.svg`,
+  `favicon-96x96.png`, `apple-touch-icon.png`, `web-app-manifest-{192,512}.png`,
+  `site.webmanifest` in `public/`. Manifest theme/background = `#F7F7F7` (site bg).
+- **`src/app/favicon.ico` must not exist.** An App Router icon file silently wins
+  over `public/favicon.ico` (verified by md5 in `out/`); the old one was deleted.
+- **`public/favicon.svg` is not a vector logo** — it is a 1024×1024 JPEG
+  base64-embedded in an SVG shell (250 KB). Fine for the favicon slot, never for
+  in-page use. Header + drawer use `public/logo.png` instead (128×128, 7 KB,
+  regenerated from the same RFG mark via sharp when the mark changes).
+  `StructuredData` + about page also reference `logo.png`.
+- Dead placeholder SVGs deleted Oct 2026: `next`, `vercel`, `globe`, `file`, `window`.
 - Sitemap = next-sitemap manifest auto-discovery; `additionalPaths` intentionally `[]`
   (re-adding walked routes duplicates every URL; root `page.tsx` edge case emits bogus `/page.tsx`).
 - `public/robots.txt`, `public/sitemap*.xml` are gitignored build artifacts.
@@ -93,12 +103,12 @@ After go-live, confirm both hosts point at the same `/exec`.
 - `npm test` — 9 tests over `contactPayload.ts` (required field names, optional-field
   forwarding, trimming, validation). Uses `node --test` with native type stripping;
   `allowImportingTsExtensions` is enabled in tsconfig for the `.ts` specifiers.
-- `npx tsc --noEmit` then `npx next build` (30 routes).
+- `npx tsc --noEmit` then `npx next build` (29 routes).
 - Contact form was verified against the live `/exec` with `hp=x` and IANA-reserved
   example.com addresses. **No real end-to-end submission to a live inbox has been
   performed** — owner must submit once by hand to confirm delivery and auto-reply.
 
 ## Hygiene
 - Lint baseline has ~31 pre-existing errors (`any` types, unescaped entities in old files). Don't chase them; keep new/edited files clean.
-- Verify with `npx tsc --noEmit` + `npx next build` (30 routes). ESLint count should not rise above baseline.
+- Verify with `npx tsc --noEmit` + `npx next build` (29 routes). ESLint count should not rise above baseline.
 - Keep the visual identity: tokens `bg-card/border-border/rounded-[1.5rem]/rounded-pill`, mono labels, existing hover treatments.
