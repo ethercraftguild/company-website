@@ -33,6 +33,24 @@ export default function ContactPage() {
 
                 <ContactForm idPrefix="contact-" />
 
+                {/* The form needs JS: it pings the server for clock skew and reads
+                    the response code via JSONP. A prerendered page cannot ship a
+                    usable `ts` for a native POST, so point no-JS visitors at the
+                    channels that always work. */}
+                <noscript>
+                    <div className="p-lg border border-border rounded-sm bg-card text-center">
+                        <p className="mb-sm">
+                            This form needs JavaScript. Email us at{" "}
+                            <a href={`mailto:${SITE_CONFIG.email}`} className="underline">{SITE_CONFIG.email}</a>.
+                        </p>
+                        <p className="mb-0">
+                            <a href={SITE_CONFIG.calendly} target="_blank" rel="noopener noreferrer" className="underline">
+                                Book a 30-minute discovery call
+                            </a>
+                        </p>
+                    </div>
+                </noscript>
+
                 <div className="text-center mt-lg opacity-80">
                     <p className="text-sm">Prefer email? <a href={`mailto:${SITE_CONFIG.email}`} className="text-foreground underline">{SITE_CONFIG.email}</a></p>
                 </div>

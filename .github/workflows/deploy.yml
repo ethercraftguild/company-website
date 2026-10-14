@@ -9,6 +9,17 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # NEXT_PUBLIC_* values are inlined at build time, so the Pages build needs
+    # them too. Set these as repository variables
+    # (Settings > Secrets and variables > Actions > Variables). They must match
+    # the Vercel Production/Preview variables, or the two hosts will ship
+    # different endpoints.
+    env:
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+      NEXT_PUBLIC_SITE_HOST: ${{ vars.NEXT_PUBLIC_SITE_HOST }}
+      NEXT_PUBLIC_FORM_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORM_ENDPOINT }}
+      NEXT_PUBLIC_FORM_KEY: ${{ vars.NEXT_PUBLIC_FORM_KEY }}
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
     steps:
       - name: Checkout Source Repo
         uses: actions/checkout@v4

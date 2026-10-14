@@ -3,11 +3,12 @@ export const SITE_CONFIG = {
     email: "hello@ethercraft.guild",
     privacyEmail: "privacy@ethercraftguild.com",
     location: "Dhaka, Bangladesh",
-    // Full endpoint URL — never prefix it. Set NEXT_PUBLIC_FORM_ENDPOINT to the
-    // Google Apps Script /exec URL once that web app is deployed; Formspree is the
-    // interim fallback so the form keeps working until then.
-    formEndpoint:
-        process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "https://formspree.io/f/mjknarak",
+    // Google Apps Script /exec URL and its FORWARD_LABELS key. Both are public by
+    // definition (NEXT_PUBLIC_*) - the key is spam friction, not a secret.
+    // Empty means "not configured": ContactForm then renders the mailto/Calendly
+    // fallback rather than posting somewhere unknown.
+    formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
+    formKey: process.env.NEXT_PUBLIC_FORM_KEY ?? "",
     gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
     calendly: "https://calendly.com/ethercraftguild/30min",
     links: {
