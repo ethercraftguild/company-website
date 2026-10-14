@@ -8,8 +8,8 @@ export default function HomeHero() {
       {/* Dynamic CSS Animated Background Mesh */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.15]">
         <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary rounded-full mix-blend-screen filter blur-[100px] animate-blob" />
-        <div className="absolute top-[20%] -right-[10%] w-[50%] h-[50%] bg-[#4f46e5] rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-[20%] left-[20%] w-[50%] h-[50%] bg-[#ec4899] rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000" />
+        <div className="absolute top-[20%] -right-[10%] w-[50%] h-[50%] bg-foreground/10 rounded-full filter blur-[100px] animate-blob animation-delay-2000" />
+        <div className="absolute -bottom-[20%] left-[20%] w-[50%] h-[50%] bg-foreground/8 rounded-full filter blur-[100px] animate-blob animation-delay-4000" />
         {/* Dot grid texture overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle,currentColor_2px,transparent_2px)] bg-[length:32px_32px] opacity-[0.03]" />
       </div>
@@ -22,7 +22,7 @@ export default function HomeHero() {
 
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tighter leading-[1.1] animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[150ms] mb-lg text-foreground drop-shadow-sm">
           Mastering Digital <br className="hidden md:block" />{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-500 to-primary animate-text">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 animate-text">
             Craftsmanship
           </span>
         </h1>

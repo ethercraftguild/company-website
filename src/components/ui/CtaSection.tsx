@@ -20,8 +20,8 @@ export default function CtaSection({
 }: CtaSectionProps) {
     return (
         <Section className="pb-2xl">
-            <div className={`bg-accent text-[#F7F7F7] p-xl rounded-sm w-full ${centered ? 'text-center max-w-[800px] mx-auto' : ''}`}>
-                <h3 className="text-[#F7F7F7] text-[1.75rem] md:text-[2.25rem] mb-md">{title}</h3>
+            <div className={`bg-accent text-bg p-xl rounded-sm w-full ${centered ? 'text-center max-w-[800px] mx-auto' : ''}`}>
+                <h3 className="text-bg text-[1.75rem] md:text-[2.25rem] mb-md">{title}</h3>
                 {text && <p className="mb-lg opacity-90 text-[1.1rem]">{text}</p>}
                 <Button href={ctaLink} variant={variant}>{ctaText}</Button>
             </div>

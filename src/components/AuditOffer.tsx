@@ -55,7 +55,7 @@ export default function AuditOffer() {
                             target="_blank"
                             rel="noopener noreferrer"
                             data-calendly-link
-                            className="inline-flex items-center justify-center py-3 px-8 font-medium text-center no-underline rounded-pill bg-accent text-[#f7f7f7] border-accent hover:bg-accent-hover hover:text-white transition-all duration-200"
+                            className="inline-flex items-center justify-center py-3 px-8 font-medium text-center no-underline rounded-pill bg-accent text-bg border-accent hover:bg-accent-hover hover:text-white transition-all duration-200"
                         >
                             Book the Audit Call
                         </a>

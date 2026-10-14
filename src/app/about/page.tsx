@@ -92,7 +92,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-md sm:items-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-sm bg-accent text-[#F7F7F7] px-xl py-md no-underline hover:bg-black transition-colors duration-300"
+              className="inline-flex items-center justify-center rounded-sm bg-accent text-bg px-xl py-md no-underline hover:bg-accent-hover transition-colors duration-300"
             >
               Start a Consultation
             </Link>

@@ -37,7 +37,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                 <div className="text-center mb-lg">
                     <h2 className="text-[1.75rem] mb-xs font-bold">Start Your Project</h2>
-                    <p className="text-[#666] text-[0.9375rem]">Tell us about your goals. We&apos;ll get back to you within 24 hours.</p>
+                    <p className="opacity-70 text-[0.9375rem]">Tell us about your goals. We&apos;ll get back to you within 24 hours.</p>
                 </div>
 
                 <ContactForm idPrefix="modal-" />

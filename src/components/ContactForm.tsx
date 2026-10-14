@@ -76,10 +76,8 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                 // inside the effect body (react-hooks/set-state-in-effect).
                 await Promise.resolve();
                 // Branch on ok first so an unexpected code cannot strand the form.
-                // v2 returns serverEpoch; time is the legacy field, kept as a fallback.
-                const serverEpoch = result.serverEpoch ?? result.time;
-                if (result.ok === true && typeof serverEpoch === "number") {
-                    skewRef.current = serverEpoch - Math.floor(Date.now() / 1000);
+                if (result.ok === true && typeof result.serverEpoch === "number") {
+                    skewRef.current = result.serverEpoch - Math.floor(Date.now() / 1000);
                     tsRef.current = Math.floor(Date.now() / 1000) + skewRef.current;
                     setReadiness("ready");
                 } else {
@@ -221,7 +219,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     className="p-3 border border-border rounded-sm font-inherit text-base bg-bg text-foreground"
                 />
                 {fieldErrors.name && (
-                    <p id={fieldId("name-error")} className="text-sm text-[#b3261e] mb-0">{fieldErrors.name}</p>
+                    <p id={fieldId("name-error")} className="text-sm text-danger font-medium mb-0">{fieldErrors.name}</p>
                 )}
             </div>
 
@@ -242,7 +240,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     className="p-3 border border-border rounded-sm font-inherit text-base bg-bg text-foreground"
                 />
                 {fieldErrors.email && (
-                    <p id={fieldId("email-error")} className="text-sm text-[#b3261e] mb-0">{fieldErrors.email}</p>
+                    <p id={fieldId("email-error")} className="text-sm text-danger font-medium mb-0">{fieldErrors.email}</p>
                 )}
             </div>
 
@@ -264,7 +262,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                 <div className="flex items-baseline justify-between gap-sm">
                     <label htmlFor={fieldId("message")} className="text-sm font-semibold">Project Details</label>
                     <span
-                        className={`font-mono text-xs ${messageLength > MAX_MESSAGE * 0.9 ? "text-[#b3261e]" : "opacity-50"}`}
+                        className={`font-mono text-xs ${messageLength > MAX_MESSAGE * 0.9 ? "text-danger font-medium" : "opacity-50"}`}
                         aria-live="off"
                     >
                         {messageLength}/{MAX_MESSAGE}
@@ -286,7 +284,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     className="p-3 border border-border rounded-sm font-inherit text-base bg-bg text-foreground"
                 />
                 {fieldErrors.message ? (
-                    <p id={fieldId("message-error")} className="text-sm text-[#b3261e] mb-0">{fieldErrors.message}</p>
+                    <p id={fieldId("message-error")} className="text-sm text-danger font-medium mb-0">{fieldErrors.message}</p>
                 ) : (
                     <p className="text-sm opacity-60 mb-0">
                         For longer briefs, email <a href={`mailto:${SITE_CONFIG.email}`} className="underline">{SITE_CONFIG.email}</a> directly.
@@ -313,8 +311,9 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
 
             <div role="status" aria-live="polite" className="min-h-[1.25rem] text-sm text-center">
                 {status === "success" && (
-                    <p className="text-[#1a7f4b]">
-                        Thanks — your message is in. We reply within one business day.
+                    <p className="text-success font-medium">
+                        <span aria-hidden="true">&#10003;</span> Thanks — your message is in. We reply
+                        within one business day.
                     </p>
                 )}
                 {status === "unconfirmed" && (
@@ -324,8 +323,8 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
                     </p>
                 )}
                 {status === "error" && errorDetail && (
-                    <p className="text-[#b3261e]">
-                        {errorDetail} You can also email us at{" "}
+                    <p className="text-danger font-medium">
+                        <span aria-hidden="true">&#9888;</span> {errorDetail} You can also email us at{" "}
                         <a href={`mailto:${SITE_CONFIG.email}`} className="underline">{SITE_CONFIG.email}</a>.
                     </p>
                 )}

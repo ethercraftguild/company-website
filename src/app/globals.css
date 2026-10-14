@@ -1,41 +1,53 @@
-@import "tailwindcss";
+/* source(none) disables Tailwind v4's automatic source detection. Without it
+   Tailwind scans the whole repo root INCLUDING markdown, so any utility name
+   written in AGENTS.md or a README gets compiled into the shipped CSS. We have
+   already shipped .text-blue-500 that way. Sources are declared explicitly. */
+@import "tailwindcss" source(none);
+@source "../**/*.{ts,tsx}";
 @config "../../tailwind.config.ts";
 
+/* ------------------------------------------------------------------
+   COLOUR — single source of truth.
+   Every colour on this site lives here and nowhere else. Tokens in this
+   block do two jobs: they generate Tailwind utilities AND emit the
+   custom properties that the base layer reads via var(--color-*).
+
+   primary is a SEMANTIC HOOK bound to ink (#1A1A1A, the existing text
+   token - not pure black, soft ink is the brand). The black/white
+   identity is the invariant; primary exists so future accent work is a
+   one-line rebind instead of touching 27 call sites.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-bg: #f7f7f7;
+  --color-foreground: #1a1a1a;
+  --color-accent: #333333;
+  --color-accent-hover: #000000;
+  --color-border: #1a1a1a;
+  --color-card: #ffffff;
+  --color-card-border: #cccccc;
+
+  /* Semantic hook bound to ink, so shadow-primary/30 and friends stay
+     neutral: rgba(26,26,26,.3) is a neutral shadow, not a colour. */
+  --color-primary: #1a1a1a;
+  --color-primary-foreground: #f7f7f7;
+
+  /* Success was #3c83f6 (BLUE), which broke the monochrome identity.
+     Rebound to ink; the check glyph and wording carry the meaning so
+     colour is never the only signal. */
+  --color-success: #1a1a1a;
+
+  /* Kept as the single non-brand hue, for error text only. This is an
+     accessibility signal, not decoration - flag if it should go too. */
+  --color-danger: #b3261e;
+}
+
 @layer base {
-  :root {
-    --color-bg: #F7F7F7;
-    --color-text: #1A1A1A;
-    --color-accent: #333333;
-    --color-hover: #000000;
-    --color-success: #3C83F6;
-    --color-border: #1A1A1A;
-    --color-card-bg: #FFFFFF;
-    --color-card-border: #CCCCCC;
-
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 2rem;
-    --space-xl: 3rem;
-    --space-2xl: 5rem;
-
-    --radius-sm: 20px;
-    --radius-pill: 9999px;
-  }
-
-  @media (min-width: 768px) {
-    :root {
-      --space-xl: 4rem;
-      --space-2xl: 8rem;
-      --radius-sm: 25px;
-    }
-  }
 
   /* Reset & Base */
   html {
     @apply scroll-smooth antialiased;
     background-color: var(--color-bg);
-    color: var(--color-text);
+    color: var(--color-foreground);
     font-size: 16px;
   }
 
@@ -71,6 +83,57 @@
 }
 
 @layer utilities {
+  /* .animate-text - the hero wordmark shimmer. Previously referenced with no
+     matching rule. Opacity/transform only, so it stays colour-free. */
+  @keyframes text-shimmer {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+
+  /* .animate-blob - the hero's soft glow. Was referenced in markup with no
+     keyframe ever emitted, so the blobs sat perfectly still. */
+  @keyframes blob-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.5;
+    }
+    33% {
+      transform: translate3d(3%, -4%, 0) scale(1.06);
+      opacity: 0.75;
+    }
+    66% {
+      transform: translate3d(-3%, 3%, 0) scale(0.97);
+      opacity: 0.4;
+    }
+  }
+
+  .animate-blob {
+    animation: blob-drift 18s ease-in-out infinite;
+  }
+
+  .animate-text {
+    animation: text-shimmer 5s ease-in-out infinite;
+  }
+
+  /* Focus visibility. Ink ring on light surfaces, inverted on dark surfaces.
+     Uses the accent tokens already in the theme - no new shadow utilities. */
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .bg-foreground :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline-color: var(--color-bg);
+  }
+
+
   .container-custom {
     @apply w-full max-w-[1200px] mx-auto px-md box-border;
   }

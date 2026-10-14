@@ -8,20 +8,7 @@ const config: Config = {
     ],
     theme: {
         extend: {
-            colors: {
-                bg: "#F7F7F7",
-                foreground: "#1A1A1A",
-                accent: {
-                    DEFAULT: "#333333",
-                    hover: "#000000",
-                },
-                success: "#3C83F6",
-                border: "#1A1A1A",
-                card: {
-                    DEFAULT: "#FFFFFF",
-                    border: "#CCCCCC",
-                },
-            },
+            // Colours live in the @theme block in src/app/globals.css (single source).
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
                 mono: ['Space Mono', 'Fira Code', 'monospace'],

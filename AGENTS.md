@@ -82,6 +82,44 @@ After go-live, confirm both hosts point at the same `/exec`.
   600 non-ASCII chars = 3.5 KB URL and works; ~14.6 KB returns an HTML error page
   instead of JSONP. That failure degrades to the generic error, never a hang.
 
+## Colour is monochrome — token-only (owner decision, 2026-10-15)
+- **Every colour lives in exactly ONE place: the `@theme` block in
+  `src/app/globals.css`.** That block both generates utilities and emits the
+  custom properties the base layer reads. `tailwind.config.ts` no longer
+  declares colours.
+- **`primary` is a SEMANTIC HOOK bound to ink (`#1a1a1a`)** — the existing text
+  token, deliberately not pure black. The black/white identity is the
+  **invariant**; `primary` exists so future accent work is a one-line rebind
+  instead of editing 27 call sites. Because it is ink, `hover:shadow-primary/30`
+  resolves to `rgba(26,26,26,.3)` — a **neutral** shadow, not a colour. No
+  coloured shadow token enters the theme.
+- Blue `#3080ff` and the retired `--color-success: #3c83f6` are **gone**.
+  `success` is rebound to ink; the check glyph and wording carry the meaning so
+  colour is never the only signal. `danger` (`#b3261e`) is the single remaining
+  non-brand hue and is **error text only** — flagged for owner confirmation.
+- **Annotated client-brand allowlist: EMPTY, on purpose.** The six client marks
+  are image files in `public/clients/`, so no brand hex exists in source.
+  Recolouring a client logo is a correctness error. Add an entry only with the
+  owner's written approval plus a `file:line` comment naming the element.
+- **Machine gate:** `src/lib/colourPolicy.test.ts` FAILS if a raw hue utility or
+  an off-allowlist hex appears in `src/` or in built CSS, and also asserts the
+  primary utilities and focus-visible rules are actually emitted. Verified it
+  bites by injecting `text-blue-500` (test went red), then restoring.
+- **Tailwind sources are pinned: `@import "tailwindcss" source(none)` +
+  `@source "../**/*.{ts,tsx}"`.** Tailwind v4 otherwise auto-detects sources from
+  the CSS file upward through the repo root *including markdown*, so a utility
+  name merely **mentioned in AGENTS.md** gets compiled into shipped CSS. This
+  actually shipped `.text-blue-500` once, caught by the gate on 2026-10-15. Never
+  name a raw utility in documentation.
+- `/icon.png` **does not exist** and 404s serving HTML. `logo.png` is the
+  canonical image URL for JSON-LD, OG and StructuredData.
+
+## Sitemap — no defect, do not "fix"
+Verified 2026-10-15: `<sitemapindex>` -> 27 URLs, all on ethercraftguild.vercel.app,
+all 200. Chrome's "This XML file does not appear to have any style information
+associated with it" is stock XML viewer behaviour, not a sitemap problem. No XSLT,
+no config change; `additionalPaths` stays `[]`.
+
 ## Identity authority (owner-supplied, treat as final)
 - **Business name: "Ethercraft Guild"** — the Trade-Licence name. Emitted as BOTH
   `name` and `legalName`. It is **not** a cooperative: never add `alternateName`
@@ -171,6 +209,12 @@ byline question is answered.
   `web-app-manifest-192x192.png` / `-512x512.png` — canonical as-is, do not
   "fix" to RFG defaults.
 - Dead placeholder SVGs deleted Oct 2026: `next`, `vercel`, `globe`, `file`, `window`.
+- The `:root` `--space-*` and `--radius-*` custom properties were **dead CSS** —
+  referenced by no rule. Real values come from `tailwind.config.ts`
+  (`spacing`, `borderRadius`), which generates `py-md` / `rounded-pill`.
+  Deleted 2026-10-15. The apparent `--radius-sm: 20px -> 25px` "duplicate" was
+  two responsive steps in one block, not a bug; both were dead, so the question is
+  moot. `rounded-sm` = 20px and `rounded-pill` = 9999px come from the config.
 - Sitemap = next-sitemap manifest auto-discovery; `additionalPaths` intentionally `[]`
   (re-adding walked routes duplicates every URL; root `page.tsx` edge case emits bogus `/page.tsx`).
 - `public/robots.txt`, `public/sitemap*.xml` are gitignored build artifacts.
@@ -214,7 +258,11 @@ byline question is answered.
   Remaining: owner does one final end-to-end submit post-deploy as closing proof.
 
 ## Hygiene
-- **Package manager: yarn.** No `npm` commands from 2026-10-15 onward.
+- **Package manager: yarn, and yarn.lock is canonical.** `package-lock.json` was
+  deleted 2026-10-15 (npm-grep count across AGENTS.md / README.md / .github /
+  package.json is now **0**). Node is pinned by `.nvmrc` (`v24.21.0`) and the
+  `engines.node >=24.0.0` field; CI uses `actions/setup-node` with that file and
+  `yarn install --immutable`. Never use `--force`.
 - Lint baseline, **measured 2026-10-15: 37 problems (28 errors, 9 warnings)** — not
   the `~31` or `36` previously recorded. All 37 pre-date this session; none are in
   files authored or edited this pass (`eslint` clean on every T5/T6 file). Do not

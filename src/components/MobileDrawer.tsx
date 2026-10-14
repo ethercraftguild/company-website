@@ -132,11 +132,11 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
                 <div className="border-t border-border pt-md shrink-0">
                     <ul className="list-none flex flex-wrap justify-between gap-md">
-                        <li><Link href="/about" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>About Us</Link></li>
-                        <li><Link href="/blog" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>Blog</Link></li>
-                        <li><Link href="/privacy" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>Privacy Policy</Link></li>
-                        <li><Link href="/terms" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>Terms & Conditions</Link></li>
-                        <li><Link href="/sitemap.xml" className="text-[0.6rem] text-[#999] no-underline" onClick={onClose}>Sitemap</Link></li>
+                        <li><Link href="/about" className="text-[0.6rem] opacity-60 no-underline" onClick={onClose}>About Us</Link></li>
+                        <li><Link href="/blog" className="text-[0.6rem] opacity-60 no-underline" onClick={onClose}>Blog</Link></li>
+                        <li><Link href="/privacy" className="text-[0.6rem] opacity-60 no-underline" onClick={onClose}>Privacy Policy</Link></li>
+                        <li><Link href="/terms" className="text-[0.6rem] opacity-60 no-underline" onClick={onClose}>Terms & Conditions</Link></li>
+                        <li><Link href="/sitemap.xml" className="text-[0.6rem] opacity-60 no-underline" onClick={onClose}>Sitemap</Link></li>
                     </ul>
                 </div>
             </div>

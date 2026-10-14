@@ -10,8 +10,6 @@ export interface JsonpResult {
     ok?: boolean;
     code?: string;
     message?: string;
-    time?: number;
-    /** v2 returns serverEpoch alongside the legacy time field. */
     serverEpoch?: number;
     minAge?: number;
     maxAge?: number;
