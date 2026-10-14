@@ -1,5 +1,6 @@
 import Section from "./ui/Section";
 import Button from "./ui/Button";
+import { CLIENT_CITIES, CLIENT_LOGOS } from "@/data/clients";
 
 export default function HomeHero() {
   return (
@@ -26,10 +27,15 @@ export default function HomeHero() {
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-foreground/80 mb-2xl max-w-[700px] mx-auto animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[300ms] font-light leading-relaxed">
+        <p className="text-xl md:text-2xl text-foreground/80 mb-md max-w-[700px] mx-auto animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[300ms] font-light leading-relaxed">
           An elite collective of specialized engineers providing Full-stack
           Engineering, Technical Debt Resolution, and CI/CD Optimization to
           scale your products flawlessly.
+        </p>
+
+        <p className="text-base md:text-lg text-foreground/70 mb-2xl max-w-[760px] mx-auto animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[375ms] font-mono">
+          Senior-only squads across {CLIENT_CITIES.join(" · ")} — at least four
+          hours of overlap with your working day, every working day.
         </p>
 
         <div className="mb-2xl animate-slideUp opacity-0 [animation-fill-mode:forwards] delay-[450ms] flex flex-col sm:flex-row justify-center gap-md">
@@ -54,20 +60,32 @@ export default function HomeHero() {
           <p className="text-xs opacity-50 mb-md uppercase tracking-[0.2em] font-bold">
             Trusted execution partners globally
           </p>
-          <div className="flex justify-center gap-xl md:gap-3xl opacity-40 font-bold font-mono flex-wrap items-center grayscale hover:grayscale-0 transition-all duration-500">
-            <span className="text-2xl hover:text-foreground transition-colors cursor-default">
-              TechCorp
-            </span>
-            <span className="text-xl tracking-tighter hover:text-foreground transition-colors cursor-default">
-              GrowthInc
-            </span>
-            <span className="text-2xl hover:text-foreground transition-colors cursor-default">
-              ScaleOps
-            </span>
-            <span className="text-2xl italic hover:text-foreground transition-colors cursor-default">
-              VentureFund
-            </span>
-          </div>
+          <ul className="flex justify-center gap-xl md:gap-3xl opacity-60 font-bold font-mono flex-wrap items-center transition-opacity duration-500 hover:opacity-100">
+            {CLIENT_LOGOS.map((client) => (
+              <li key={client.name}>
+                <a
+                  href={client.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-sm no-underline text-foreground transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  {/* The client ships a mark rather than a wordmark, so the name
+                      carries the recognition and the image carries the identity. */}
+                  <img
+                    src={client.logo}
+                    alt=""
+                    width={44}
+                    height={44}
+                    loading="lazy"
+                    className="h-11 w-11 object-contain grayscale transition-all duration-500 hover:grayscale-0"
+                  />
+                  <span className="text-xs md:text-sm tracking-tight whitespace-nowrap">
+                    {client.name}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </Section>

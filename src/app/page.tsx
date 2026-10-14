@@ -5,6 +5,8 @@ import ServiceGrid from '@/components/ServiceGrid';
 import HomeHero from '@/components/HomeHero';
 import FeaturedWorkTeaser from '@/components/FeaturedWorkTeaser';
 import AboutTeaser from '@/components/AboutTeaser';
+import ProcessTimeline from '@/components/ui/ProcessTimeline';
+import RemoteClientGuide from '@/components/RemoteClientGuide';
 
 export default function Home() {
   return (
@@ -52,6 +54,10 @@ export default function Home() {
       />
 
       <FeaturedWorkTeaser />
+
+      {/* Trust signals: how the work actually gets delivered */}
+      <ProcessTimeline />
+      <RemoteClientGuide />
 
       {/* Testimonials */}
       <Testimonials />

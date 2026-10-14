@@ -4,10 +4,11 @@ import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
 import CtaSection from '@/components/ui/CtaSection';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Growth & Brand Mastery | Ethercraft Guild",
     description: "We build brands that resonate and strategies that convert. Data-driven growth for the modern digital landscape.",
-};
+    path: "/services/growth",
+});
 
 export default function GrowthPage() {
     return (

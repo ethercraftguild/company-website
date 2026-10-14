@@ -5,11 +5,11 @@ import PageHero from "@/components/ui/PageHero";
 import CtaSection from "@/components/ui/CtaSection";
 import Card from "@/components/ui/Card";
 
-export const metadata: Metadata = {
-  title: "Mobile App Development | Ethercraft Guild",
-  description:
-    "Launch high-performance, cross-platform applications that feel native on every device, without the double cost.",
-};
+export const metadata: Metadata = pageMetadata({
+    title: "Mobile App Development | Ethercraft Guild",
+    description: "Launch high-performance, cross-platform applications that feel native on every device, without the double cost.",
+    path: "/services/architecture/mobile-app-dev",
+});
 
 export default function MobileAppDevPage() {
   return (

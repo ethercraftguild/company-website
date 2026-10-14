@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Process Optimization | Ethercraft Guild",
     description: "Eliminate bottlenecks and shipping delays. We engineer your workflows just like we engineer code.",
-};
+    path: "/services/operations/process-optimization",
+});
 
 export default function ProcessOptimizationPage() {
     return (

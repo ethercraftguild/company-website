@@ -3,6 +3,8 @@ import { Inter, Space_Mono } from "next/font/google"; // Using fonts defined in 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
+import Analytics from "@/components/Analytics";
+import { pageMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,8 +18,8 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Ethercraft Guild | Master Digital Craftsmanship",
+export const metadata: Metadata = pageMetadata({
+  title: "Home",
   description:
     "Ethercraft Guild is an elite engineering collective providing high-performance Flutter mobile apps, scalable Node.js backends, and AI-driven operational automation for high-growth startups.",
   keywords: [
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
     "AI Automation",
     "Node.js Architects",
   ],
-};
+});
 
 export default function RootLayout({
   children,
@@ -44,6 +46,7 @@ export default function RootLayout({
         <Header />
         <div className="pt-16">{children}</div>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

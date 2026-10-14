@@ -1,10 +1,11 @@
 import ServiceGrid from '@/components/ServiceGrid';
 import CtaSection from '@/components/ui/CtaSection';
 
-export const metadata = {
-  title: "Professional Engineering Services | Ethercraft Guild",
-  description: "Explore our full-stack engineering, technical architecture, and CI/CD optimization services.",
-};
+export const metadata: Metadata = pageMetadata({
+    title: "Professional Engineering Services | Ethercraft Guild",
+    description: "Explore our full-stack engineering, technical architecture, and CI/CD optimization services.",
+    path: "/services",
+});
 
 export default function ServicesPage() {
   return (

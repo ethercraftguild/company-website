@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog/posts";
 
-export const metadata: Metadata = {
-  title: "Blog | Ethercraft Guild",
-  description:
-    "Schema-first engineering and compliance insights from the Ethercraft Guild—built for clients scaling globally with senior craftsmanship.",
-};
+export const metadata: Metadata = pageMetadata({
+    title: "Blog | Ethercraft Guild",
+    description: "Schema-first engineering and compliance insights from the Ethercraft Guild—built for clients scaling globally with senior craftsmanship.",
+    path: "/blog",
+});
 
 export default function BlogIndexPage() {
   const posts = getAllPosts();

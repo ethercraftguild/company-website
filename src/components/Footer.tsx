@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import SocialIcons from './ui/SocialIcons';
+import { SITE_CONFIG } from '@/config';
 
 export default function Footer() {
     return (
@@ -32,7 +33,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-border pt-md text-center text-sm opacity-60">
-                    <p>&copy; 2026 Ethercraft Guild. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} {SITE_CONFIG.companyName}. All rights reserved.</p>
                 </div>
             </div>
         </footer>

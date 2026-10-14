@@ -3,7 +3,12 @@ export const SITE_CONFIG = {
     email: "hello@ethercraft.guild",
     privacyEmail: "privacy@ethercraftguild.com",
     location: "Dhaka, Bangladesh",
-    contactEmail: "https://formspree.io/f/mjknarak", // Dummy email for Formspree
+    // Full endpoint URL — never prefix it. Set NEXT_PUBLIC_FORM_ENDPOINT to the
+    // Google Apps Script /exec URL once that web app is deployed; Formspree is the
+    // interim fallback so the form keeps working until then.
+    formEndpoint:
+        process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "https://formspree.io/f/mjknarak",
+    gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
     calendly: "https://calendly.com/ethercraftguild/30min",
     links: {
         linkedin: "https://linkedin.com/company/ethercraftguild",

@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Web Platform Development | Ethercraft Guild",
     description: "Enterprise-grade web applications built for speed, scalability, and seamless user experiences.",
-};
+    path: "/services/architecture/web-platforms",
+});
 
 export default function WebPlatformsPage() {
     return (

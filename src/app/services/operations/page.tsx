@@ -4,10 +4,11 @@ import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
 import CtaSection from '@/components/ui/CtaSection';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Talent & Operational Support | Ethercraft Guild",
     description: "Scale your capabilities without the overhead. We provide specific, vetted talent and optimize your internal workflows.",
-};
+    path: "/services/operations",
+});
 
 export default function OperationsPage() {
     return (

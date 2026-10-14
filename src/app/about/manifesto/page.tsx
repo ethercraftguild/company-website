@@ -1,9 +1,10 @@
 import CtaSection from '@/components/ui/CtaSection';
 
-export const metadata = {
-  title: "Engineering Manifesto | Ethercraft Guild",
-  description: "The Ethercraft Guild philosophy: A master-apprentice engineering model dedicated to digital craftsmanship.",
-};
+export const metadata: Metadata = pageMetadata({
+    title: "Engineering Manifesto | Ethercraft Guild",
+    description: "The Ethercraft Guild philosophy: A master-apprentice engineering model dedicated to digital craftsmanship.",
+    path: "/about/manifesto",
+});
 
 export default function ManifestoPage() {
   return (

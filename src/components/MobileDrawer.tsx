@@ -80,17 +80,38 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                                         </Link>
                                         {hasChildren && (
                                             <button
+                                                type="button"
                                                 className="flex items-center justify-center cursor-pointer relative bg-transparent border-none p-sm text-foreground"
-                                                aria-label={`Toggle ${item.label} menu`}
+                                                aria-label={`${item.label} submenu`}
+                                                aria-expanded={isExpanded}
+                                                aria-controls={`submenu-${item.label}`}
                                                 onClick={() => toggleAccordion(item.label)}
                                             >
-                                                <span className={`absolute text-xl leading-none transition-all duration-200 ${isExpanded ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'}`}>+</span>
-                                                <span className={`absolute text-xl leading-none transition-all duration-200 ${isExpanded ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'}`}>&times;</span>
+                                                {/* Single glyph that rotates 45deg into a close mark, so the two
+                                                    states can never render on top of each other. */}
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="20"
+                                                    height="20"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    aria-hidden="true"
+                                                    className={`transition-transform duration-200 ${isExpanded ? 'rotate-45' : 'rotate-0'}`}
+                                                >
+                                                    <path d="M12 5v14M5 12h14" />
+                                                </svg>
                                             </button>
                                         )}
                                     </div>
                                     {hasChildren && (
-                                        <ul className={`list-none pl-5 overflow-hidden transition-[max-height,margin] duration-300 ease-out ${isExpanded ? 'max-h-[300px] mb-sm' : 'max-h-0'}`}>
+                                        <ul
+                                            id={`submenu-${item.label}`}
+                                            hidden={!isExpanded}
+                                            className={`list-none pl-5 overflow-hidden transition-[max-height,margin] duration-300 ease-out ${isExpanded ? 'max-h-[300px] mb-sm' : 'max-h-0'}`}
+                                        >
                                             {item.children?.map((child: any) => {
                                                 const childActive = isActive(child.href);
                                                 return (

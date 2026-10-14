@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/templates/ServiceDetailLayout";
 
-export const metadata: Metadata = {
-  title: "Software Development | Ethercraft Guild",
-  description:
-    "High-performance Flutter mobile apps and scalable Node.js/PostgreSQL architectures delivered by a senior engineering cooperative.",
-};
+export const metadata: Metadata = pageMetadata({
+    title: "Software Development | Ethercraft Guild",
+    description: "High-performance Flutter mobile apps and scalable Node.js/PostgreSQL architectures delivered by a senior engineering cooperative.",
+    path: "/services/software-development",
+});
 
 export default function SoftwareDevelopmentPage() {
   return (

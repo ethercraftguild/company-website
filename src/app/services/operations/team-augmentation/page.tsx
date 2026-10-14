@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Team Augmentation | Ethercraft Guild",
     description: "Embed senior engineering and product talent into your squads. Scale capacity instantly without the hiring overhead.",
-};
+    path: "/services/operations/team-augmentation",
+});
 
 export default function TeamAugmentationPage() {
     return (

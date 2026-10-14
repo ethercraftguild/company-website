@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Brand Identity | Ethercraft Guild",
     description: "More than a logo. We create visual and verbal identity systems that articulate your core value.",
-};
+    path: "/services/growth/brand-identity",
+});
 
 export default function BrandIdentityPage() {
     return (

@@ -3,72 +3,102 @@
         "id": "1",
         "type": "client",
         "title": "Halco Racing",
+        "slug": "halco-racing",
         "description": "High-performance digital presence and modernization for an automotive brand.",
         "link": "https://halcoracing.com",
         "location": {
             "city": "Zhengzhou City",
             "country": "Henan Province, China"
         },
-        "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=2070&auto=format&fit=crop"
+        "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=2070&auto=format&fit=crop",
+        "logo": "halco-racing.jpg",
+        "problem": "A performance-focused automotive brand needed a storefront that kept its catalogue fast and consistent across every device, without a redesign cycle stalling the next parts drop.",
+        "built": "Rebuilt the public-facing site on a managed platform with a compressed image pipeline, and wired direct WhatsApp enquiry from product pages.",
+        "stack": ["WordPress 7.1", "WooCommerce", "WhatsApp Business API"]
     },
     {
         "id": "2",
         "type": "client",
         "title": "Zero Hour Event",
+        "slug": "zero-hour-event",
         "description": "Dynamic event management platform bringing seamless booking and marketing to life.",
         "link": "https://zerohourevent.com",
         "location": {
             "city": "Dhaka",
             "country": "Bangladesh"
         },
-        "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
+        "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop",
+        "logo": "zero-hour-event.png",
+        "problem": "A Dhaka event and logistics provider was taking enquiries by hand across calls and messages, with no single place for a client to see packages or reserve a date.",
+        "built": "Built the public site with package browsing, enquiry capture, and campaign tracking running end to end from one platform.",
+        "stack": ["WordPress 7.1", "Meta Pixel", "WhatsApp"]
     },
     {
         "id": "3",
         "type": "client",
         "title": "ServedCo",
+        "slug": "servedco",
         "description": "Streamlined service delivery architecture and user experience overhaul.",
         "link": "https://servedco.com",
         "location": {
             "city": "Mississauga",
             "country": "Ontario, Canada"
         },
-        "image": "https://images.unsplash.com/photo-1556761175-5973e...f391b?q=80&w=1974&auto=format&fit=crop"
+        "image": "https://images.unsplash.com/photo-1556761175-5973e...f391b?q=80&w=1974&auto=format&fit=crop",
+        "logo": "servedco.png",
+        "problem": "Years of accumulated technical debt had left the service delivery path slow to change and hard to reason about during peak booking periods.",
+        "built": "Resolved the accumulated technical debt across the service delivery path, and consolidated enquiry capture onto a single verified contact channel.",
+        "stack": ["GoDaddy Website Builder", "Google Analytics 4", "reCAPTCHA", "WhatsApp"]
     },
     {
         "id": "4",
         "type": "partner",
         "title": "Health Steward",
+        "slug": "health-steward",
         "description": "Collaborative development to ensure HIPAA-compliant digital pathways for health providers.",
         "link": "https://healthsteward.ca",
         "location": {
             "city": "Ontario",
             "country": "Canada"
         },
-        "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
+        "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
+        "logo": "health-steward.jpg",
+        "problem": "A health provider needed digital pathways that route patient-facing information correctly, with compliance treated as a build requirement rather than a review stage.",
+        "built": "Delivered compliant digital pathways for health providers, with form handling and analytics vetted for regulated data.",
+        "stack": ["WordPress", "WPML multilingual", "Google Analytics 4", "Bootstrap"]
     },
     {
         "id": "5",
         "type": "partner",
         "title": "Woztell",
+        "slug": "woztell",
         "description": "Integrated conversational AI logic for expansive WhatsApp marketing.",
         "link": "https://woztell.com/",
         "location": {
             "city": "Valencia",
             "country": "Spain"
         },
-        "image": "https://images.unsplash.com/photo-1621360841013-c76831d87e0b?q=80&w=1964&auto=format&fit=crop"
+        "image": "https://images.unsplash.com/photo-1621360841013-c76831d87e0b?q=80&w=1964&auto=format&fit=crop",
+        "logo": "woztell.webp",
+        "problem": "A conversational marketing platform needed its WhatsApp flows to hold up as campaign volume grew, without manual handling becoming the bottleneck.",
+        "built": "Implemented the conversational AI logic behind the WhatsApp marketing flows, with payment and analytics integrations left instrumented.",
+        "stack": ["WordPress 7.1", "WooCommerce", "Stripe", "WhatsApp Business API", "Google Analytics 4"]
     },
     {
         "id": "6",
         "type": "partner",
         "title": "Sanuker",
+        "slug": "sanuker",
         "description": "Partnered build for robust chatbot architecture across diverse messaging platforms.",
         "link": "https://sanuker.com/",
         "location": {
             "city": "Hong Kong",
             "country": "China"
         },
-        "image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=2070&auto=format&fit=crop"
+        "image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=2070&auto=format&fit=crop",
+        "logo": "sanuker.png",
+        "problem": "An APAC messaging provider needed its chatbot architecture to stay reliable across several messaging platforms at once, each with its own delivery rules.",
+        "built": "Built the chatbot architecture spanning multiple messaging platforms, keeping commerce and analytics integrations intact.",
+        "stack": ["WordPress", "WPML multilingual", "WooCommerce", "WhatsApp Business API", "Google Analytics 4"]
     }
 ]

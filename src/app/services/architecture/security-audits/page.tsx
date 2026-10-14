@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Security & Audits | Ethercraft Guild",
     description: "Identify vulnerabilities before they become liabilities. Comprehensive security assessments for your digital assets.",
-};
+    path: "/services/architecture/security-audits",
+});
 
 export default function SecurityAuditsPage() {
     return (

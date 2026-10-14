@@ -5,10 +5,11 @@ import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
 
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Digital Architecture | Ethercraft Guild",
     description: "From concept to deployment, we engineer stable, scalable, and secure digital foundations for high-growth businesses.",
-};
+    path: "/services/architecture",
+});
 
 export default function ArchitecturePage() {
     return (

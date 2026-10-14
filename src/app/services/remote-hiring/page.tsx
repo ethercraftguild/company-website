@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/templates/ServiceDetailLayout";
 
-export const metadata: Metadata = {
-  title: "Remote Hiring / Employer of Record | Ethercraft Guild",
-  description:
-    "Scale internationally with an Employer of Record compliance buffer, delivered through senior engineering oversight—not a generic staffing layer.",
-};
+export const metadata: Metadata = pageMetadata({
+    title: "Remote Hiring / Employer of Record | Ethercraft Guild",
+    description: "Scale internationally with an Employer of Record compliance buffer, delivered through senior engineering oversight—not a generic staffing layer.",
+    path: "/services/remote-hiring",
+});
 
 export default function RemoteHiringPage() {
   return (

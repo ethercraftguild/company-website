@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Performance Marketing | Ethercraft Guild",
     description: "Maximize ROAS with scientific campaign management. We manage paid acquisition across search, social, and display.",
-};
+    path: "/services/growth/performance-marketing",
+});
 
 export default function PerformanceMarketingPage() {
     return (

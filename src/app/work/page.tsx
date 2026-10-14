@@ -1,13 +1,18 @@
+import type { Metadata } from 'next';
+
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import CtaSection from '@/components/ui/CtaSection';
 import ProjectCard from '@/components/ProjectCard';
 import projectData from '@/data/projects.json';
 
-export const metadata = {
-    title: 'Our Work | Ethercraft Guild',
-    description: 'Explore a curated selection of our recent digital architecture, growth strategies, and enterprise solutions.',
-};
+export function generateMetadata(): Metadata {
+    return {
+        title: 'Our Work | Ethercraft Guild',
+        description:
+            'Mini case studies from the Guild: the problem each client faced, what we built, the stack we used, and a link to the live platform.',
+    };
+}
 
 export default function WorkPage() {
     return (
@@ -28,12 +33,7 @@ export default function WorkPage() {
                             key={project.id}
                             className="md:col-span-2 md:last:col-start-2"
                         >
-                            <ProjectCard
-                                title={project.title}
-                                description={project.description}
-                                link={project.link}
-                                location={project.location}
-                            />
+                            <ProjectCard project={project} />
                         </div>
                     ))}
                 </div>
@@ -48,12 +48,7 @@ export default function WorkPage() {
                             key={project.id}
                             className="md:col-span-2 md:last:col-start-2"
                         >
-                            <ProjectCard
-                                title={project.title}
-                                description={project.description}
-                                link={project.link}
-                                location={project.location}
-                            />
+                            <ProjectCard project={project} />
                         </div>
                     ))}
                 </div>

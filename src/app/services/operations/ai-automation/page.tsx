@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "AI Automation Pipeline & Services | Ethercraft Guild",
     description: "Operationalize intelligence. We build custom AI pipelines that automate complex workflows, reduce manual overhead, and unlock new data insights.",
-};
+    path: "/services/operations/ai-automation",
+});
 
 export default function AiAutomationPage() {
     return (

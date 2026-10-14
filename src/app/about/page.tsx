@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
+import ProcessTimeline from "@/components/ui/ProcessTimeline";
+import RemoteClientGuide from "@/components/RemoteClientGuide";
 
 const DEFAULT_SITE_URL = "https://ethercraftguild.vercel.app";
 
@@ -8,18 +11,18 @@ function getSiteUrl() {
   return raw.endsWith("/") ? raw.slice(0, -1) : raw;
 }
 
-export const metadata: Metadata = {
-  title: "About Ethercraft Guild | Digital Craftsmanship, Global Compliance",
-  description:
-    "Ethercraft Guild bridges high-growth global startups with senior engineering talent in South Asia, delivered through an Engineering Cooperative and Employer of Record compliance buffer.",
-  keywords: [
-    "Software Engineering Cooperative",
-    "Dhaka-based Tech Agency",
-    "Flutter Specialists",
-    "Employer of Record Compliance",
-    "Node.js Architects",
-  ],
-};
+export const metadata: Metadata = pageMetadata({
+    title: "About Ethercraft Guild | Digital Craftsmanship, Global Compliance",
+    description: "Ethercraft Guild bridges high-growth global startups with senior engineering talent in South Asia, delivered through an Engineering Cooperative and Employer of Record compliance buffer.",
+    keywords: [
+        "Software Engineering Cooperative",
+        "Dhaka-based Tech Agency",
+        "Flutter Specialists",
+        "Employer of Record Compliance",
+        "Node.js Architects",
+      ],
+    path: "/about",
+});
 
 export default function AboutPage() {
   const siteUrl = getSiteUrl();
@@ -141,6 +144,10 @@ export default function AboutPage() {
           </div>
         </section>
       </div>
+
+      {/* Full-bleed sections live outside the narrow reading column above. */}
+      <ProcessTimeline />
+      <RemoteClientGuide />
     </main>
   );
 }

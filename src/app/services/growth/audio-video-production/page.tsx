@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Audio & Video Production | Ethercraft Guild",
     description: "Compelling visual storytelling and immersive soundscapes. We produce high-fidelity media assets that capture attention and communicate your brand's essence.",
-};
+    path: "/services/growth/audio-video-production",
+});
 
 export default function AudioVideoProductionPage() {
     return (

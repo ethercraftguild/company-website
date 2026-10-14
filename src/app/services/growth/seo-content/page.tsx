@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "SEO & Content Strategy | Ethercraft Guild",
     description: "Build sustainable organic growth. We create technical SEO foundations and content architectures that map to user intent.",
-};
+    path: "/services/growth/seo-content",
+});
 
 export default function SeoContentPage() {
     return (
