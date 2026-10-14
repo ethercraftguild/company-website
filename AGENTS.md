@@ -101,6 +101,11 @@ After go-live, confirm both hosts point at the same `/exec`.
   are image files in `public/clients/`, so no brand hex exists in source.
   Recolouring a client logo is a correctness error. Add an entry only with the
   owner's written approval plus a `file:line` comment naming the element.
+- **Motion respects `prefers-reduced-motion`** (owner ruling 2026-10-15).
+  `@media (prefers-reduced-motion: reduce)` sets `animation: none` on
+  `.animate-text`, `.animate-blob` and `.animate-pulse` — the infinite decorative
+  loops, which are the one a11y exemption that bites because they never settle.
+  One-shot reveals (`.animate-slideUp`) are deliberately left alone.
 - **Machine gate:** `src/lib/colourPolicy.test.ts` FAILS if a raw hue utility or
   an off-allowlist hex appears in `src/` or in built CSS, and also asserts the
   primary utilities and focus-visible rules are actually emitted. Verified it
@@ -113,6 +118,18 @@ After go-live, confirm both hosts point at the same `/exec`.
   name a raw utility in documentation.
 - `/icon.png` **does not exist** and 404s serving HTML. `logo.png` is the
   canonical image URL for JSON-LD, OG and StructuredData.
+
+## Step 5 typography/spacing audit (2026-10-15, audit-only — NO edits made)
+No max-w / px / py / space-[...] literals were changed; sign-off pending.
+Container norm is `container-custom` (max-w-1200px). Deviating routes:
+`/work` and `/contact` narrow to `max-w-600`; `/privacy` and `/terms` to
+`max-w-800` (8 occurrences); the three category overviews
+(`/services/architecture|growth|operations`) to `max-w-800`; shared `CtaSection`
+defaults to `max-w-800`. `/about`, `/about/manifesto` and `/services` are clean
+(container only). Home carries the most ad-hoc widths (700×3, 640×2, 850, 760).
+Only three arbitrary *spacing* values exist site-wide: `pb-[100px]` (drawer
+scroll padding), `mt-[2px]`, `gap-[6px]` (hamburger). H-counts already correct —
+one H1 per route; do not restructure headings.
 
 ## Sitemap — no defect, do not "fix"
 Verified 2026-10-15: `<sitemapindex>` -> 27 URLs, all on ethercraftguild.vercel.app,
@@ -210,11 +227,21 @@ byline question is answered.
   "fix" to RFG defaults.
 - Dead placeholder SVGs deleted Oct 2026: `next`, `vercel`, `globe`, `file`, `window`.
 - The `:root` `--space-*` and `--radius-*` custom properties were **dead CSS** —
-  referenced by no rule. Real values come from `tailwind.config.ts`
-  (`spacing`, `borderRadius`), which generates `py-md` / `rounded-pill`.
-  Deleted 2026-10-15. The apparent `--radius-sm: 20px -> 25px` "duplicate" was
-  two responsive steps in one block, not a bug; both were dead, so the question is
-  moot. `rounded-sm` = 20px and `rounded-pill` = 9999px come from the config.
+  referenced by no rule, because the real values came from `tailwind.config.ts`
+  (`spacing`, `borderRadius`) which generates `py-md` / `rounded-pill`. Deleted
+  2026-10-15, along with the config itself (see the next bullet). The apparent
+  `--radius-sm: 20px -> 25px` "duplicate" was two responsive steps in one block,
+  not a bug — but all of it was dead, so the question is moot.
+- **Tailwind single-source: the config genuinely loaded, so it was ported, not
+  chased.** Proof before porting: built CSS emitted `.py-md{padding-block:1rem}`,
+  `.rounded-pill{border-radius:9999px}`, `.rounded-sm{20px}`,
+  `.font-mono{font-family:Space Mono...}` — i.e. `@config` was live, so these were
+  NOT phantoms. Spacing / radius / font / animation were ported into the same
+  `@theme` block and **`tailwind.config.ts` was deleted** along with the
+  `@config` directive. Post-deletion re-grep shows every utility survives with
+  identical values, now variable-backed (`.py-md{padding-block:var(--spacing-md)}`,
+  `--spacing-md:1rem`). **End state: one theme definition, zero config files.**
+- `@media (prefers-reduced-motion: reduce)` lives in the `@layer utilities` block.
 - Sitemap = next-sitemap manifest auto-discovery; `additionalPaths` intentionally `[]`
   (re-adding walked routes duplicates every URL; root `page.tsx` edge case emits bogus `/page.tsx`).
 - `public/robots.txt`, `public/sitemap*.xml` are gitignored build artifacts.
@@ -262,7 +289,15 @@ byline question is answered.
   deleted 2026-10-15 (npm-grep count across AGENTS.md / README.md / .github /
   package.json is now **0**). Node is pinned by `.nvmrc` (`v24.21.0`) and the
   `engines.node >=24.0.0` field; CI uses `actions/setup-node` with that file and
-  `yarn install --immutable`. Never use `--force`.
+  `yarn install --immutable`. Never use `--force`. `packageManager: yarn@1.22.22`
+  pins the exact line so CI cannot resolve with a different parser.
+  - `yarn.lock` is **yarn classic v1** (`# yarn lockfile v1` — classic has no
+    `lockfileVersion` field; berry's `lockfileVersion` key does not apply here).
+    It was **re-resolved**, not imported: `yarn import` rejected the npm lockfile
+    as corrupted. Ranges unchanged (6 deps / 12 devDeps); 408 entries.
+  - Audit: `yarn audit` works on classic. Standing result — **1 moderate**,
+    `gray-matter > js-yaml > argparse > sprintf-js`, **no patch available**.
+    Build-time only (MDX pipeline), not shipped to browsers.
 - Lint baseline, **measured 2026-10-15: 37 problems (28 errors, 9 warnings)** — not
   the `~31` or `36` previously recorded. All 37 pre-date this session; none are in
   files authored or edited this pass (`eslint` clean on every T5/T6 file). Do not

@@ -4,7 +4,6 @@
    already shipped .text-blue-500 that way. Sources are declared explicitly. */
 @import "tailwindcss" source(none);
 @source "../**/*.{ts,tsx}";
-@config "../../tailwind.config.ts";
 
 /* ------------------------------------------------------------------
    COLOUR — single source of truth.
@@ -36,9 +35,38 @@
      colour is never the only signal. */
   --color-success: #1a1a1a;
 
-  /* Kept as the single non-brand hue, for error text only. This is an
-     accessibility signal, not decoration - flag if it should go too. */
+  /* RESERVED FOR ERROR-STATE TEXT ONLY - never borders, fills or decoration.
+     Owner ruling 2026-10-15: the monochrome invariant binds chrome, not a11y
+     signals. Contrast on --color-bg is ~6:1, passing WCAG AA for normal text.
+     Paired with a warning glyph so colour is never the only signal. */
   --color-danger: #b3261e;
+
+  /* Spacing scale, ported from tailwind.config.ts (which is deleted). */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 5rem;
+
+  --radius-sm: 20px;
+  --radius-pill: 9999px;
+
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-mono: "Space Mono", "Fira Code", monospace;
+
+  --animate-slideUp: slideUp 0.3s ease-out;
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {
@@ -115,6 +143,17 @@
 
   .animate-blob {
     animation: blob-drift 18s ease-in-out infinite;
+  }
+
+  /* Owner ruling 2026-10-15: infinite decorative motion is the a11y case that
+     actually bites, because it never settles. One-shot reveals (slideUp) are
+     left alone; only the decorative loops are switched off. */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-text,
+    .animate-blob,
+    .animate-pulse {
+      animation: none;
+    }
   }
 
   .animate-text {

@@ -17,6 +17,18 @@ import path from "node:path";
  */
 const CLIENT_BRAND_ALLOWLIST: { value: string; why: string }[] = [];
 
+/**
+ * Owner ruling 2026-10-15: the monochrome invariant binds chrome, not a11y
+ * signals. Exactly ONE hue token is permitted, reserved for error-state text.
+ * Any other hue in @theme is a failure.
+ */
+const ALLOWED_THEME_HUES: { value: string; why: string }[] = [
+    {
+        value: "#b3261e",
+        why: "Error-state text only. ~6:1 on --color-bg, passes WCAG AA. Never borders/fills/decoration. Paired with a warning glyph.",
+    },
+];
+
 /** Source-level exceptions, each with a reason. Deliberately tiny. */
 const SOURCE_ALLOWLIST: { match: string; why: string }[] = [
     {
@@ -74,6 +86,34 @@ describe("monochrome colour policy", () => {
         const theme = css.slice(css.indexOf("@theme"), css.indexOf("@layer base"));
         assert.match(theme, /--color-primary:\s*#1a1a1a/i, "primary must be bound to ink");
         assert.match(theme, /--color-primary-foreground:/i, "primary-foreground must exist");
+    });
+
+    test("the theme holds no hue token except the single allowlisted one", () => {
+        const css = fs.readFileSync(THEME_FILE, "utf8");
+        const theme = css.slice(css.indexOf("@theme"), css.indexOf("@layer base"));
+        // Strip comments so the "was #3c83f6 (BLUE)" note is not scanned as a hue.
+        const body = theme.replace(/\/\*[\s\S]*?\*\//g, "");
+        const found = [...new Set((body.match(HEX_LITERALS) ?? []).map((h) => h.toLowerCase()))];
+        // Only chromatic values count as hues. #f7f7f7/#1a1a1a/#cccccc and friends
+        // are neutrals and are the monochrome identity itself.
+        const isHue = (hex: string) => {
+            let v = hex.slice(1);
+            if (v.length === 3) v = v.split("").map((c) => c + c).join("");
+            const [r, g, b] = [0, 2, 4].map((i) => parseInt(v.slice(i, i + 2), 16));
+            return Math.max(r, g, b) - Math.min(r, g, b) > 12;
+        };
+        const unexpected = found.filter(
+            (h) => isHue(h) && !ALLOWED_THEME_HUES.some((a) => a.value.toLowerCase() === h),
+        );
+        assert.deepEqual(unexpected, [], `hue tokens found in @theme: ${unexpected.join(", ")}`);
+        assert.equal(ALLOWED_THEME_HUES.length, 1, "allowlist must stay exactly one hue");
+    });
+
+    test("the allowlisted hue is declared under --color-danger", () => {
+        const css = fs.readFileSync(THEME_FILE, "utf8");
+        const theme = css.slice(css.indexOf("@theme"), css.indexOf("@layer base")).replace(/\/\*[\s\S]*?\*\//g, "");
+        const declared = (theme.match(/--color-danger:\s*(#[0-9a-fA-F]+)/) || [])[1];
+        assert.equal(declared?.toLowerCase(), ALLOWED_THEME_HUES[0].value);
     });
 
     test("success is no longer the blue token", () => {
