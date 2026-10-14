@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StructuredData from "@/components/StructuredData";
 import ServiceDetailLayout from "@/components/templates/ServiceDetailLayout";
 import Accordion from "@/components/ui/Accordion";
 import { pageMetadata } from "@/lib/seo";
@@ -48,6 +49,7 @@ export default function SoftwareDevelopmentPage() {
 
   return (
     <>
+        <StructuredData path="/services/software-development" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StructuredData from "@/components/StructuredData";
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
@@ -15,6 +16,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ArchitecturePage() {
     return (
         <main>
+            <StructuredData path="/services/architecture" />
             <PageHero
                 title="Digital Architecture"
                 subtitle="From concept to deployment, we engineer stable, scalable, and secure digital foundations for high-growth businesses."

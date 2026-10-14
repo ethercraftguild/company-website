@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StructuredData from "@/components/StructuredData";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ProcessTimeline from "@/components/ui/ProcessTimeline";
@@ -29,6 +30,7 @@ export default function AboutPage() {
 
   return (
     <main className="pt-xl md:pt-2xl pb-xl">
+        <StructuredData path="/about" />
       <div className="container-custom max-w-4xl">
         <header className="mb-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold tracking-wider uppercase opacity-70 mb-md">

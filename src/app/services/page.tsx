@@ -1,4 +1,5 @@
 import ServiceGrid from '@/components/ServiceGrid';
+import StructuredData from "@/components/StructuredData";
 import CtaSection from '@/components/ui/CtaSection';
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
@@ -12,6 +13,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ServicesPage() {
   return (
     <main className="pt-3xl pb-xl">
+        <StructuredData path="/services" />
       <div className="container-custom mb-2xl">
         <h1 className="text-4xl md:text-6xl font-bold mb-md">Our Services</h1>
         <p className="text-xl text-foreground/80 max-w-3xl">We provide elite engineering solutions, from scalable architecture to precision growth and team augmentation, ensuring your technical products are built flawlessly.</p>

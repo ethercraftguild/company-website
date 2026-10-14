@@ -5,6 +5,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import BlogLayout from "@/components/BlogLayout";
 import { getAllPosts, getPostBySlug } from "@/lib/blog/posts";
 import { buildBlogJsonLd } from "@/lib/blog/schema";
+import StructuredData from "@/components/StructuredData";
+import { SITE_CONFIG } from "@/config";
 
 const DEFAULT_SITE_URL = "https://ethercraftguild.vercel.app";
 
@@ -33,7 +35,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(siteUrl),
-    title: `${postData.title} | Ethercraft Guild`,
+    title: `${postData.title} | ${SITE_CONFIG.companyName}`,
     description: postData.excerpt,
     keywords: postData.focus_keywords,
     alternates: {
@@ -44,13 +46,13 @@ export async function generateMetadata({
       description: postData.excerpt,
       url: pageUrl,
       type: "article",
-      siteName: "Ethercraft Guild",
+      siteName: SITE_CONFIG.companyName,
       images: [
         {
           url: `${siteUrl}/og.png`,
           width: 1200,
           height: 630,
-          alt: "Ethercraft Guild — Mastering Digital Craftsmanship",
+          alt: `${SITE_CONFIG.companyName} — Mastering Digital Craftsmanship`,
         },
       ],
     },
@@ -82,6 +84,7 @@ export default async function BlogPostPage({
 
   return (
     <>
+      <StructuredData path={`/blog/${postData.slug}`} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

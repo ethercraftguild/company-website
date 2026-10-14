@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StructuredData from "@/components/StructuredData";
 import ServiceDetailLayout from '@/components/templates/ServiceDetailLayout';
 import { CapabilityCard, CapabilitiesGrid } from '@/components/ui/ServiceCapabilities';
 import Accordion from '@/components/ui/Accordion';
@@ -49,6 +50,7 @@ export default function WebPlatformsPage() {
 
     return (
         <>
+            <StructuredData path="/services/architecture/web-platforms" />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{

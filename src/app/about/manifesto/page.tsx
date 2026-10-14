@@ -1,4 +1,5 @@
 import CtaSection from '@/components/ui/CtaSection';
+import StructuredData from "@/components/StructuredData";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
@@ -11,6 +12,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ManifestoPage() {
   return (
     <main className="pt-xl md:pt-2xl pb-xl">
+        <StructuredData path="/about/manifesto" />
       <div className="container-custom max-w-4xl">
         <h1 className="text-5xl md:text-7xl font-bold mb-lg">The Engineering Manifesto</h1>
         

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StructuredData from "@/components/StructuredData";
 
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
@@ -19,6 +20,7 @@ export function generateMetadata(): Metadata {
 export default function WorkPage() {
     return (
         <main>
+            <StructuredData path="/work" />
             <PageHero
                 title="Our Work"
                 subtitle="A selection of our recent projects and the impact we've created for our clients."

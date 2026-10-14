@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StructuredData from "@/components/StructuredData";
 import Link from "next/link";
 import Section from "@/components/ui/Section";
 import PageHero from "@/components/ui/PageHero";
@@ -52,6 +53,7 @@ export default function MobileAppDevPage() {
 
   return (
     <main>
+        <StructuredData path="/services/architecture/mobile-app-dev" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

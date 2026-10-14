@@ -1,11 +1,11 @@
 import { SITE_CONFIG } from "@/config";
 import { CLIENT_COUNTRIES, deriveKnowsAboutTerms } from "@/data/clients";
+import { canonicalFor as canonicalPath, normalizeSiteUrl, pageTypeFor as pageKind } from "@/lib/schemaPaths";
 
 const DEFAULT_SITE_URL = "https://ethercraftguild.vercel.app";
 
 export function siteOrigin(): string {
-    const raw = process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL;
-    return raw.endsWith("/") ? raw.slice(0, -1) : raw;
+    return normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL);
 }
 
 /** Canonical, stable identity for the org across every route and every other graph. */
@@ -15,8 +15,7 @@ export function organizationId(): string {
 
 /** Turns a router pathname into the canonical URL that route declares. */
 export function canonicalFor(pathname: string): string {
-    const clean = pathname.replace(/\/+$/, "");
-    return clean === "" ? siteOrigin() : `${siteOrigin()}${clean}`;
+    return canonicalPath(siteOrigin(), pathname);
 }
 
 /**
@@ -24,10 +23,7 @@ export function canonicalFor(pathname: string): string {
  * isPartOf/about both point at the org @id per the T6 brief.
  */
 export function pageTypeFor(pathname: string): string {
-    const clean = pathname.replace(/\/+$/, "");
-    if (clean === "/about") return "AboutPage";
-    if (clean === "/contact") return "ContactPage";
-    return "WebPage";
+    return pageKind(pathname);
 }
 
 function organizationNode() {
@@ -35,6 +31,9 @@ function organizationNode() {
         "@type": "ProfessionalService",
         "@id": organizationId(),
         name: SITE_CONFIG.companyName,
+        // Trade-Licence business name. Not a cooperative: no alternateName and no
+        // explanatory schema fields about the word "Guild".
+        legalName: SITE_CONFIG.companyName,
         url: siteOrigin(),
         logo: `${siteOrigin()}${SITE_CONFIG.logoPath}`,
         image: `${siteOrigin()}${SITE_CONFIG.logoPath}`,
@@ -49,7 +48,14 @@ function organizationNode() {
             "@type": "AdministrativeArea",
             name: country,
         })),
-        knowsAbout: [...SITE_CONFIG.serviceTypes, "Custom AI Agents & LLM Tooling", ...deriveKnowsAboutTerms()],
+        // Owner-curated list wins verbatim when supplied; otherwise derive from
+        // repo data only, so nothing unreferenced ships.
+        knowsAbout:
+            SITE_CONFIG.knowsAboutOverride ?? [
+                ...SITE_CONFIG.serviceTypes,
+                "Custom AI Agents & LLM Tooling",
+                ...deriveKnowsAboutTerms(),
+            ],
     };
 
     // telephone and identifier were removed: config carries neither, and an empty

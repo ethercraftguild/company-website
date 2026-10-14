@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StructuredData from "@/components/StructuredData";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -14,6 +15,7 @@ export default function BlogIndexPage() {
 
   return (
     <main className="pt-3xl pb-xl">
+        <StructuredData path="/blog" />
       <div className="container-custom">
         <header className="mb-2xl">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-md">

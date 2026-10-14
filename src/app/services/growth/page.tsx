@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StructuredData from "@/components/StructuredData";
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
@@ -14,6 +15,7 @@ export const metadata: Metadata = pageMetadata({
 export default function GrowthPage() {
     return (
         <main>
+            <StructuredData path="/services/growth" />
             <PageHero
                 title="Growth & Brand Mastery"
                 subtitle="We build brands that resonate and strategies that convert. Data-driven growth for the modern digital landscape."

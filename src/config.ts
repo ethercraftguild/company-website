@@ -34,6 +34,9 @@ export const SITE_CONFIG = {
     // Empty while the Clutch profile 403s and the LinkedIn slug is unconfirmed.
     // Keys with empty values are omitted from the graph (see schema.ts).
     sameAsProfiles: [] as string[],
+    // Owner-curated knowsAbout list. Undefined = derive from repo data. When MoJin
+    // supplies the list it is published verbatim; never invent it here.
+    knowsAboutOverride: undefined as string[] | undefined,
     gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
     calendly: "https://calendly.com/ethercraftguild/30min",
     links: {

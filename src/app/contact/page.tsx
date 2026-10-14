@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StructuredData from "@/components/StructuredData";
 import Section from '@/components/ui/Section';
 import ContactForm from '@/components/ContactForm';
 import { pageMetadata } from "@/lib/seo";
@@ -15,6 +16,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
     return (
         <>
+            <StructuredData path="/contact" />
         <Section className="min-h-[80vh] flex justify-center items-center pt-xl">
             <div className="w-full max-w-[600px] mx-auto">
                 <h1 className="mb-xs text-center">Start Your Project</h1>

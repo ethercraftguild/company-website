@@ -1,23 +1,19 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import { buildSchemaGraph, serializeGraph } from "@/lib/schema";
 
 /**
  * Emits exactly one @graph per route: one ProfessionalService node plus one page
- * node whose @id is that route's canonical URL. Identity facts come from
- * src/config.ts and src/data/clients.ts only.
+ * node whose @id is that route's canonical URL.
  *
- * Client component purely to read the pathname: a root layout has no route
- * context, and each route's page node must differ.
+ * Server Component on purpose. The route is passed in explicitly by each page
+ * rather than read with usePathname(): if the JSON-LD only existed after JS ran,
+ * it would be invisible to GPTBot, ClaudeBot and every other fetcher that cannot
+ * execute JavaScript. `path` must match the `path` given to pageMetadata().
  */
-export default function StructuredData() {
-    const pathname = usePathname() ?? "/";
-
+export default function StructuredData({ path }: { path: string }) {
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: serializeGraph(buildSchemaGraph(pathname)) }}
+            dangerouslySetInnerHTML={{ __html: serializeGraph(buildSchemaGraph(path)) }}
         />
     );
 }

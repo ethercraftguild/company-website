@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Mono } from "next/font/google"; // Using fonts defined in globals.css variables
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import StructuredData from "@/components/StructuredData";
 import Analytics from "@/components/Analytics";
 import { pageMetadata } from "@/lib/seo";
 import "./globals.css";
@@ -44,9 +43,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <StructuredData />
-      </head>
       <body className={`${inter.variable} ${spaceMono.variable}`}>
         <Header />
         <div className="pt-16">{children}</div>

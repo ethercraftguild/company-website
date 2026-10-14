@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StructuredData from "@/components/StructuredData";
 import Section from '@/components/ui/Section';
 import PageHero from '@/components/ui/PageHero';
 import Accordion from '@/components/ui/Accordion';
@@ -14,6 +15,7 @@ export const metadata: Metadata = pageMetadata({
 export default function OperationsPage() {
     return (
         <main>
+            <StructuredData path="/services/operations" />
             <PageHero
                 title="Talent & Operational Support"
                 subtitle="Scale your capabilities without the overhead. We provide specific, vetted talent and optimize your internal workflows."

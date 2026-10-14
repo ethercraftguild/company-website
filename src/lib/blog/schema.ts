@@ -29,10 +29,9 @@ export function buildBlogJsonLd({
     description: escapeJsonLd(post.excerpt),
     datePublished: post.date,
     dateModified: post.date,
-    author: {
-      "@type": "Person",
-      name: escapeJsonLd(post.author),
-    },
+    // `author` deliberately absent: the byline in post frontmatter is the company
+    // name, which is not a Person. Q-BYLINE must be answered before any author
+    // node ships. Do not reintroduce a company-as-Person here.
     publisher: organization,
     mainEntityOfPage: {
       "@type": "WebPage",

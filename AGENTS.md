@@ -7,12 +7,12 @@
 - `main` branch is the old Astro-era history → rename to `deprecated/astro-v1`
   in GitHub browser (can't be done from CLI while it's default). Set `next` as default first.
 - No `.vercel/` link locally, no `vercel.json`. Two build modes:
-  - Vercel server: `npm run build` (+ `postbuild: next-sitemap`).
-  - Static export (GitHub Pages workflow): `npm run export`.
+  - Vercel server: `yarn build` (+ `postbuild: next-sitemap`).
+  - Static export (GitHub Pages workflow): `yarn export`.
     `.github/workflows/deploy.yml` runs next-sitemap AFTER export then `cp`s
     sitemaps into `out/` (next-sitemap needs the `.next` manifest).
 
-## Contact form — Google Apps Script (LIVE, browser-verified 2026-10-15)
+## Contact form — Google Apps Script (server contract verified 2026-10-14; client JSONP fix awaiting deploy)
 Submission path is **JSONP**, not fetch: Apps Script's ContentService cannot be read
 cross-origin. Files: `src/components/ContactForm.tsx` (UI), `src/lib/jsonp.ts`
 (transport), `src/lib/contactPayload.ts` (pure payload + validation, unit-tested),
@@ -81,6 +81,37 @@ After go-live, confirm both hosts point at the same `/exec`.
 - **Message capped at 600 chars with a live counter.** JSONP is a GET. Measured:
   600 non-ASCII chars = 3.5 KB URL and works; ~14.6 KB returns an HTML error page
   instead of JSONP. That failure degrades to the generic error, never a hang.
+
+## Identity authority (owner-supplied, treat as final)
+- **Business name: "Ethercraft Guild"** — the Trade-Licence name. Emitted as BOTH
+  `name` and `legalName`. It is **not** a cooperative: never add `alternateName`
+  or any explanatory schema field about the word "Guild".
+- **Founder: "Mohammad Mustakim Hassan"** — `{ "@type": "Person", "name": ... }`
+  as `founder` of the ProfessionalService. No `jobTitle` (none supplied), no
+  `foundingDate` (none supplied), no Person-level `sameAs`.
+- **PUBLICATION BAN:** the owner's nicknames (study-years Chinese name), personal
+  nickname and any gaming/professional handle must never appear in JSON-LD, copy,
+  comments or commit messages. Verified absent from `src/` as of 2026-10-15.
+- All identity strings live in the single config module **`src/config.ts:1`
+  (`SITE_CONFIG`)**. `src/components/StructuredData.tsx`, `src/lib/schema.ts`,
+  `src/lib/schemaPaths.ts` and `src/data/clients.ts` contain **zero** literals.
+  `config.knowsAboutOverride` — when set, published verbatim; when unset, terms
+  are derived from repo data only. Never invent the list.
+- Legacy support deliberately removed 2026-10-15: the `time`-field fallback is
+  kept (`serverEpoch ?? time`) because the server still ships both; everything
+  else legacy is gone — no `telephone` key, no `identifier` key, no
+  `siteHost` derivation, no `alternateName`, no BlogPosting `author`.
+
+## One node per @id (schema rule)
+Every route emits ONE `@graph` containing exactly one `ProfessionalService` node
+(`@id` = `<origin>/#organization`) plus one page node whose `@id` is THAT route's
+canonical URL. Other nodes (`Service`, `FAQPage`) may coexist but must carry
+`provider: {"@id": "<origin>/#organization"}` references, never a second copy of
+the organization. **Cautionary tale:** `src/lib/blog/schema.ts` once embedded its
+own `Organization` inside `BlogPosting.publisher` and `Service.provider`, and set
+`BlogPosting.author` to a `Person` named after the *company*. Both are the exact
+class of bug the (a) assertion exists to catch. `author` is now absent until the
+byline question is answered.
 
 ## Hard rule: no invented proof
 - Never publish metrics, prices, client names, testimonials, or guarantees
@@ -160,16 +191,35 @@ After go-live, confirm both hosts point at the same `/exec`.
 > Right now the only CTA is a high-commitment "Start Consultation."
 
 ## Verification
-- `npm test` — 9 tests over `contactPayload.ts` (required field names, optional-field
-  forwarding, trimming, validation). Uses `node --test` with native type stripping;
-  `allowImportingTsExtensions` is enabled in tsconfig for the `.ts` specifiers.
-- `npx tsc --noEmit` then `npx next build` (29 routes).
+- `yarn test` — **32 tests**, no alias shim, no bundler. `node --test src/lib/*.test.ts`
+  with Node 24 native type stripping (`allowImportingTsExtensions` in tsconfig).
+  - `contactPayload.test.ts` (9) — required field names, optional-field forwarding,
+    trimming, validation. Pure module, relative import.
+  - `jsonp.test.ts` (10) — DOM-shim transport suite: callable global, payload resolves
+    before onload, junk-onload settles failure, single-fire, cleanup, sanitizer.
+  - `schemaPaths.test.ts` (4) — pure route helpers.
+  - `schema.test.ts` (9) — walks built `out/**/*.html`: (a) one node per @id,
+    (a2) same @id = same content, (b) no `""`/`[]` values, (c) page @id ==
+    rel=canonical, (d) no missing asset, (e) every content route has a block.
+    Error pages (`404.html`, `_not-found.html`) are excluded by design.
+  - The old `test/alias-resolver.mjs` loader shim was **deleted** 2026-10-15. Pure
+    modules are imported relatively; impure app code is tested through built HTML.
+- `yarn test` -> `tsc --noEmit` -> `next build` (29 routes) -> `export`, then the
+  prerender gate: `grep -rl 'application/ld+json' out --include='*.html' | wc -l`
+  must equal the number of CONTENT html files (27, not 29 — `next build` counts
+  /_not-found as a route and emits robots.txt as a non-HTML route).
 - Contact form: real browser submit against live `/exec` 2026-10-15 landed in
   the owner's inbox (success UI + counter reset + form cleared; owner confirmed
   receipt). `hp=x` remains the free UI-test path (no mail, no rate cost).
   Remaining: owner does one final end-to-end submit post-deploy as closing proof.
 
 ## Hygiene
-- Lint baseline has ~31 pre-existing errors (`any` types, unescaped entities in old files). Don't chase them; keep new/edited files clean.
-- Verify with `npx tsc --noEmit` + `npx next build` (29 routes). ESLint count should not rise above baseline.
+- **Package manager: yarn.** No `npm` commands from 2026-10-15 onward.
+- Lint baseline, **measured 2026-10-15: 37 problems (28 errors, 9 warnings)** — not
+  the `~31` or `36` previously recorded. All 37 pre-date this session; none are in
+  files authored or edited this pass (`eslint` clean on every T5/T6 file). Do not
+  move this number silently — re-measure and attribute.
+- Don't chase pre-existing errors (`any` types, unescaped entities in old files);
+  keep new/edited files clean.
+- Verify with `tsc --noEmit` + `next build` (29 routes). ESLint count should not rise above the measured 37.
 - Keep the visual identity: tokens `bg-card/border-border/rounded-[1.5rem]/rounded-pill`, mono labels, existing hover treatments.

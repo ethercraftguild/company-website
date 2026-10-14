@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StructuredData from "@/components/StructuredData";
 import { pageMetadata } from "@/lib/seo";
 import ContactSection from '@/components/ContactSection';
 
@@ -15,6 +16,7 @@ const effectiveDate = "June 12, 2025";
 export default function TermsPage() {
     return (
         <div className="bg-accent text-[#f7f7f7] w-full min-h-screen [&_h2]:text-[2rem] [&_h2]:mb-lg [&_h2]:border-b [&_h2]:border-white/20 [&_h2]:pb-sm [&_h3]:text-[1.5rem] [&_h3]:mt-lg [&_h3]:mb-sm [&_h3]:text-white [&_p]:leading-[1.8] [&_p]:mb-md [&_p]:opacity-90 [&_ul]:list-disc [&_ul]:pl-lg [&_ul]:mb-lg [&_u]:leading-[1.6] [&_li]:mb-sm">
+            <StructuredData path="/terms" />
             <section className="bg-hover pt-2xl text-center pb-xl px-md">
                 <div className="max-w-[800px] mx-auto">
                     <h1 className="text-[3rem] mb-md font-bold">Terms and Conditions</h1>

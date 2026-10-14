@@ -1,5 +1,6 @@
 
 import CtaSection from '@/components/ui/CtaSection';
+import StructuredData from "@/components/StructuredData";
 import Testimonials from '@/components/Testimonials';
 import ServiceGrid from '@/components/ServiceGrid';
 import HomeHero from '@/components/HomeHero';
@@ -12,6 +13,7 @@ import AuditOffer from '@/components/AuditOffer';
 export default function Home() {
   return (
     <main>
+        <StructuredData path="/" />
       <HomeHero />
       <AuditOffer />
       <AboutTeaser />
